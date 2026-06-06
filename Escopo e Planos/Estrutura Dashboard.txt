@@ -1,0 +1,11 @@
+## Telas do dashboard (definitivas para o pitch)
+
+Quatro telas, na ordem em que aparecem no PDF:
+
+- A primeira é o Painel Nacional com o mapa do Brasil mostrando o status atual do ENSO no topo (caixa grande: "El Niño Watch — ONI +0.9°C — Probabilidade de Super El Niño 65%"), acompanhado do estado do Atlântico Tropical (AMM — último valor disponível ago/2024: +2.75, indicando que o Atlântico pode atenuar parcialmente a seca no NE), e os dois municípios-piloto destacados com seus respectivos níveis de alerta.
+
+- A segunda é o Painel Municipal Quixadá-CE. Score de risco atual em destaque grande (integrando Pacífico — ONI — e Atlântico — AMM), com nota indicando que o AMM positivo modera levemente o risco de seca; gráfico do histórico de correlações e precipitação local; calendário do milho com janelas críticas marcadas; recomendação textual ("Probabilidade alta de estiagem entre fevereiro e abril. AMM positivo reduz — mas não elimina — o risco. Considere substituir milho por sorgo. Acione Garantia-Safra preventivamente.").
+
+- A terceira é o Painel Municipal Lajeado-RS. Mesma estrutura mas espelhada para enchente: score, histórico de excesso pluviométrico, calendário do trigo, recomendação ("Probabilidade alta de chuva 60% acima da média entre setembro e novembro. Ativar plano de contingência. Histórico: 4 decretos nos últimos 5 El Niños.").
+
+- A quarta é Previsão e Horizonte de Risco. Pluma de probabilidade ENSO para os próximos seis trimestres (dados do IRI/Columbia), e linha do tempo de alertas projetados para os dois municípios até fevereiro de 2027.
