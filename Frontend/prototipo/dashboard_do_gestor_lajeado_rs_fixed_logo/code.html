@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+
+<html class="light" lang="pt-br"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>S.ENSO | Gestor - Defesa Civil Lajeado</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&amp;family=JetBrains+Mono:wght@400;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind Configuration -->
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "primary-fixed": "#d3e4ff",
+                    "error-container": "#ffdad6",
+                    "on-background": "#191c1e",
+                    "on-primary-fixed-variant": "#1c4877",
+                    "tertiary-container": "#5f2f00",
+                    "primary-fixed-dim": "#a2c9ff",
+                    "tertiary-fixed": "#ffdcc4",
+                    "surface-tint": "#386090",
+                    "on-error-container": "#93000a",
+                    "on-primary-fixed": "#001c38",
+                    "surface": "#f7f9fc",
+                    "on-surface": "#191c1e",
+                    "neutral-dark": "#1C2333",
+                    "secondary-container": "#6bcbfe",
+                    "ocean-deep": "#0B172A",
+                    "surface-container-high": "#e6e8eb",
+                    "secondary-fixed-dim": "#7cd0ff",
+                    "neutral-line": "#E8EEF4",
+                    "tertiary-fixed-dim": "#ffb781",
+                    "primary-container": "#0b3d6b",
+                    "surface-container-lowest": "#ffffff",
+                    "on-tertiary-container": "#dd9660",
+                    "on-secondary-fixed": "#001e2c",
+                    "alert-warning": "#F9A825",
+                    "on-primary-container": "#82a9dd",
+                    "background": "#f7f9fc",
+                    "surface-container": "#eceef1",
+                    "inverse-primary": "#a2c9ff",
+                    "tertiary": "#3f1d00",
+                    "alert-success": "#2E7D32",
+                    "neutral-mid": "#B0B8C4",
+                    "inverse-on-surface": "#eff1f4",
+                    "secondary": "#00668a",
+                    "wave-blue": "#2078CB",
+                    "surface-dim": "#d8dadd",
+                    "on-secondary-fixed-variant": "#004c69",
+                    "wave-orange": "#DE6A34",
+                    "surface-container-highest": "#e0e3e6",
+                    "on-surface-variant": "#42474f",
+                    "on-tertiary-fixed": "#2f1400",
+                    "surface-bright": "#f7f9fc",
+                    "error": "#ba1a1a",
+                    "on-secondary": "#ffffff",
+                    "secondary-fixed": "#c4e7ff",
+                    "on-tertiary": "#ffffff",
+                    "on-primary": "#ffffff",
+                    "inverse-surface": "#2d3133",
+                    "primary": "#00274a",
+                    "on-tertiary-fixed-variant": "#6d3a09",
+                    "on-error": "#ffffff",
+                    "surface-variant": "#e0e3e6",
+                    "surface-container-low": "#f2f4f7",
+                    "outline": "#737780",
+                    "on-secondary-container": "#005574",
+                    "alert-danger": "#E65100",
+                    "outline-variant": "#c3c6d0",
+                    "alert-critical": "#B71C1C"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "spacing": {
+                    "margin-mobile": "20px",
+                    "unit": "4px",
+                    "gutter": "16px",
+                    "max-width": "1280px",
+                    "margin-desktop": "40px"
+            },
+            "fontFamily": {
+                    "data-tabular": ["JetBrains Mono"],
+                    "subtitle-h2": ["Inter"],
+                    "display": ["Inter"],
+                    "label-caps": ["Inter"],
+                    "headline-h1-mobile": ["Inter"],
+                    "data-compact": ["JetBrains Mono"],
+                    "headline-h1": ["Inter"],
+                    "body-md": ["Inter"]
+            },
+            "fontSize": {
+                    "data-tabular": ["14px", {"lineHeight": "1.5", "fontWeight": "400"}],
+                    "subtitle-h2": ["24px", {"lineHeight": "1.4", "fontWeight": "600"}],
+                    "display": ["56px", {"lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "label-caps": ["11px", {"lineHeight": "1.0", "letterSpacing": "0.32em", "fontWeight": "400"}],
+                    "headline-h1-mobile": ["28px", {"lineHeight": "1.3", "fontWeight": "700"}],
+                    "data-compact": ["11px", {"lineHeight": "1.4", "fontWeight": "400"}],
+                    "headline-h1": ["36px", {"lineHeight": "1.3", "letterSpacing": "-0.015em", "fontWeight": "700"}],
+                    "body-md": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .orbital-glow {
+            box-shadow: 0 0 20px rgba(107, 203, 254, 0.1);
+        }
+        .rim-highlight {
+            background: linear-gradient(135deg, rgba(255,255,255,0.18) 0%, rgba(255,255,255,0) 100%);
+        }
+    </style>
+</head>
+<body class="bg-surface font-body-md text-on-surface overflow-x-hidden">
+<!-- Sidebar Navigation Drawer -->
+<aside class="fixed left-0 top-0 h-full w-[280px] bg-surface border-r border-neutral-line flex flex-col z-[60] py-6 hidden lg:flex">
+<div class="px-6 mb-10">
+<div class="w-full max-w-[200px] h-[40px] flex items-center mb-2">
+{{DATA:DOCUMENT:DOCUMENT_8}}
+</div>
+<p class="font-label-caps text-label-caps text-on-surface-variant mt-1">Defesa Civil Lajeado</p>
+</div>
+<nav class="flex-grow space-y-2">
+<!-- Nav Item 01 -->
+<a class="text-on-surface-variant hover:bg-surface-container-high rounded-lg px-4 py-3 mx-4 flex items-center gap-3 transition-all duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="hub">hub</span>
+<span class="font-body-md text-body-md">01 Painel Nacional</span>
+</a>
+<!-- Nav Item 02 - Active -->
+<a class="bg-primary-fixed text-on-primary-fixed font-bold rounded-lg px-4 py-3 mx-4 flex items-center gap-3 transition-all duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="map">map</span>
+<span class="font-body-md text-body-md">02 Painel Municipal</span>
+</a>
+<!-- Nav Item 03 -->
+<a class="text-on-surface-variant hover:bg-surface-container-high rounded-lg px-4 py-3 mx-4 flex items-center gap-3 transition-all duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="notification_important">notification_important</span>
+<span class="font-body-md text-body-md">03 Previsão</span>
+</a>
+<div class="pt-6 mt-6 border-t border-neutral-line">
+<a class="text-on-surface-variant hover:bg-surface-container-high rounded-lg px-4 py-3 mx-4 flex items-center gap-3 transition-all duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="analytics">analytics</span>
+<span class="font-body-md text-body-md">Historical Data</span>
+</a>
+<a class="text-on-surface-variant hover:bg-surface-container-high rounded-lg px-4 py-3 mx-4 flex items-center gap-3 transition-all duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+<span class="font-body-md text-body-md">System Settings</span>
+</a>
+</div>
+</nav>
+<div class="mt-auto px-4">
+<div class="flex items-center gap-4 bg-surface-container-low p-4 rounded-xl border border-neutral-line">
+<div class="h-10 w-10 rounded-full bg-ocean-deep flex items-center justify-center">
+<span class="material-symbols-outlined text-surface-bright" data-icon="account_circle">account_circle</span>
+</div>
+<div>
+<p class="font-body-md text-body-md font-bold text-primary">Technical Lead</p>
+<p class="text-[10px] uppercase tracking-widest text-on-surface-variant">Global Risk Division</p>
+</div>
+</div>
+</div>
+</aside>
+<!-- Main Content Canvas -->
+<main class="lg:ml-[280px] min-h-screen">
+<!-- Top App Bar -->
+<header class="fixed top-0 lg:left-[280px] right-0 h-16 bg-ocean-deep z-50 flex items-center justify-between px-6 shadow-md">
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-secondary-fixed" data-icon="language">language</span>
+<h1 class="font-headline-h1 text-headline-h1-mobile text-surface-bright tracking-tight">MUNICIPAL DASHBOARD</h1>
+</div>
+<div class="flex items-center gap-6">
+<div class="hidden md:flex flex-col items-end">
+<span class="text-secondary-fixed-dim font-data-compact text-data-compact uppercase tracking-widest">S.ENSO ACTIVE</span>
+<span class="text-surface-variant text-[10px]">Lajeado-RS Sector</span>
+</div>
+<button class="p-2 hover:bg-primary-container/30 rounded-full transition-colors active:scale-95">
+<span class="material-symbols-outlined text-secondary-fixed" data-icon="error">error</span>
+</button>
+</div>
+</header>
+<div class="pt-24 px-margin-desktop pb-12 max-w-max-width mx-auto">
+<!-- KPI Bar -->
+<div class="grid grid-cols-1 md:grid-cols-4 gap-gutter mb-8">
+<div class="bg-surface-container-lowest border border-neutral-line p-5 flex flex-col gap-1 rounded-lg">
+<span class="font-label-caps text-label-caps text-on-surface-variant">SST NIÑO 3.4</span>
+<div class="flex items-baseline gap-2">
+<span class="font-data-tabular text-subtitle-h2 text-alert-critical">+1.8°C</span>
+<span class="material-symbols-outlined text-alert-critical text-sm" data-icon="trending_up">trending_up</span>
+</div>
+</div>
+<div class="bg-surface-container-lowest border border-neutral-line p-5 flex flex-col gap-1 rounded-lg">
+<span class="font-label-caps text-label-caps text-on-surface-variant">AMM (ATLANTIC)</span>
+<div class="flex items-baseline gap-2">
+<span class="font-data-tabular text-subtitle-h2 text-wave-blue">+2.75</span>
+<span class="material-symbols-outlined text-wave-blue text-sm" data-icon="waves">waves</span>
+</div>
+</div>
+<div class="bg-surface-container-lowest border border-neutral-line p-5 flex flex-col gap-1 rounded-lg">
+<span class="font-label-caps text-label-caps text-on-surface-variant">MUNICIPALITIES ALERT</span>
+<div class="flex items-baseline gap-2">
+<span class="font-data-tabular text-subtitle-h2 text-primary">312</span>
+<span class="text-body-md text-on-surface-variant">/ 497</span>
+</div>
+</div>
+<div class="bg-surface-container-lowest border border-neutral-line p-5 flex flex-col gap-1 rounded-lg">
+<span class="font-label-caps text-label-caps text-on-surface-variant">FORECAST ACCURACY</span>
+<div class="flex items-baseline gap-2">
+<span class="font-data-tabular text-subtitle-h2 text-alert-success">92%</span>
+<span class="material-symbols-outlined text-alert-success text-sm" data-icon="verified">verified</span>
+</div>
+</div>
+</div>
+<!-- Bento Grid Content -->
+<div class="grid grid-cols-12 gap-gutter">
+<!-- Risk Score Card (Span 4) -->
+<div class="col-span-12 lg:col-span-4 bg-surface-container-lowest border border-neutral-line rounded-lg overflow-hidden flex flex-col">
+<div class="bg-ocean-deep px-5 py-3">
+<h2 class="font-label-caps text-label-caps text-surface-bright">INTEGRATED RISK SCORE</h2>
+</div>
+<div class="p-8 flex flex-col items-center justify-center flex-grow">
+<div class="relative w-48 h-48 flex items-center justify-center">
+<!-- Circular Progress Simulation -->
+<svg class="w-full h-full transform -rotate-90">
+<circle class="text-surface-container-highest" cx="96" cy="96" fill="transparent" r="88" stroke="currentColor" stroke-width="8"></circle>
+<circle class="text-alert-critical" cx="96" cy="96" fill="transparent" r="88" stroke="currentColor" stroke-dasharray="552.9" stroke-dashoffset="99" stroke-width="8"></circle>
+</svg>
+<div class="absolute inset-0 flex flex-col items-center justify-center">
+<span class="font-headline-h1 text-headline-h1 text-primary">82</span>
+<span class="font-label-caps text-[12px] text-alert-critical font-bold">CRITICAL</span>
+</div>
+</div>
+<p class="mt-6 text-center font-body-md text-on-surface-variant">Elevated threat due to SST Anomalies and hydrological saturation in Lajeado sub-basin.</p>
+</div>
+</div>
+<!-- Correlation Graph (Span 8) -->
+<div class="col-span-12 lg:col-span-8 bg-surface-container-lowest border border-neutral-line rounded-lg overflow-hidden flex flex-col">
+<div class="bg-ocean-deep px-5 py-3 flex justify-between items-center">
+<h2 class="font-label-caps text-label-caps text-surface-bright">SST ANOMALY VS LOCAL PRECIPITATION</h2>
+<span class="font-data-compact text-data-compact text-secondary-fixed-dim">Source: NOAA/CPTEC</span>
+</div>
+<div class="p-5 flex-grow relative min-h-[300px] flex items-end gap-2">
+<!-- Simulated Chart -->
+<div class="absolute inset-x-5 top-5 bottom-12 flex flex-col justify-between pointer-events-none">
+<div class="border-t border-neutral-line/40 w-full"></div>
+<div class="border-t border-neutral-line/40 w-full"></div>
+<div class="border-t border-neutral-line/40 w-full"></div>
+<div class="border-t border-neutral-line/40 w-full"></div>
+</div>
+<div class="w-full h-full flex items-end justify-around px-4">
+<div class="w-12 bg-primary-container h-[40%] rounded-t-sm relative group">
+<div class="absolute -top-6 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 font-data-tabular text-[10px] bg-neutral-dark text-white px-1 rounded">1.2</div>
+</div>
+<div class="w-12 bg-primary-container h-[55%] rounded-t-sm"></div>
+<div class="w-12 bg-primary-container h-[75%] rounded-t-sm"></div>
+<div class="w-12 bg-primary-container h-[60%] rounded-t-sm"></div>
+<div class="w-12 bg-wave-blue h-[85%] rounded-t-sm animate-pulse border-x-2 border-alert-warning"></div>
+<div class="w-12 bg-surface-container-highest h-[30%] rounded-t-sm"></div>
+<div class="w-12 bg-surface-container-highest h-[25%] rounded-t-sm"></div>
+</div>
+</div>
+<div class="p-3 bg-surface-container border-t border-neutral-line flex justify-around font-label-caps text-[10px] text-on-surface-variant">
+<span class="">MAY</span><span class="">JUN</span><span class="">JUL</span><span class="">AUG</span><span class="text-primary font-bold underline">SEP (PROJ)</span><span class="">OCT</span><span class="">NOV</span>
+</div>
+</div>
+<!-- Technical Recommendation (Span 12) -->
+<div class="col-span-12 bg-alert-danger/10 border-2 border-alert-danger p-6 rounded-lg flex items-start gap-6">
+<div class="h-16 w-16 flex-shrink-0 bg-alert-danger rounded-full flex items-center justify-center text-white shadow-lg">
+<span class="material-symbols-outlined text-4xl" data-icon="warning">warning</span>
+</div>
+<div class="flex-grow">
+<h3 class="font-subtitle-h2 text-subtitle-h2 text-alert-critical mb-2">Technical Recommendation: Phase 4 Activation</h3>
+<p class="font-body-md text-on-surface mb-4">Satellite telemetry indicates an imminent +60% precipitation anomaly over the Taquari-Antas basin. Predictive models suggest a flood event surpassing 25.5m in the next 72-96 hours. <strong>Action Required:</strong> Immediate activation of the Municipal Contingency Plan (PLACON).</p>
+<div class="flex gap-4">
+<button class="bg-ocean-deep text-surface-bright px-6 py-2 rounded-lg font-label-caps text-label-caps tracking-widest hover:bg-primary transition-all">ACTIVATE SIRENS</button>
+<button class="border border-ocean-deep text-ocean-deep px-6 py-2 rounded-lg font-label-caps text-label-caps tracking-widest hover:bg-surface-container transition-all">DOWNLOAD FULL REPORT</button>
+</div>
+</div>
+</div>
+<!-- Agricultural Calendar (Span 6) -->
+<div class="col-span-12 lg:col-span-7 bg-surface-container-lowest border border-neutral-line rounded-lg overflow-hidden">
+<div class="bg-ocean-deep px-5 py-3">
+<h2 class="font-label-caps text-label-caps text-surface-bright">LAJEADO AGRICULTURAL CALENDAR (RISK WINDOWS)</h2>
+</div>
+<div class="p-6">
+<div class="space-y-6">
+<!-- Crop Row 1 -->
+<div class="grid grid-cols-4 items-center gap-4">
+<span class="font-bold text-primary font-data-tabular">TRIGO</span>
+<div class="col-span-3 h-4 bg-surface-container rounded-full relative overflow-hidden">
+<div class="absolute left-0 top-0 bottom-0 w-[40%] bg-alert-success"></div>
+<div class="absolute left-[40%] top-0 bottom-0 w-[30%] bg-alert-warning"></div>
+<div class="absolute left-[70%] top-0 bottom-0 w-[30%] bg-alert-critical"></div>
+</div>
+</div>
+<!-- Crop Row 2 -->
+<div class="grid grid-cols-4 items-center gap-4">
+<span class="font-bold text-primary font-data-tabular">SOJA</span>
+<div class="col-span-3 h-4 bg-surface-container rounded-full relative overflow-hidden">
+<div class="absolute left-[10%] top-0 bottom-0 w-[50%] bg-alert-success"></div>
+<div class="absolute left-[60%] top-0 bottom-0 w-[40%] bg-alert-warning"></div>
+</div>
+</div>
+<!-- Crop Row 3 -->
+<div class="grid grid-cols-4 items-center gap-4">
+<span class="font-bold text-primary font-data-tabular">ARROZ</span>
+<div class="col-span-3 h-4 bg-surface-container rounded-full relative overflow-hidden">
+<div class="absolute left-0 top-0 bottom-0 w-[20%] bg-alert-critical"></div>
+<div class="absolute left-[20%] top-0 bottom-0 w-[50%] bg-alert-success"></div>
+<div class="absolute left-[70%] top-0 bottom-0 w-[30%] bg-alert-warning"></div>
+</div>
+</div>
+</div>
+<div class="mt-8 flex gap-6">
+<div class="flex items-center gap-2"><div class="w-3 h-3 bg-alert-success rounded-full"></div><span class="text-[10px] font-label-caps">Optimum Plant</span></div>
+<div class="flex items-center gap-2"><div class="w-3 h-3 bg-alert-warning rounded-full"></div><span class="text-[10px] font-label-caps">Watch Window</span></div>
+<div class="flex items-center gap-2"><div class="w-3 h-3 bg-alert-critical rounded-full"></div><span class="text-[10px] font-label-caps">Extreme Risk</span></div>
+</div>
+</div>
+</div>
+<!-- History Table (Span 6) -->
+<div class="col-span-12 lg:col-span-5 bg-surface-container-lowest border border-neutral-line rounded-lg overflow-hidden">
+<div class="bg-ocean-deep px-5 py-3">
+<h2 class="font-label-caps text-label-caps text-surface-bright">DECREE &amp; ENSO HISTORY</h2>
+</div>
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-surface-container border-b border-neutral-line">
+<th class="p-3 font-label-caps text-[10px] text-on-surface-variant">YEAR</th>
+<th class="p-3 font-label-caps text-[10px] text-on-surface-variant">DECREE TYPE</th>
+<th class="p-3 font-label-caps text-[10px] text-on-surface-variant">ENSO LVL</th>
+</tr>
+</thead>
+<tbody class="font-data-tabular text-data-tabular">
+<tr class="border-b border-neutral-line/30 hover:bg-surface-container-low">
+<td class="p-3">2023</td>
+<td class="p-3"><span class="bg-alert-danger/10 text-alert-critical px-2 py-0.5 rounded text-[10px] font-bold">CALAMITY</span></td>
+<td class="p-3 text-alert-critical">+1.6</td>
+</tr>
+<tr class="border-b border-neutral-line/30 hover:bg-surface-container-low">
+<td class="p-3">2021</td>
+<td class="p-3"><span class="bg-alert-warning/10 text-alert-warning px-2 py-0.5 rounded text-[10px] font-bold">EMERGENCY</span></td>
+<td class="p-3 text-wave-blue">-0.8</td>
+</tr>
+<tr class="border-b border-neutral-line/30 hover:bg-surface-container-low">
+<td class="p-3">2020</td>
+<td class="p-3 text-on-surface-variant">NORMAL</td>
+<td class="p-3 text-on-surface-variant">+0.2</td>
+</tr>
+<tr class="hover:bg-surface-container-low">
+<td class="p-3">2016</td>
+<td class="p-3"><span class="bg-alert-danger/10 text-alert-critical px-2 py-0.5 rounded text-[10px] font-bold">CALAMITY</span></td>
+<td class="p-3 text-alert-critical">+2.1</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<!-- Footer -->
+<footer class="w-full py-8 px-margin-mobile flex flex-col md:flex-row justify-between items-center gap-4 bg-ocean-deep border-t border-surface-container-highest/10">
+<div class="flex items-center gap-4">
+<span class="font-label-caps text-label-caps text-surface-bright">S.ENSO ORBITAL</span>
+<p class="font-data-compact text-data-compact text-on-primary-fixed-variant">© 2024 Predictive Systems. Lajeado Operations.</p>
+</div>
+<div class="flex gap-6">
+<a class="font-data-compact text-data-compact text-on-primary-container hover:text-surface-bright transition-colors" href="#">Privacy Policy</a>
+<a class="font-data-compact text-data-compact text-on-primary-container hover:text-surface-bright transition-colors" href="#">Methodology</a>
+<a class="font-data-compact text-data-compact text-on-primary-container hover:text-surface-bright transition-colors" href="#">Support</a>
+</div>
+</footer>
+</main>
+<!-- Map Imagery Element (Visual Backdrop for Context) -->
+<div class="fixed bottom-0 right-0 w-[400px] h-[300px] pointer-events-none opacity-10 blur-sm z-0">
+<img alt="Terrain Map" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC2NcmR4nZFFp37iFX7A5RnoHdiadF6noIpzhQaHU1PM5XHxi1Y3k_EjcfCc7rthnOvVrPOaAQrcotGRWU4KqnFGb-p8pLUSqskufxlZjbWk2YIXSOoxDE_Cc-qi_3FlHW5cOvOpc_38746GpxZbykT-tKrhLGcFfwMnhUTXQGooO6XoU2NZTk9M_0gIus1csavYFeinkW21GfTrwb4TnG7l5Tx3seJ3QYRfnMhpYkDfaUk4_4Vy_XRtXblg6mEOZTaAMZkneuU3A"/>
+</div>
+</body></html>

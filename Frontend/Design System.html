@@ -1,0 +1,2628 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <title>S.ENSO — Design System v1.1</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
+    rel="stylesheet">
+  <style>
+    :root {
+      /* Primary */
+      --ocean: #0B3D6B;
+      --cyan: #1A8FBF;
+      /* Alerts */
+      --alert-1: #2E7D32;
+      --alert-2: #F9A825;
+      --alert-3: #E65100;
+      --alert-4: #B71C1C;
+      /* Neutrals */
+      --neutral-light: #F4F6F9;
+      --neutral-dark: #1C2333;
+      --neutral-line: #E8EEF4;
+      --neutral-mid: #B0B8C4;
+      --page-bg: #FAFBFD;
+      --neutral-text: #5A6478;
+    }
+
+    * {
+      box-sizing: border-box
+    }
+
+    html,
+    body {
+      margin: 0;
+      padding: 0
+    }
+
+    body {
+      font-family: 'Inter', system-ui, sans-serif;
+      background: var(--page-bg);
+      color: var(--neutral-dark);
+      -webkit-font-smoothing: antialiased;
+      line-height: 1.5;
+    }
+
+    .container {
+      max-width: 1240px;
+      margin: 0 auto;
+      padding: 0 48px
+    }
+
+    /* ============ MASTHEAD ============ */
+    .masthead {
+      background: var(--ocean);
+      color: #fff;
+      padding: 88px 0 96px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .masthead::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      height: 4px;
+      background: var(--cyan);
+    }
+
+    .mast-grid {
+      display: grid;
+      grid-template-columns: 1.1fr .9fr;
+      gap: 64px;
+      align-items: center
+    }
+
+    .mast-eyebrow {
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: .32em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, .62);
+      margin-bottom: 24px;
+    }
+
+    .mast-title {
+      font-size: 64px;
+      font-weight: 700;
+      letter-spacing: -.02em;
+      line-height: 1.02;
+      margin: 0 0 20px;
+    }
+
+    .mast-title .dot {
+      color: var(--cyan)
+    }
+
+    .mast-sub {
+      font-size: 18px;
+      line-height: 1.55;
+      color: rgba(255, 255, 255, .78);
+      max-width: 520px;
+      margin: 0 0 32px
+    }
+
+    .mast-meta {
+      display: flex;
+      gap: 48px;
+      font-size: 12px;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, .55)
+    }
+
+    .mast-meta b {
+      display: block;
+      color: #fff;
+      font-weight: 600;
+      letter-spacing: .04em;
+      text-transform: none;
+      font-size: 14px;
+      margin-top: 6px
+    }
+
+    .mast-logo-wrap {
+      display: flex;
+      justify-content: center;
+      align-items: center
+    }
+
+    /* ============ NAV / TOC ============ */
+    .toc {
+      background: #fff;
+      border-bottom: 1px solid var(--neutral-line);
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+
+    .toc-inner {
+      display: flex;
+      gap: 32px;
+      padding: 18px 0;
+      font-size: 13px;
+      font-weight: 500;
+      overflow-x: auto;
+    }
+
+    .toc a {
+      color: var(--neutral-dark);
+      text-decoration: none;
+      padding: 6px 0;
+      border-bottom: 2px solid transparent;
+      white-space: nowrap;
+    }
+
+    .toc a:hover {
+      color: var(--ocean);
+      border-color: var(--cyan)
+    }
+
+    /* ============ SECTIONS ============ */
+    section {
+      padding: 96px 0;
+      border-bottom: 1px solid var(--neutral-line)
+    }
+
+    .sec-head {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      margin-bottom: 48px;
+      gap: 32px
+    }
+
+    .sec-num {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 12px;
+      letter-spacing: .18em;
+      color: var(--cyan);
+    }
+
+    .sec-title {
+      font-size: 36px;
+      font-weight: 700;
+      letter-spacing: -.015em;
+      margin: 8px 0 0
+    }
+
+    .sec-lede {
+      font-size: 15px;
+      color: var(--neutral-text);
+      max-width: 480px;
+      text-align: right;
+      line-height: 1.55
+    }
+
+    /* ============ LOGO BLOCKS ============ */
+    .logo-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 24px
+    }
+
+    .logo-card {
+      border: 1px solid var(--neutral-line);
+      border-radius: 4px;
+      padding: 56px 48px 32px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 40px;
+      background: #fff;
+    }
+
+    .logo-card.dark {
+      background: var(--ocean);
+      color: #fff;
+      border-color: var(--ocean)
+    }
+
+    .logo-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      align-self: flex-start;
+      color: var(--neutral-text);
+    }
+
+    .logo-card.dark .logo-label {
+      color: rgba(255, 255, 255, .5)
+    }
+
+    .logo-lockup {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 18px;
+      padding: 16px 0 8px
+    }
+
+    .wordmark {
+      font-size: 38px;
+      font-weight: 700;
+      letter-spacing: .18em;
+      line-height: 1
+    }
+
+    .wordmark .dot {
+      color: var(--cyan)
+    }
+
+    .tagline {
+      font-size: 10px;
+      font-weight: 400;
+      letter-spacing: .42em;
+      color: var(--neutral-text);
+      text-transform: uppercase
+    }
+
+    .logo-card.dark .tagline {
+      color: rgba(255, 255, 255, .6)
+    }
+
+    .construction {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 24px;
+      margin-top: 24px
+    }
+
+    .construction .item {
+      border: 1px solid var(--neutral-line);
+      border-radius: 4px;
+      padding: 24px;
+      background: #fff;
+    }
+
+    .construction .item h4 {
+      margin: 0 0 8px;
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: .02em
+    }
+
+    .construction .item p {
+      margin: 0;
+      font-size: 13px;
+      color: var(--neutral-text)
+    }
+
+    /* ============ COLOR PALETTE ============ */
+    .palette-block {
+      margin-bottom: 48px
+    }
+
+    .palette-block h3 {
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: var(--neutral-text);
+      margin: 0 0 16px;
+    }
+
+    .swatch-row {
+      display: grid;
+      gap: 1px;
+      background: var(--neutral-line);
+      border: 1px solid var(--neutral-line)
+    }
+
+    .swatch-row.primary {
+      grid-template-columns: 1fr 1fr
+    }
+
+    .swatch-row.alerts {
+      grid-template-columns: repeat(4, 1fr)
+    }
+
+    .swatch-row.neutrals {
+      grid-template-columns: 1fr 1fr 1fr
+    }
+
+    .swatch {
+      background: #fff;
+      padding: 32px 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 32px;
+      min-height: 200px;
+      justify-content: space-between;
+    }
+
+    .swatch .chip {
+      height: 88px;
+      border-radius: 2px;
+      border: 1px solid rgba(28, 35, 51, .06)
+    }
+
+    .swatch .meta {
+      display: flex;
+      flex-direction: column;
+      gap: 4px
+    }
+
+    .swatch .name {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--neutral-dark)
+    }
+
+    .swatch .hex {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 12px;
+      color: var(--neutral-text)
+    }
+
+    .swatch .use {
+      font-size: 12px;
+      color: var(--neutral-text);
+      line-height: 1.45;
+      margin-top: 4px
+    }
+
+    .swatch .level {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      letter-spacing: .18em;
+      color: var(--neutral-text);
+      text-transform: uppercase;
+    }
+
+    /* ============ TYPOGRAPHY ============ */
+    .type-grid {
+      display: grid;
+      grid-template-columns: 160px 1fr;
+      gap: 0;
+      border-top: 1px solid var(--neutral-line)
+    }
+
+    .type-row {
+      display: contents
+    }
+
+    .type-row>div {
+      padding: 32px 0;
+      border-bottom: 1px solid var(--neutral-line)
+    }
+
+    .type-row .label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+      color: var(--neutral-text);
+      padding-top: 38px;
+    }
+
+    .type-row .specimen {
+      padding-right: 32px
+    }
+
+    .type-row .specimen .demo {
+      margin-bottom: 8px;
+      color: var(--neutral-dark)
+    }
+
+    .type-row .specimen .meta {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      letter-spacing: .04em;
+      color: var(--neutral-text)
+    }
+
+    .demo-display {
+      font-size: 56px;
+      font-weight: 700;
+      letter-spacing: -.02em;
+      line-height: 1.05
+    }
+
+    .demo-h1 {
+      font-size: 36px;
+      font-weight: 700;
+      letter-spacing: -.015em
+    }
+
+    .demo-h2 {
+      font-size: 24px;
+      font-weight: 600;
+      letter-spacing: -.005em
+    }
+
+    .demo-body {
+      font-size: 16px;
+      font-weight: 400;
+      line-height: 1.6;
+      max-width: 640px
+    }
+
+    .demo-label {
+      font-size: 11px;
+      font-weight: 400;
+      letter-spacing: .32em;
+      text-transform: uppercase;
+      color: var(--neutral-text)
+    }
+
+    .demo-mono {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 14px
+    }
+
+    /* ============ COMPONENTS ============ */
+    .comp-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px
+    }
+
+    .comp-card {
+      border: 1px solid var(--neutral-line);
+      border-radius: 4px;
+      background: #fff;
+      padding: 32px;
+    }
+
+    .comp-card h4 {
+      margin: 0 0 24px;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: var(--neutral-text);
+    }
+
+    /* Buttons */
+    .btn-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      align-items: center
+    }
+
+    .btn {
+      font: inherit;
+      font-size: 14px;
+      font-weight: 500;
+      padding: 11px 20px;
+      border-radius: 2px;
+      cursor: pointer;
+      border: 1px solid transparent;
+      letter-spacing: .01em;
+    }
+
+    .btn-primary {
+      background: var(--ocean);
+      color: #fff;
+      border-color: var(--ocean)
+    }
+
+    .btn-primary:hover {
+      background: #0a3358
+    }
+
+    .btn-accent {
+      background: var(--cyan);
+      color: #fff;
+      border-color: var(--cyan)
+    }
+
+    .btn-accent:hover {
+      background: #147ba6
+    }
+
+    .btn-ghost {
+      background: transparent;
+      color: var(--ocean);
+      border-color: var(--ocean)
+    }
+
+    .btn-ghost:hover {
+      background: rgba(11, 61, 107, .06)
+    }
+
+    .btn-text {
+      background: transparent;
+      color: var(--ocean);
+      border-color: transparent;
+      padding-left: 0
+    }
+
+    .btn-text::after {
+      content: " →"
+    }
+
+    /* Alert badges */
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 12px;
+      border-radius: 2px;
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: .04em;
+    }
+
+    .badge .dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: currentColor;
+      display: inline-block
+    }
+
+    .badge-1 {
+      background: rgba(46, 125, 50, .12);
+      color: var(--alert-1)
+    }
+
+    .badge-2 {
+      background: rgba(249, 168, 37, .16);
+      color: #8a5a00
+    }
+
+    .badge-3 {
+      background: rgba(230, 81, 0, .14);
+      color: var(--alert-3)
+    }
+
+    .badge-4 {
+      background: rgba(183, 28, 28, .14);
+      color: var(--alert-4)
+    }
+
+    /* Alert cards (left bar) */
+    .alert-stack {
+      display: flex;
+      flex-direction: column;
+      gap: 10px
+    }
+
+    .alert-row {
+      display: grid;
+      grid-template-columns: 6px 1fr auto;
+      align-items: center;
+      gap: 16px;
+      background: #fff;
+      border: 1px solid var(--neutral-line);
+    }
+
+    .alert-row .bar {
+      height: 100%;
+      min-height: 56px
+    }
+
+    .alert-row .body {
+      padding: 14px 0
+    }
+
+    .alert-row .body .t {
+      font-size: 13px;
+      font-weight: 600
+    }
+
+    .alert-row .body .s {
+      font-size: 12px;
+      color: var(--neutral-text)
+    }
+
+    .alert-row .body .s b {
+      color: var(--neutral-dark);
+      font-weight: 500
+    }
+
+    .alert-row .ts {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      color: var(--neutral-text);
+      padding-right: 14px
+    }
+
+    .a1 .bar {
+      background: var(--alert-1)
+    }
+
+    .a2 .bar {
+      background: var(--alert-2)
+    }
+
+    .a3 .bar {
+      background: var(--alert-3)
+    }
+
+    .a4 .bar {
+      background: var(--alert-4)
+    }
+
+    /* Table */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13px
+    }
+
+    thead th {
+      background: var(--ocean);
+      color: #fff;
+      text-align: left;
+      padding: 12px 14px;
+      font-weight: 600;
+      font-size: 12px;
+      letter-spacing: .04em
+    }
+
+    tbody td {
+      padding: 11px 14px;
+      border-bottom: 1px solid var(--neutral-line)
+    }
+
+    tbody tr:nth-child(even) td {
+      background: var(--neutral-line)
+    }
+
+    tbody td.mono {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 12px;
+      color: var(--neutral-text)
+    }
+
+    /* KPI cards */
+    .kpi-row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px
+    }
+
+    .kpi {
+      border: 1px solid var(--neutral-line);
+      padding: 18px;
+      background: #fff
+    }
+
+    .kpi .lab {
+      font-size: 10px;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: var(--neutral-text)
+    }
+
+    .kpi .val {
+      font-size: 28px;
+      font-weight: 700;
+      letter-spacing: -.01em;
+      margin-top: 6px;
+      color: var(--ocean)
+    }
+
+    .kpi .delta {
+      font-size: 11px;
+      font-family: 'JetBrains Mono', monospace;
+      color: var(--alert-3);
+      margin-top: 4px
+    }
+
+    /* Input */
+    .field {
+      display: flex;
+      flex-direction: column;
+      gap: 6px
+    }
+
+    .field label {
+      font-size: 11px;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+      color: var(--neutral-text);
+      font-weight: 500
+    }
+
+    .field input {
+      font: inherit;
+      font-size: 14px;
+      padding: 11px 12px;
+      border: 1px solid var(--neutral-line);
+      border-radius: 2px;
+      background: #fff;
+      color: var(--neutral-dark);
+    }
+
+    .field input:focus {
+      outline: none;
+      border-color: var(--cyan);
+      box-shadow: 0 0 0 3px rgba(26, 143, 191, .18)
+    }
+
+    /* Form states */
+    .field-hint {
+      font-size: 12px;
+      color: var(--neutral-text);
+      margin-top: 5px;
+      line-height: 1.4;
+      display: block
+    }
+
+    .field-hint--valid {
+      color: var(--alert-1)
+    }
+
+    .field-hint--error {
+      color: var(--alert-4)
+    }
+
+    .field input.is-focus {
+      border-color: var(--cyan);
+      box-shadow: 0 0 0 3px rgba(26, 143, 191, .18);
+      outline: none
+    }
+
+    .field input.is-valid {
+      border-color: var(--alert-1);
+      background: rgba(46, 125, 50, .04)
+    }
+
+    .field input.is-error {
+      border-color: var(--alert-4);
+      background: rgba(183, 28, 28, .04)
+    }
+
+    .field input:disabled {
+      background: var(--neutral-light);
+      color: var(--neutral-mid);
+      cursor: not-allowed;
+      border-color: var(--neutral-line)
+    }
+
+    .field input[readonly] {
+      background: var(--neutral-light);
+      border-style: dashed;
+      border-color: var(--neutral-mid);
+      cursor: default
+    }
+
+    /* ============ SST CURVE ============ */
+    .viz-grid {
+      display: grid;
+      grid-template-columns: 1.4fr 1fr;
+      gap: 24px
+    }
+
+    .viz-card {
+      border: 1px solid var(--neutral-line);
+      background: #fff;
+      padding: 32px;
+    }
+
+    .viz-card h4 {
+      margin: 0;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: var(--neutral-text)
+    }
+
+    .viz-card .viz-title {
+      font-size: 18px;
+      font-weight: 600;
+      margin: 6px 0 24px;
+      letter-spacing: -.005em
+    }
+
+    /* ============ POWERPOINT BACKGROUNDS ============ */
+    .ppt-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px
+    }
+
+    .ppt-frame {
+      position: relative;
+      aspect-ratio: 16/9;
+      border-radius: 4px;
+      overflow: hidden;
+      border: 1px solid var(--neutral-line);
+      box-shadow: 0 8px 28px rgba(11, 61, 107, .08);
+    }
+
+    .ppt-caption {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+      color: var(--neutral-text);
+      margin: 14px 0 0;
+    }
+
+    .ppt-cap-h {
+      font-weight: 600;
+      color: var(--neutral-dark);
+      margin-right: 10px
+    }
+
+    /* Cover slide */
+    .ppt-cover {
+      width: 100%;
+      height: 100%;
+      background: var(--ocean);
+      color: #fff;
+      padding: 6.5% 7%;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      position: relative;
+    }
+
+    .ppt-cover::after {
+      content: "";
+      position: absolute;
+      left: 7%;
+      right: 7%;
+      bottom: 5%;
+      height: 2px;
+      background: var(--cyan);
+    }
+
+    .ppt-cover .head {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start
+    }
+
+    .ppt-cover .mini-wm {
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: .22em
+    }
+
+    .ppt-cover .mini-wm .dot {
+      color: var(--cyan)
+    }
+
+    .ppt-cover .doc-id {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      letter-spacing: .18em;
+      color: rgba(255, 255, 255, .55);
+      text-transform: uppercase
+    }
+
+    .ppt-cover .title {
+      font-size: 34px;
+      font-weight: 700;
+      letter-spacing: -.015em;
+      line-height: 1.05;
+      max-width: 78%
+    }
+
+    .ppt-cover .sub {
+      font-size: 12px;
+      letter-spacing: .18em;
+      color: rgba(255, 255, 255, .7);
+      text-transform: uppercase;
+      margin-top: 8px
+    }
+
+    .ppt-cover .foot {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      font-size: 10px;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, .6);
+      padding-bottom: 10px
+    }
+
+    /* Section divider slide */
+    .ppt-section {
+      width: 100%;
+      height: 100%;
+      background: var(--ocean);
+      color: #fff;
+      padding: 6.5% 7%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .ppt-section::after {
+      content: "";
+      position: absolute;
+      left: 7%;
+      right: 7%;
+      bottom: 5%;
+      height: 2px;
+      background: var(--cyan);
+    }
+
+    .ppt-section .num {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 13px;
+      letter-spacing: .24em;
+      color: var(--cyan)
+    }
+
+    .ppt-section .ttl {
+      font-size: 42px;
+      font-weight: 700;
+      letter-spacing: -.018em;
+      line-height: 1.02;
+      margin-top: 10px;
+      max-width: 70%
+    }
+
+    .ppt-section .lede {
+      font-size: 13px;
+      color: rgba(255, 255, 255, .7);
+      margin-top: 14px;
+      max-width: 55%;
+      line-height: 1.5
+    }
+
+    /* Content slide */
+    .ppt-content {
+      width: 100%;
+      height: 100%;
+      background: var(--neutral-light);
+      color: var(--neutral-dark);
+      padding: 5% 5.5%;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+    }
+
+    .ppt-content .topbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-bottom: 14px;
+      border-bottom: 1px solid #DDE3EC;
+    }
+
+    .ppt-content .topbar .wm {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: .22em;
+      color: var(--ocean)
+    }
+
+    .ppt-content .topbar .wm .dot {
+      color: var(--cyan)
+    }
+
+    .ppt-content .topbar .crumb {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 9px;
+      letter-spacing: .18em;
+      color: var(--neutral-text);
+      text-transform: uppercase
+    }
+
+    .ppt-content .h {
+      font-size: 22px;
+      font-weight: 700;
+      letter-spacing: -.01em;
+      margin: 22px 0 4px
+    }
+
+    .ppt-content .sh {
+      font-size: 11px;
+      color: var(--neutral-text);
+      letter-spacing: .14em;
+      text-transform: uppercase
+    }
+
+    .ppt-content .canvas {
+      flex: 1;
+      margin-top: 18px;
+      display: grid;
+      grid-template-columns: 1.1fr 1fr;
+      gap: 16px
+    }
+
+    .ppt-content .canvas .box {
+      background: #fff;
+      border: 1px solid #DDE3EC;
+      border-radius: 2px;
+      padding: 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .ppt-content .canvas .box .bl {
+      font-size: 9px;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+      color: var(--neutral-text)
+    }
+
+    .ppt-content .canvas .box .bv {
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--ocean)
+    }
+
+    .ppt-content .canvas .box.tall {
+      grid-row: span 2;
+      align-items: stretch;
+      justify-content: flex-end
+    }
+
+    .ppt-content .ftbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 14px;
+      padding-top: 10px;
+      border-top: 1px solid #DDE3EC;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 9px;
+      color: var(--neutral-text);
+      letter-spacing: .16em;
+      text-transform: uppercase;
+    }
+
+    /* Data slide */
+    .ppt-data {
+      width: 100%;
+      height: 100%;
+      background: #fff;
+      color: var(--neutral-dark);
+      padding: 5% 5.5%;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+    }
+
+    .ppt-data .topbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-bottom: 12px;
+      border-bottom: 2px solid var(--ocean);
+    }
+
+    .ppt-data .topbar .wm {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: .22em;
+      color: var(--ocean)
+    }
+
+    .ppt-data .topbar .wm .dot {
+      color: var(--cyan)
+    }
+
+    .ppt-data .topbar .pg {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      color: var(--neutral-text);
+      letter-spacing: .16em
+    }
+
+    .ppt-data .h {
+      font-size: 22px;
+      font-weight: 700;
+      margin: 18px 0 2px;
+      letter-spacing: -.01em
+    }
+
+    .ppt-data .sh {
+      font-size: 11px;
+      color: var(--neutral-text);
+      letter-spacing: .14em;
+      text-transform: uppercase
+    }
+
+    .ppt-data .chart {
+      flex: 1;
+      margin-top: 14px;
+      border: 1px solid #DDE3EC;
+      padding: 18px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px
+    }
+
+    .ppt-data .chart-title {
+      font-size: 10px;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: var(--neutral-text)
+    }
+
+    .ppt-data .ftbar {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 10px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 9px;
+      color: var(--neutral-text);
+      letter-spacing: .16em;
+      text-transform: uppercase;
+    }
+
+    /* Footer */
+    footer {
+      background: var(--ocean);
+      color: rgba(255, 255, 255, .65);
+      padding: 48px 0;
+      font-size: 12px;
+      letter-spacing: .04em;
+    }
+
+    footer .container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center
+    }
+
+    footer .wm {
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: .22em;
+      color: #fff
+    }
+
+    footer .wm .dot {
+      color: var(--cyan)
+    }
+
+    @media (max-width:960px) {
+
+      .mast-grid,
+      .viz-grid,
+      .ppt-grid,
+      .comp-grid,
+      .logo-grid {
+        grid-template-columns: 1fr
+      }
+
+      .container {
+        padding: 0 24px
+      }
+
+      .mast-title {
+        font-size: 44px
+      }
+
+      .sec-head {
+        flex-direction: column;
+        align-items: flex-start
+      }
+
+      .sec-lede {
+        text-align: left
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ============================== MASTHEAD ============================== -->
+  <header class="masthead">
+    <div class="container mast-grid">
+      <div>
+        <div class="mast-eyebrow">Design System · v1.1 · Junho 2026</div>
+        <h1 class="mast-title">S<span class="dot">.</span>ENSO</h1>
+        <p class="mast-sub">Sistema Preditivo Integrado de Risco Agrícola e Desastres Naturais — identidade visual,
+          tokens cromáticos, tipografia, componentes e fundos de apresentação executiva.</p>
+        <div class="mast-meta">
+          <div>Versão<b>1.1</b></div>
+          <div>Escopo<b>Web + PPT</b></div>
+          <div>Última revisão<b>05.06.2026</b></div>
+        </div>
+      </div>
+      <div class="mast-logo-wrap">
+        <!-- Orbital symbol — large | v1.1: arc halves via path, no clip-path, satellite verified on ellipse -->
+        <svg width="260" height="260" viewBox="0 0 260 260" aria-label="S.ENSO orbital symbol"
+          xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <!-- 3D Spherical shading & glossy highlight -->
+            <radialGradient id="sphereGloss" cx="30%" cy="30%" r="70%">
+              <stop offset="0%" stop-color="#ffffff" stop-opacity="0.65" />
+              <stop offset="30%" stop-color="#ffffff" stop-opacity="0.15" />
+              <stop offset="70%" stop-color="#000000" stop-opacity="0" />
+              <stop offset="100%" stop-color="#000000" stop-opacity="0.3" />
+            </radialGradient>
+
+            <!-- Linear gradient for the wave paths -->
+            <linearGradient id="waveGrad" x1="0" y1="80" x2="0" y2="180" gradientUnits="userSpaceOnUse">
+              <stop offset="0%" stop-color="rgb(222, 106, 52)" stop-opacity="0.85" />
+              <stop offset="100%" stop-color="rgb(32, 120, 203)" stop-opacity="0.85" />
+            </linearGradient>
+
+            <!-- Clip path for the waves inside the planet -->
+            <clipPath id="mastClip">
+              <circle cx="130" cy="130" r="70" />
+            </clipPath>
+
+            <!-- Soft drop shadow for planet depth -->
+            <filter id="planetShadow" x="-20%" y="-20%" width="140%" height="140%">
+              <feDropShadow dx="0" dy="6" stdDeviation="5" flood-color="#0b172a" flood-opacity="0.25" />
+            </filter>
+          </defs>
+
+          <!-- 1. Back orbital ring — drawn before planet for 3D layering -->
+          <g transform="rotate(-28 135 130)">
+            <path d="M 18 130 A 112 34 0 0 1 242 130" fill="none" stroke="rgba(26, 143, 191, 0.4)" stroke-width="2.5"
+              stroke-dasharray="6 5" stroke-linecap="round" />
+          </g>
+
+          <!-- 2. Planet & Waves Group with Drop Shadow for 3D layering -->
+          <g filter="url(#planetShadow)">
+            <!-- Planet base fill -->
+            <circle cx="130" cy="130" r="70" fill="#29548fff" />
+
+            <!-- 3. ENSO sinusoidal waves, clipped to planet, frozen at rest position -->
+            <g clip-path="url(#mastClip)">
+              <!-- Wave 1 -->
+              <path
+                d="M -57 100 Q -29 84 -1 100 Q 27 116 55 100 Q 83 84 111 100 Q 139 116 167 100 Q 195 84 223 100 Q 251 116 279 100 Q 307 84 335 100"
+                fill="none" stroke="url(#waveGrad)" stroke-width="3.5" stroke-linecap="round" />
+              <!-- Wave 2 -->
+              <path
+                d="M -57 120 Q -29 104 -1 120 Q 27 136 55 120 Q 83 104 111 120 Q 139 136 167 120 Q 195 104 223 120 Q 251 136 279 120 Q 307 104 335 120"
+                fill="none" stroke="url(#waveGrad)" stroke-width="3" stroke-linecap="round" />
+              <!-- Wave 3 -->
+              <path
+                d="M -57 140 Q -29 124 -1 140 Q 27 156 55 140 Q 83 124 111 140 Q 139 156 167 140 Q 195 124 223 140 Q 251 156 279 140 Q 307 124 335 140"
+                fill="none" stroke="url(#waveGrad)" stroke-width="2.5" stroke-linecap="round" />
+              <!-- Wave 4 -->
+              <path
+                d="M -57 160 Q -29 144 -1 160 Q 27 176 55 160 Q 83 144 111 160 Q 139 176 167 160 Q 195 144 223 160 Q 251 176 279 160 Q 307 144 335 160"
+                fill="none" stroke="url(#waveGrad)" stroke-width="2" stroke-linecap="round" />
+            </g>
+
+            <!-- Glassmorphism overlay (gloss and shadows for 3D sphere illusion) -->
+            <circle cx="130" cy="130" r="70" fill="url(#sphereGloss)" pointer-events="none" />
+          </g>
+
+          <!-- 4. Planet rim — white for depth on dark background -->
+          <circle cx="130" cy="130" r="72" fill="none" stroke="rgba(255, 255, 255, 0.18)" stroke-width="1.5"
+            pointer-events="none" />
+
+          <!-- 5. Front orbital ring & Satellite — over planet, satellite resting near the ring's right edge -->
+          <g transform="rotate(-28 135 130)">
+            <path d="M 18 130 A 112 34 0 0 0 242 130" fill="none" stroke="#1A8FBF" stroke-width="3.5"
+              stroke-linecap="round" />
+
+            <!-- Satellite: on the ellipse at θ≈-40° from right → (216,108) -->
+            <g transform="translate(216 108)">
+              <circle r="17" fill="none" stroke="rgba(26, 143, 191, 0.5)" stroke-width="2" opacity="0.4" />
+              <circle r="8" fill="#1A8FBF" />
+              <circle r="4" fill="#ffffff" />
+            </g>
+          </g>
+        </svg>
+      </div>
+    </div>
+  </header>
+
+  <!-- ============================== TOC ============================== -->
+  <nav class="toc">
+    <div class="container toc-inner">
+      <a href="#logo">01 · Logotipo</a>
+      <a href="#color">02 · Cores</a>
+      <a href="#type">03 · Tipografia</a>
+      <a href="#components">04 · Componentes</a>
+      <a href="#viz">05 · Visualizações</a>
+      <a href="#ppt">06 · PowerPoint</a>
+      <a href="#principles">07 · Princípios</a>
+      <a href="#brasil">08 · Mapa Brasil</a>
+    </div>
+  </nav>
+
+  <!-- ============================== 01 LOGO ============================== -->
+  <section id="logo">
+    <div class="container">
+      <div class="sec-head">
+        <div>
+          <div class="sec-num">01 / LOGOTIPO</div>
+          <h2 class="sec-title">Símbolo orbital e wordmark</h2>
+        </div>
+        <p class="sec-lede">Planeta envolto por um anel orbital inclinado a −28°, satélite no arco frontal, curva ENSO
+          no interior. Versão clara e negativa institucional.</p>
+      </div>
+
+      <div class="logo-grid">
+        <!-- Light version -->
+        <div class="logo-card">
+          <div class="logo-label">VERSÃO CLARA · FUNDO BRANCO</div>
+          <svg width="180" height="180" viewBox="0 0 260 260" aria-label="S.ENSO orbital symbol"
+            xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <!-- 3D Spherical shading & glossy highlight -->
+              <radialGradient id="sphereGlossLight" cx="30%" cy="30%" r="70%">
+                <stop offset="0%" stop-color="#ffffff" stop-opacity="0.65" />
+                <stop offset="30%" stop-color="#ffffff" stop-opacity="0.15" />
+                <stop offset="70%" stop-color="#000000" stop-opacity="0" />
+                <stop offset="100%" stop-color="#000000" stop-opacity="0.3" />
+              </radialGradient>
+
+              <!-- Linear gradient for the wave paths -->
+              <linearGradient id="waveGradLight" x1="0" y1="80" x2="0" y2="180" gradientUnits="userSpaceOnUse">
+                <stop offset="0%" stop-color="rgb(222, 106, 52)" stop-opacity="0.85" />
+                <stop offset="100%" stop-color="rgb(32, 120, 203)" stop-opacity="0.85" />
+              </linearGradient>
+
+              <!-- Clip path for the waves inside the planet -->
+              <clipPath id="mastClipLight">
+                <circle cx="130" cy="130" r="70" />
+              </clipPath>
+
+              <!-- Soft drop shadow for planet depth -->
+              <filter id="planetShadowLight" x="-20%" y="-20%" width="140%" height="140%">
+                <feDropShadow dx="0" dy="6" stdDeviation="5" flood-color="#0b172a" flood-opacity="0.25" />
+              </filter>
+            </defs>
+
+            <!-- 1. Back orbital ring — drawn before planet for 3D layering -->
+            <g transform="rotate(-28 135 130)">
+              <path d="M 18 130 A 112 34 0 0 1 242 130" fill="none" stroke="rgba(26, 143, 191, 0.4)" stroke-width="2.5"
+                stroke-dasharray="6 5" stroke-linecap="round" />
+            </g>
+
+            <!-- 2. Planet & Waves Group with Drop Shadow for 3D layering -->
+            <g filter="url(#planetShadowLight)">
+              <!-- Planet base fill -->
+              <circle cx="130" cy="130" r="70" fill="#b7c5d9ff" />
+
+              <!-- 3. ENSO sinusoidal waves, clipped to planet, frozen at rest position -->
+              <g clip-path="url(#mastClipLight)">
+                <!-- Wave 1 -->
+                <path
+                  d="M -57 100 Q -29 84 -1 100 Q 27 116 55 100 Q 83 84 111 100 Q 139 116 167 100 Q 195 84 223 100 Q 251 116 279 100 Q 307 84 335 100"
+                  fill="none" stroke="url(#waveGradLight)" stroke-width="3.5" stroke-linecap="round" />
+                <!-- Wave 2 -->
+                <path
+                  d="M -57 120 Q -29 104 -1 120 Q 27 136 55 120 Q 83 104 111 120 Q 139 136 167 120 Q 195 104 223 120 Q 251 136 279 120 Q 307 104 335 120"
+                  fill="none" stroke="url(#waveGradLight)" stroke-width="3" stroke-linecap="round" />
+                <!-- Wave 3 -->
+                <path
+                  d="M -57 140 Q -29 124 -1 140 Q 27 156 55 140 Q 83 124 111 140 Q 139 156 167 140 Q 195 124 223 140 Q 251 156 279 140 Q 307 124 335 140"
+                  fill="none" stroke="url(#waveGradLight)" stroke-width="2.5" stroke-linecap="round" />
+                <!-- Wave 4 -->
+                <path
+                  d="M -57 160 Q -29 144 -1 160 Q 27 176 55 160 Q 83 144 111 160 Q 139 176 167 160 Q 195 144 223 160 Q 251 176 279 160 Q 307 144 335 160"
+                  fill="none" stroke="url(#waveGradLight)" stroke-width="2" stroke-linecap="round" />
+              </g>
+
+              <!-- Glassmorphism overlay (gloss and shadows for 3D sphere illusion) -->
+              <circle cx="130" cy="130" r="70" fill="url(#sphereGlossLight)" pointer-events="none" />
+            </g>
+
+            <!-- 4. Planet rim — white for depth on dark background -->
+            <circle cx="130" cy="130" r="72" fill="none" stroke="rgba(255, 255, 255, 0.18)" stroke-width="1.5"
+              pointer-events="none" />
+
+            <!-- 5. Front orbital ring & Satellite — over planet, satellite resting near the ring's right edge -->
+            <g transform="rotate(-28 135 130)">
+              <path d="M 18 130 A 112 34 0 0 0 242 130" fill="none" stroke="#1A8FBF" stroke-width="3.5"
+                stroke-linecap="round" />
+
+              <!-- Satellite: on the ellipse at θ≈-40° from right → (216,108) -->
+              <g transform="translate(216 108)">
+                <circle r="17" fill="none" stroke="rgba(26, 143, 191, 0.5)" stroke-width="2" opacity="0.4" />
+                <circle r="8" fill="#1A8FBF" />
+                <circle r="4" fill="#ffffff" />
+              </g>
+            </g>
+          </svg>
+          <div class="logo-lockup">
+            <div class="wordmark" style="color:#0B3D6B">S<span class="dot">.</span>ENSO</div>
+            <div class="tagline">SISTEMA PREDITIVO ENSO</div>
+          </div>
+        </div>
+
+        <!-- Negative version -->
+        <div class="logo-card dark">
+          <div class="logo-label">VERSÃO NEGATIVA · FUNDO OCEANO</div>
+          <svg width="180" height="180" viewBox="0 0 260 260" aria-label="S.ENSO orbital symbol"
+            xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <!-- 3D Spherical shading & glossy highlight -->
+              <radialGradient id="sphereGlossNegative" cx="30%" cy="30%" r="70%">
+                <stop offset="0%" stop-color="#ffffff" stop-opacity="0.65" />
+                <stop offset="30%" stop-color="#ffffff" stop-opacity="0.15" />
+                <stop offset="70%" stop-color="#000000" stop-opacity="0" />
+                <stop offset="100%" stop-color="#000000" stop-opacity="0.3" />
+              </radialGradient>
+
+              <!-- Linear gradient for the wave paths -->
+              <linearGradient id="waveGradNegative" x1="0" y1="80" x2="0" y2="180" gradientUnits="userSpaceOnUse">
+                <stop offset="0%" stop-color="rgb(222, 106, 52)" stop-opacity="0.85" />
+                <stop offset="100%" stop-color="rgb(32, 120, 203)" stop-opacity="0.85" />
+              </linearGradient>
+
+              <!-- Clip path for the waves inside the planet -->
+              <clipPath id="mastClipNegative">
+                <circle cx="130" cy="130" r="70" />
+              </clipPath>
+
+              <!-- Soft drop shadow for planet depth -->
+              <filter id="planetShadowNegative" x="-20%" y="-20%" width="140%" height="140%">
+                <feDropShadow dx="0" dy="6" stdDeviation="5" flood-color="#0b172a" flood-opacity="0.25" />
+              </filter>
+            </defs>
+
+            <!-- 1. Back orbital ring — drawn before planet for 3D layering -->
+            <g transform="rotate(-28 135 130)">
+              <path d="M 18 130 A 112 34 0 0 1 242 130" fill="none" stroke="rgba(26, 143, 191, 0.4)" stroke-width="2.5"
+                stroke-dasharray="6 5" stroke-linecap="round" />
+            </g>
+
+            <!-- 2. Planet & Waves Group with Drop Shadow for 3D layering -->
+            <g filter="url(#planetShadowNegative)">
+              <!-- Planet base fill -->
+              <circle cx="130" cy="130" r="70" fill="#29548fff" />
+
+              <!-- 3. ENSO sinusoidal waves, clipped to planet, frozen at rest position -->
+              <g clip-path="url(#mastClipNegative)">
+                <!-- Wave 1 -->
+                <path
+                  d="M -57 100 Q -29 84 -1 100 Q 27 116 55 100 Q 83 84 111 100 Q 139 116 167 100 Q 195 84 223 100 Q 251 116 279 100 Q 307 84 335 100"
+                  fill="none" stroke="url(#waveGradNegative)" stroke-width="3.5" stroke-linecap="round" />
+                <!-- Wave 2 -->
+                <path
+                  d="M -57 120 Q -29 104 -1 120 Q 27 136 55 120 Q 83 104 111 120 Q 139 136 167 120 Q 195 104 223 120 Q 251 136 279 120 Q 307 104 335 120"
+                  fill="none" stroke="url(#waveGradNegative)" stroke-width="3" stroke-linecap="round" />
+                <!-- Wave 3 -->
+                <path
+                  d="M -57 140 Q -29 124 -1 140 Q 27 156 55 140 Q 83 124 111 140 Q 139 156 167 140 Q 195 124 223 140 Q 251 156 279 140 Q 307 124 335 140"
+                  fill="none" stroke="url(#waveGradNegative)" stroke-width="2.5" stroke-linecap="round" />
+                <!-- Wave 4 -->
+                <path
+                  d="M -57 160 Q -29 144 -1 160 Q 27 176 55 160 Q 83 144 111 160 Q 139 176 167 160 Q 195 144 223 160 Q 251 176 279 160 Q 307 144 335 160"
+                  fill="none" stroke="url(#waveGradNegative)" stroke-width="2" stroke-linecap="round" />
+              </g>
+
+              <!-- Glassmorphism overlay (gloss and shadows for 3D sphere illusion) -->
+              <circle cx="130" cy="130" r="70" fill="url(#sphereGlossNegative)" pointer-events="none" />
+            </g>
+
+            <!-- 4. Planet rim — white for depth on dark background -->
+            <circle cx="130" cy="130" r="72" fill="none" stroke="rgba(255, 255, 255, 0.18)" stroke-width="1.5"
+              pointer-events="none" />
+
+            <!-- 5. Front orbital ring & Satellite — over planet, satellite resting near the ring's right edge -->
+            <g transform="rotate(-28 135 130)">
+              <path d="M 18 130 A 112 34 0 0 0 242 130" fill="none" stroke="#1A8FBF" stroke-width="3.5"
+                stroke-linecap="round" />
+
+              <!-- Satellite: on the ellipse at θ≈-40° from right → (216,108) -->
+              <g transform="translate(216 108)">
+                <circle r="17" fill="none" stroke="rgba(26, 143, 191, 0.5)" stroke-width="2" opacity="0.4" />
+                <circle r="8" fill="#1A8FBF" />
+                <circle r="4" fill="#ffffff" />
+              </g>
+            </g>
+          </svg>
+        </div>
+      </div>
+
+      <!-- Prototype version (Interactive & 3D) -->
+      <div class="logo-card dark"
+        style="background:radial-gradient(circle at 50% 50%, #102444, #081226); border-color:#102444;">
+        <div class="logo-label" style="color:rgba(255,255,255,.7)">VERSÃO INTERATIVA & 3D (PROTÓTIPO)</div>
+        <svg width="180" height="180" viewBox="0 0 260 260" aria-label="S.ENSO orbital symbol prototype"
+          xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <!-- 3D Spherical shading & glossy highlight -->
+            <radialGradient id="sphereGlossProto" cx="30%" cy="30%" r="70%">
+              <stop offset="0%" stop-color="#ffffff" stop-opacity="0.65" />
+              <stop offset="30%" stop-color="#ffffff" stop-opacity="0.15" />
+              <stop offset="70%" stop-color="#000000" stop-opacity="0" />
+              <stop offset="100%" stop-color="#000000" stop-opacity="0.3" />
+            </radialGradient>
+
+            <!-- Linear gradient for the wave paths -->
+            <linearGradient id="waveGradProto" x1="0" y1="80" x2="0" y2="180" gradientUnits="userSpaceOnUse">
+              <stop offset="0%" stop-color="rgb(222, 106, 52)" stop-opacity="0.85" />
+              <stop offset="100%" stop-color="rgb(32, 120, 203)" stop-opacity="0.85" />
+            </linearGradient>
+
+            <!-- Clip path for the waves inside the planet -->
+            <clipPath id="mastClipProto">
+              <circle cx="130" cy="130" r="70" />
+            </clipPath>
+
+            <!-- Soft drop shadow for planet depth -->
+            <filter id="planetShadowProto" x="-20%" y="-20%" width="140%" height="140%">
+              <feDropShadow dx="0" dy="6" stdDeviation="5" flood-color="#0b172a" flood-opacity="0.25" />
+            </filter>
+
+            <!-- Glow effect for satellite and active elements -->
+            <filter id="glowProto" x="-50%" y="-50%" width="200%" height="200%">
+              <feGaussianBlur in="SourceGraphic" stdDeviation="5" result="blur1" />
+              <feGaussianBlur in="SourceGraphic" stdDeviation="9" result="blur2" />
+              <feMerge>
+                <feMergeNode in="blur2" />
+                <feMergeNode in="blur1" />
+                <feMergeNode in="SourceGraphic" />
+              </feMerge>
+            </filter>
+
+            <style>
+              /* Smooth infinite wave animation */
+              .flowing-wave-proto {
+                animation: waveFlowProto 8s linear infinite;
+              }
+
+              @keyframes waveFlowProto {
+                0% {
+                  transform: translate3d(0, 0, 0);
+                }
+
+                100% {
+                  transform: translate3d(-112px, 0, 0);
+                }
+              }
+
+              /* 3D Orbit motion for the satellite (placed inside the rotated groups to naturally inherit parent transforms) */
+              .satellite-front-group-proto,
+              .satellite-back-group-proto {
+                offset-path: path('M 18 130 A 112 34 0 0 0 242 130 A 112 34 0 0 0 18 130');
+                offset-rotate: 0deg;
+                animation: orbitMotionProto 8s linear infinite;
+                cursor: pointer;
+                transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+                transform-box: fill-box;
+                transform-origin: center;
+              }
+
+              /* Synchronized opacity toggles to hide/show satellite as it goes behind the planet */
+              .satellite-front-group-proto {
+                animation-name: orbitMotionProto, frontOpacityProto;
+              }
+
+              .satellite-back-group-proto {
+                animation-name: orbitMotionProto, backOpacityProto;
+              }
+
+              @keyframes orbitMotionProto {
+                0% {
+                  offset-distance: 0%;
+                }
+
+                100% {
+                  offset-distance: 100%;
+                }
+              }
+
+              /* Visible during the first 50% (front arc) */
+              @keyframes frontOpacityProto {
+
+                0%,
+                50% {
+                  opacity: 1;
+                }
+
+                50.01%,
+                100% {
+                  opacity: 0;
+                }
+              }
+
+              /* Visible during the last 50% (back arc) */
+              @keyframes backOpacityProto {
+
+                0%,
+                50% {
+                  opacity: 0;
+                }
+
+                50.01%,
+                100% {
+                  opacity: 1;
+                }
+              }
+
+              /* Hover states for interactive feel */
+              .satellite-front-group-proto:hover,
+              .satellite-back-group-proto:hover {
+                transform: scale(1.25);
+              }
+
+              .satellite-glow-proto {
+                transition: opacity 0.4s ease, filter 0.4s ease;
+                opacity: 0.4;
+              }
+
+              .satellite-front-group-proto:hover .satellite-glow-proto,
+              .satellite-back-group-proto:hover .satellite-glow-proto {
+                opacity: 0.95;
+                filter: url(#glowProto);
+              }
+
+              /* Front orbit hover effect */
+              .orbit-front-proto {
+                transition: stroke-width 0.3s ease, stroke 0.3s ease;
+              }
+
+              .orbit-front-proto:hover {
+                stroke-width: 4.5px;
+                stroke: #034a81ff;
+              }
+            </style>
+          </defs>
+
+          <!-- 1. Back arc & Back Satellite — sweep=1, CW (bottom half of tilted ellipse), drawn before planet -->
+          <g transform="rotate(-28 135 130)">
+            <!-- Back orbital ring -->
+            <path d="M 18 130 A 112 34 0 0 1 242 130" fill="none" stroke="rgba(26, 143, 191, 0.4)" stroke-width="2.5"
+              stroke-dasharray="6 5" stroke-linecap="round" />
+
+            <!-- Satellite when behind the planet -->
+            <g class="satellite-back-group-proto">
+              <!-- Outer glow aura (pulsing/revealed on hover) -->
+              <circle class="satellite-glow-proto" cx="0" cy="0" r="17" fill="none" stroke="rgba(26, 143, 191, 0.5)"
+                stroke-width="2" />
+              <!-- Core satellite body -->
+              <circle cx="0" cy="0" r="8" fill="#1A8FBF" />
+              <circle cx="0" cy="0" r="4" fill="#ffffff" />
+            </g>
+          </g>
+
+          <!-- 2. Planet & Waves Group with Drop Shadow for 3D layering -->
+          <g filter="url(#planetShadowProto)">
+            <!-- Planet base fill -->
+            <circle cx="130" cy="130" r="70" fill="#29548fff" />
+
+            <!-- 3. ENSO sinusoidal waves, clipped to planet and animated -->
+            <g clip-path="url(#mastClipProto)">
+              <g class="flowing-wave-proto">
+                <!-- Wave 1 -->
+                <path
+                  d="M -57 100 Q -29 84 -1 100 Q 27 116 55 100 Q 83 84 111 100 Q 139 116 167 100 Q 195 84 223 100 Q 251 116 279 100 Q 307 84 335 100"
+                  fill="none" stroke="url(#waveGradProto)" stroke-width="3.5" stroke-linecap="round" />
+                <!-- Wave 2 -->
+                <path
+                  d="M -57 120 Q -29 104 -1 120 Q 27 136 55 120 Q 83 104 111 120 Q 139 136 167 120 Q 195 104 223 120 Q 251 136 279 120 Q 307 104 335 120"
+                  fill="none" stroke="url(#waveGradProto)" stroke-width="3" stroke-linecap="round" />
+                <!-- Wave 3 -->
+                <path
+                  d="M -57 140 Q -29 124 -1 140 Q 27 156 55 140 Q 83 124 111 140 Q 139 156 167 140 Q 195 124 223 140 Q 251 156 279 140 Q 307 124 335 140"
+                  fill="none" stroke="url(#waveGradProto)" stroke-width="2.5" stroke-linecap="round" />
+                <!-- Wave 4 -->
+                <path
+                  d="M -57 160 Q -29 144 -1 160 Q 27 176 55 160 Q 83 144 111 160 Q 139 176 167 160 Q 195 144 223 160 Q 251 176 279 160 Q 307 144 335 160"
+                  fill="none" stroke="url(#waveGradProto)" stroke-width="2" stroke-linecap="round" />
+              </g>
+            </g>
+
+            <!-- Glassmorphism overlay (gloss and shadows for 3D sphere illusion) -->
+            <circle cx="130" cy="130" r="70" fill="url(#sphereGlossProto)" pointer-events="none" />
+          </g>
+
+          <!-- 4. Planet rim — white for depth on dark background -->
+          <circle cx="130" cy="130" r="72" fill="none" stroke="rgba(255, 255, 255, 0.18)" stroke-width="1.5"
+            pointer-events="none" />
+
+          <!-- 5. Front arc & Satellite — sweep=0, CCW (top half), over planet -->
+          <g transform="rotate(-28 135 130)">
+            <!-- Front orbital ring -->
+            <path class="orbit-front-proto" d="M 18 130 A 112 34 0 0 0 242 130" fill="none" stroke="#1A8FBF"
+              stroke-width="3.5" stroke-linecap="round" />
+
+            <!-- Satellite when in front of the planet -->
+            <g class="satellite-front-group-proto">
+              <!-- Outer glow aura (pulsing/revealed on hover) -->
+              <circle class="satellite-glow-proto" cx="0" cy="0" r="17" fill="none" stroke="rgba(26, 143, 191, 0.5)"
+                stroke-width="2" />
+              <!-- Core satellite body -->
+              <circle cx="0" cy="0" r="8" fill="#1A8FBF" />
+              <circle cx="0" cy="0" r="4" fill="#ffffff" />
+            </g>
+          </g>
+        </svg>
+        <div class="logo-lockup">
+          <div class="wordmark" style="color:#fff">S<span class="dot">.</span>ENSO</div>
+          <div class="tagline" style="color:rgba(255,255,255,.6)">SISTEMA PREDITIVO ENSO</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="construction">
+      <div class="item">
+        <h4>Área de proteção</h4>
+        <p>Manter espaço mínimo equivalente à altura da letra "S" do wordmark em todos os lados do logotipo.</p>
+      </div>
+      <div class="item">
+        <h4>Construção do símbolo</h4>
+        <p>Anel orbital inclinado a −28°. Arco posterior tracejado e semitransparente; arco frontal sólido em ciano.
+          Satélite no arco frontal.</p>
+      </div>
+      <div class="item">
+        <h4>Usos incorretos</h4>
+        <p>Não distorcer proporções, não aplicar sobre fundos de baixo contraste, não usar arco contínuo sem efeito de
+          profundidade, não separar símbolo do wordmark.</p>
+      </div>
+    </div>
+    </div>
+  </section>
+
+  <!-- ============================== 02 COLORS ============================== -->
+  <section id="color" style="background:#fff">
+    <div class="container">
+      <div class="sec-head">
+        <div>
+          <div class="sec-num">02 / PALETA</div>
+          <h2 class="sec-title">Sistema cromático</h2>
+        </div>
+        <p class="sec-lede">Dois tons institucionais ancoram a marca. Quatro cores funcionais traduzem níveis de risco;
+          jamais devem ser usadas decorativamente.</p>
+      </div>
+
+      <div class="palette-block">
+        <h3>Cores primárias</h3>
+        <div class="swatch-row primary">
+          <div class="swatch">
+            <div class="chip" style="background:#0B3D6B"></div>
+            <div class="meta">
+              <span class="name">Azul-oceano</span>
+              <span class="hex">#0B3D6B · oklch(.34 .07 247)</span>
+              <span class="use">Cor âncora. Planeta, texto principal, fundos institucionais, cabeçalhos de
+                tabela.</span>
+            </div>
+          </div>
+          <div class="swatch">
+            <div class="chip" style="background:#1A8FBF"></div>
+            <div class="meta">
+              <span class="name">Azul-ciano satelital</span>
+              <span class="hex">#1A8FBF · oklch(.63 .11 232)</span>
+              <span class="use">Cor de acento. Órbita, satélite, tagline, séries de dados primárias.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="palette-block">
+        <h3>Sistema de alertas · escala funcional de risco</h3>
+        <div class="swatch-row alerts">
+          <div class="swatch">
+            <div class="level">Nível 1</div>
+            <div class="chip" style="background:#2E7D32"></div>
+            <div class="meta">
+              <span class="name">Verde</span>
+              <span class="hex">#2E7D32</span>
+              <span class="use">Risco baixo / situação normal</span>
+            </div>
+          </div>
+          <div class="swatch">
+            <div class="level">Nível 2</div>
+            <div class="chip" style="background:#F9A825"></div>
+            <div class="meta">
+              <span class="name">Amarelo</span>
+              <span class="hex">#F9A825</span>
+              <span class="use">Risco moderado / atenção</span>
+            </div>
+          </div>
+          <div class="swatch">
+            <div class="level">Nível 3</div>
+            <div class="chip" style="background:#E65100"></div>
+            <div class="meta">
+              <span class="name">Laranja</span>
+              <span class="hex">#E65100</span>
+              <span class="use">Risco alto / alerta</span>
+            </div>
+          </div>
+          <div class="swatch">
+            <div class="level">Nível 4</div>
+            <div class="chip" style="background:#B71C1C"></div>
+            <div class="meta">
+              <span class="name">Vermelho</span>
+              <span class="hex">#B71C1C</span>
+              <span class="use">Risco crítico / emergência</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="palette-block">
+        <h3>Cores neutras</h3>
+        <div class="swatch-row neutrals">
+          <div class="swatch">
+            <div class="chip" style="background:#F4F6F9;border-color:#E0E5EC"></div>
+            <div class="meta">
+              <span class="name">Neutro claro</span>
+              <span class="hex">#F4F6F9</span>
+              <span class="use">Fundos de slides de conteúdo e painéis.</span>
+            </div>
+          </div>
+          <div class="swatch">
+            <div class="chip" style="background:#1C2333"></div>
+            <div class="meta">
+              <span class="name">Neutro escuro</span>
+              <span class="hex">#1C2333</span>
+              <span class="use">Texto sobre fundos claros, ícones.</span>
+            </div>
+          </div>
+          <div class="swatch">
+            <div class="chip" style="background:#B0B8C4"></div>
+            <div class="meta">
+              <span class="name">Neutro médio</span>
+              <span class="hex">#B0B8C4</span>
+              <span class="use">Linhas de referência, eixos, grades.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================== 03 TYPOGRAPHY ============================== -->
+  <section id="type">
+    <div class="container">
+      <div class="sec-head">
+        <div>
+          <div class="sec-num">03 / TIPOGRAFIA</div>
+          <h2 class="sec-title">Família Inter</h2>
+        </div>
+        <p class="sec-lede">Família principal: Inter. Alternativas: DM Sans, Space Grotesk. Geométricas, sem serifa,
+          legíveis em dashboards e apresentações.</p>
+      </div>
+
+      <div class="type-grid">
+        <div class="type-row">
+          <div class="label">Display</div>
+          <div class="specimen">
+            <div class="demo demo-display">El Niño 2026.</div>
+            <div class="meta">Inter · 700 · 56px · letter-spacing −0.02em</div>
+          </div>
+        </div>
+        <div class="type-row">
+          <div class="label">Título H1</div>
+          <div class="specimen">
+            <div class="demo demo-h1">Risco preditivo para o território brasileiro</div>
+            <div class="meta">Inter · 700 · 36px · letter-spacing −0.015em</div>
+          </div>
+        </div>
+        <div class="type-row">
+          <div class="label">Subtítulo H2</div>
+          <div class="specimen">
+            <div class="demo demo-h2">Sinais oceânicos convertidos em alertas operacionais</div>
+            <div class="meta">Inter · 600 · 24px</div>
+          </div>
+        </div>
+        <div class="type-row">
+          <div class="label">Corpo</div>
+          <div class="specimen">
+            <div class="demo demo-body">O S.ENSO intercepta sinais do oceano Pacífico, processa dados orbitais e os
+              converte em alertas práticos para defesa civil, secretarias de agricultura e produtores rurais. Linguagem
+              técnica para gestores, clara para o campo.</div>
+            <div class="meta">Inter · 400 · 16px · line-height 1.6</div>
+          </div>
+        </div>
+        <div class="type-row">
+          <div class="label">Label / Tagline</div>
+          <div class="specimen">
+            <div class="demo demo-label">SISTEMA PREDITIVO ENSO · MONITORAMENTO ORBITAL</div>
+            <div class="meta">Inter · 400 · 11px · letter-spacing 0.32em · uppercase</div>
+          </div>
+        </div>
+        <div class="type-row">
+          <div class="label">Dados</div>
+          <div class="specimen">
+            <div class="demo demo-mono">SST +1.8 °C · Niño 3.4 · 2026-05-28T18:00Z · α = 0.92</div>
+            <div class="meta">JetBrains Mono · 400 · 14px · valores numéricos e timestamps</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================== 04 COMPONENTS ============================== -->
+  <section id="components" style="background:#fff">
+    <div class="container">
+      <div class="sec-head">
+        <div>
+          <div class="sec-num">04 / COMPONENTES</div>
+          <h2 class="sec-title">Biblioteca base</h2>
+        </div>
+        <p class="sec-lede">Componentes fundamentais para a aplicação web. Cantos sutis (2–4px), tipografia clara,
+          hierarquia ancorada em azul-oceano + ciano.</p>
+      </div>
+
+      <div class="comp-grid">
+
+        <div class="comp-card">
+          <h4>Botões</h4>
+          <div class="btn-row">
+            <button class="btn btn-primary">Emitir alerta</button>
+            <button class="btn btn-accent">Ver dado orbital</button>
+            <button class="btn btn-ghost">Exportar</button>
+            <button class="btn btn-text">Detalhes</button>
+          </div>
+        </div>
+
+        <div class="comp-card">
+          <h4>Badges de risco</h4>
+          <div class="btn-row">
+            <span class="badge badge-1"><span class="dot"></span>Baixo</span>
+            <span class="badge badge-2"><span class="dot"></span>Moderado</span>
+            <span class="badge badge-3"><span class="dot"></span>Alto</span>
+            <span class="badge badge-4"><span class="dot"></span>Crítico</span>
+          </div>
+        </div>
+
+        <div class="comp-card" style="grid-column:span 2">
+          <h4>Fila de alertas territoriais</h4>
+          <div class="alert-stack">
+            <div class="alert-row a4">
+              <div class="bar"></div>
+              <div class="body">
+                <div class="t">Crítico · MATOPIBA · estiagem severa projetada</div>
+                <div class="s">Probabilidade <b>94%</b> · janela <b>15 dias</b> · cultura: soja, milho safrinha</div>
+              </div>
+              <div class="ts">2026-06-05 · 14:22</div>
+            </div>
+            <div class="alert-row a3">
+              <div class="bar"></div>
+              <div class="body">
+                <div class="t">Alto · Sul · excesso de chuva e risco de inundação</div>
+                <div class="s">Probabilidade <b>78%</b> · janela <b>7 dias</b> · municípios em monitoramento: 142</div>
+              </div>
+              <div class="ts">2026-06-05 · 11:48</div>
+            </div>
+            <div class="alert-row a2">
+              <div class="bar"></div>
+              <div class="body">
+                <div class="t">Moderado · Centro-Oeste · anomalia térmica positiva</div>
+                <div class="s">Probabilidade <b>61%</b> · janela <b>30 dias</b> · acompanhar SST Niño 3.4</div>
+              </div>
+              <div class="ts">2026-06-05 · 09:10</div>
+            </div>
+            <div class="alert-row a1">
+              <div class="bar"></div>
+              <div class="body">
+                <div class="t">Normal · Norte · padrão dentro da climatologia</div>
+                <div class="s">Sem variação significativa nos últimos <b>14 dias</b></div>
+              </div>
+              <div class="ts">2026-06-05 · 06:00</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="comp-card">
+          <h4>KPI cards</h4>
+          <div class="kpi-row">
+            <div class="kpi">
+              <div class="lab">SST Niño 3.4</div>
+              <div class="val">+1.8°</div>
+              <div class="delta">▲ +0.4 vs. mês ant.</div>
+            </div>
+            <div class="kpi">
+              <div class="lab">Municípios em alerta</div>
+              <div class="val">312</div>
+              <div class="delta">▲ +47 desde 30/05</div>
+            </div>
+            <div class="kpi">
+              <div class="lab">Acurácia 7d</div>
+              <div class="val">92%</div>
+              <div class="delta" style="color:#2E7D32">▲ +1.2 p.p.</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="comp-card">
+          <h4>Campo de entrada</h4>
+          <div style="display:flex;flex-direction:column;gap:14px">
+            <div class="field">
+              <label>Município / Mesorregião</label>
+              <input type="text" placeholder="Buscar por nome ou código IBGE" value="Barreiras · BA · 2903201">
+            </div>
+            <div class="field">
+              <label>Janela de previsão</label>
+              <input type="text" value="7 dias">
+            </div>
+          </div>
+        </div>
+
+        <div class="comp-card" style="grid-column:span 2">
+          <h4>Estados de formulário</h4>
+          <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:20px;align-items:start">
+            <div class="field">
+              <label>Padrão</label>
+              <input type="text" placeholder="Ex: Barreiras · BA">
+              <span class="field-hint">Texto auxiliar opcional</span>
+            </div>
+            <div class="field">
+              <label>Foco <small
+                  style="font-size:10px;opacity:.6;font-weight:400;text-transform:none;letter-spacing:0">:focus</small></label>
+              <input type="text" class="is-focus" value="Barreiras · BA">
+              <span class="field-hint">Campo em edição ativo</span>
+            </div>
+            <div class="field">
+              <label>Válido <small
+                  style="font-size:10px;opacity:.6;font-weight:400;text-transform:none;letter-spacing:0">.is-valid</small></label>
+              <input type="text" class="is-valid" value="2903201 · IBGE">
+              <span class="field-hint field-hint--valid">✓ Código verificado</span>
+            </div>
+            <div class="field">
+              <label>Erro <small
+                  style="font-size:10px;opacity:.6;font-weight:400;text-transform:none;letter-spacing:0">.is-error</small></label>
+              <input type="text" class="is-error" value="7 anas">
+              <span class="field-hint field-hint--error">Valor inválido — use dias (ex: 7 dias)</span>
+            </div>
+            <div class="field">
+              <label>Desabilitado <small
+                  style="font-size:10px;opacity:.6;font-weight:400;text-transform:none;letter-spacing:0">:disabled</small></label>
+              <input type="text" disabled value="Bloqueado pelo sistema">
+              <span class="field-hint">Ação não disponível neste contexto</span>
+            </div>
+            <div class="field">
+              <label>Somente leitura <small
+                  style="font-size:10px;opacity:.6;font-weight:400;text-transform:none;letter-spacing:0">[readonly]</small></label>
+              <input type="text" readonly value="SST +1.8 °C · Niño 3.4">
+              <span class="field-hint">Calculado · não editável</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="comp-card" style="grid-column:span 2">
+          <h4>Tabela institucional</h4>
+          <table>
+            <thead>
+              <tr>
+                <th>Região</th>
+                <th>Estado ENSO</th>
+                <th>SST anomalia</th>
+                <th>Risco agrícola</th>
+                <th>Janela</th>
+                <th>Confiabilidade</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>MATOPIBA</td>
+                <td>El Niño forte</td>
+                <td class="mono">+1.8 °C</td>
+                <td><span class="badge badge-4"><span class="dot"></span>Crítico</span></td>
+                <td class="mono">15 d</td>
+                <td class="mono">α = 0.94</td>
+              </tr>
+              <tr>
+                <td>Sul</td>
+                <td>El Niño forte</td>
+                <td class="mono">+1.6 °C</td>
+                <td><span class="badge badge-3"><span class="dot"></span>Alto</span></td>
+                <td class="mono">7 d</td>
+                <td class="mono">α = 0.88</td>
+              </tr>
+              <tr>
+                <td>Centro-Oeste</td>
+                <td>El Niño moderado</td>
+                <td class="mono">+1.1 °C</td>
+                <td><span class="badge badge-2"><span class="dot"></span>Moderado</span></td>
+                <td class="mono">30 d</td>
+                <td class="mono">α = 0.79</td>
+              </tr>
+              <tr>
+                <td>Norte</td>
+                <td>Neutro</td>
+                <td class="mono">+0.2 °C</td>
+                <td><span class="badge badge-1"><span class="dot"></span>Baixo</span></td>
+                <td class="mono">30 d</td>
+                <td class="mono">α = 0.85</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================== 05 VISUALIZATIONS ============================== -->
+  <section id="viz">
+    <div class="container">
+      <div class="sec-head">
+        <div>
+          <div class="sec-num">05 / VISUALIZAÇÕES</div>
+          <h2 class="sec-title">Curva SST e mapa Niño 3.4</h2>
+        </div>
+        <p class="sec-lede">A curva de anomalia de temperatura da superfície do mar é o elemento gráfico mais
+          reconhecível do ENSO. Suporte secundário: mapa da região Niño 3.4.</p>
+      </div>
+
+      <div class="viz-grid">
+        <div class="viz-card">
+          <h4>ANOMALIA SST · NIÑO 3.4</h4>
+          <div class="viz-title">Oscilação ENSO · janeiro 2022 → maio 2026</div>
+          <svg viewBox="0 0 600 280" width="100%" height="260" role="img" aria-label="Curva de anomalia SST">
+            <!-- Y axis ticks -->
+            <g font-family="JetBrains Mono, monospace" font-size="10" fill="#5A6478">
+              <text x="6" y="44">+2.0</text>
+              <text x="6" y="94">+1.0</text>
+              <text x="6" y="144"> 0.0</text>
+              <text x="6" y="194">−1.0</text>
+              <text x="6" y="244">−2.0</text>
+            </g>
+            <!-- grid lines -->
+            <g stroke="#E8EEF4" stroke-width="1">
+              <line x1="40" y1="40" x2="590" y2="40" />
+              <line x1="40" y1="90" x2="590" y2="90" />
+              <line x1="40" y1="190" x2="590" y2="190" />
+              <line x1="40" y1="240" x2="590" y2="240" />
+            </g>
+            <!-- zero reference -->
+            <line x1="40" y1="140" x2="590" y2="140" stroke="#B0B8C4" stroke-width="1.2" />
+            <!-- Negative (La Niña) area & line -->
+            <path d="M 40 140 L 40 152 Q 90 175 140 180 Q 180 184 220 170 Q 250 158 280 140 L 280 140 Z"
+              fill="rgba(26,143,191,.22)" />
+            <path d="M 40 152 Q 90 175 140 180 Q 180 184 220 170 Q 250 158 280 140" fill="none" stroke="#1A8FBF"
+              stroke-width="2.4" stroke-linecap="round" />
+            <!-- Positive (El Niño) area & line -->
+            <path d="M 280 140 Q 320 132 360 110 Q 400 80 450 60 Q 500 50 540 72 Q 570 90 590 110 L 590 140 Z"
+              fill="rgba(230,81,0,.22)" />
+            <path d="M 280 140 Q 320 132 360 110 Q 400 80 450 60 Q 500 50 540 72 Q 570 90 590 110" fill="none"
+              stroke="#E65100" stroke-width="2.4" stroke-linecap="round" />
+            <!-- current marker -->
+            <circle cx="590" cy="110" r="4.5" fill="#B71C1C" />
+            <text x="540" y="100" font-family="JetBrains Mono,monospace" font-size="10" fill="#B71C1C">+1.8 °C ·
+              hoje</text>
+            <!-- X axis ticks -->
+            <g font-family="JetBrains Mono, monospace" font-size="10" fill="#5A6478">
+              <text x="40" y="266">2022</text>
+              <text x="180" y="266">2023</text>
+              <text x="320" y="266">2024</text>
+              <text x="460" y="266">2025</text>
+              <text x="555" y="266">2026</text>
+            </g>
+          </svg>
+          <div
+            style="display:flex;gap:24px;margin-top:8px;font-size:11px;color:var(--neutral-text);font-family:'JetBrains Mono',monospace;letter-spacing:.04em">
+            <span><span
+                style="display:inline-block;width:10px;height:2px;background:#1A8FBF;vertical-align:middle;margin-right:6px"></span>La
+              Niña</span>
+            <span><span
+                style="display:inline-block;width:10px;height:2px;background:#E65100;vertical-align:middle;margin-right:6px"></span>El
+              Niño</span>
+            <span><span
+                style="display:inline-block;width:10px;height:1px;background:#B0B8C4;vertical-align:middle;margin-right:6px"></span>Referência
+              0 °C</span>
+          </div>
+        </div>
+
+        <div class="viz-card">
+          <h4>REGIÃO NIÑO 3.4</h4>
+          <div class="viz-title">Pacífico equatorial · 5°N–5°S, 120°W–170°W</div>
+          <svg viewBox="0 0 400 260" width="100%" height="260" role="img" aria-label="Mapa Niño 3.4">
+            <!-- ocean base -->
+            <rect x="20" y="40" width="360" height="180" fill="#F4F6F9" stroke="#E8EEF4" />
+            <!-- equator -->
+            <line x1="20" y1="130" x2="380" y2="130" stroke="#B0B8C4" stroke-dasharray="3 3" stroke-width="1" />
+            <text x="22" y="126" font-family="JetBrains Mono,monospace" font-size="9" fill="#5A6478">EQUADOR · 0°</text>
+            <!-- continents abstract -->
+            <path d="M 20 80 L 70 70 L 90 90 L 75 130 L 60 160 L 30 180 L 20 175 Z" fill="#DDE3EC" />
+            <path d="M 305 60 L 340 50 L 380 55 L 380 90 L 360 110 L 330 105 L 305 90 Z" fill="#DDE3EC" />
+            <path d="M 348 145 L 380 140 L 380 210 L 350 220 L 330 200 L 332 170 Z" fill="#DDE3EC" />
+            <!-- Niño 3.4 box -->
+            <rect x="120" y="115" width="160" height="30" fill="rgba(230,81,0,.18)" stroke="#E65100" stroke-width="2" />
+            <text x="124" y="110" font-family="JetBrains Mono,monospace" font-size="10" fill="#E65100"
+              font-weight="500">NIÑO 3.4 · +1.8 °C</text>
+            <!-- legend -->
+            <g font-family="JetBrains Mono,monospace" font-size="9" fill="#5A6478">
+              <text x="20" y="34">170°W</text>
+              <text x="180" y="34">145°W</text>
+              <text x="350" y="34">120°W</text>
+            </g>
+            <!-- scale -->
+            <g transform="translate(20,240)">
+              <rect x="0" y="0" width="40" height="8" fill="#2E7D32" />
+              <rect x="40" y="0" width="40" height="8" fill="#F9A825" />
+              <rect x="80" y="0" width="40" height="8" fill="#E65100" />
+              <rect x="120" y="0" width="40" height="8" fill="#B71C1C" />
+              <text x="0" y="20" font-family="JetBrains Mono,monospace" font-size="9" fill="#5A6478">Neutro</text>
+              <text x="100" y="20" font-family="JetBrains Mono,monospace" font-size="9" fill="#5A6478">El Niño →</text>
+            </g>
+          </svg>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================== 06 POWERPOINT ============================== -->
+  <section id="ppt" style="background:#fff">
+    <div class="container">
+      <div class="sec-head">
+        <div>
+          <div class="sec-num">06 / POWERPOINT</div>
+          <h2 class="sec-title">Fundos de apresentação executiva</h2>
+        </div>
+        <p class="sec-lede">Quatro fundos master para o deck institucional: capa, divisória de seção, slide de conteúdo
+          e slide de dados. Proporção 16:9.</p>
+      </div>
+
+      <div class="ppt-grid">
+
+        <!-- COVER -->
+        <div>
+          <div class="ppt-frame">
+            <div class="ppt-cover">
+              <div class="head">
+                <div class="mini-wm">S<span class="dot">.</span>ENSO</div>
+                <div class="doc-id">DOC · 2026.06 · EXEC</div>
+              </div>
+              <!-- decorative orbital symbol watermark -->
+              <svg width="160" height="160" viewBox="0 0 260 260"
+                style="position:absolute;right:6%;top:50%;transform:translateY(-50%);opacity:.35">
+                <defs>
+                  <clipPath id="pcC">
+                    <circle cx="130" cy="130" r="62" />
+                  </clipPath>
+                </defs>
+                <g transform="rotate(-28 130 130)">
+                  <path d="M 22 130 A 108 32 0 0 1 238 130" fill="none" stroke="rgba(255,255,255,.5)" stroke-width="2"
+                    stroke-dasharray="5 6" />
+                </g>
+                <circle cx="130" cy="130" r="62" fill="#fff" />
+                <g clip-path="url(#pcC)">
+                  <path d="M 60 132 Q 90 108 120 132 T 180 132 T 240 132" fill="none" stroke="#0B3D6B" stroke-width="3"
+                    stroke-linecap="round" />
+                </g>
+                <g transform="rotate(-28 130 130)">
+                  <path d="M 22 130 A 108 32 0 0 0 238 130" fill="none" stroke="#1A8FBF" stroke-width="3"
+                    stroke-linecap="round" />
+                  <circle cx="214" cy="141" r="5" fill="#1A8FBF" />
+                </g>
+              </svg>
+              <div>
+                <div class="title">Sistema Preditivo Integrado de Risco Agrícola e Desastres Naturais</div>
+                <div class="sub">APRESENTAÇÃO EXECUTIVA · JUNHO 2026</div>
+              </div>
+              <div class="foot">
+                <div>BRASIL · DEFESA CIVIL · AGRICULTURA</div>
+                <div>01 / 24</div>
+              </div>
+            </div>
+          </div>
+          <p class="ppt-caption"><span class="ppt-cap-h">CAPA</span>Fundo #0B3D6B · logo negativa · linha ciano · doc id
+          </p>
+        </div>
+
+        <!-- SECTION DIVIDER -->
+        <div>
+          <div class="ppt-frame">
+            <div class="ppt-section">
+              <!-- decorative wave behind -->
+              <svg width="100%" height="60%" viewBox="0 0 1000 300"
+                style="position:absolute;left:0;bottom:8%;opacity:.18" preserveAspectRatio="none">
+                <path d="M 0 200 Q 200 120 400 200 T 800 200 T 1000 200" fill="none" stroke="#1A8FBF"
+                  stroke-width="3" />
+                <path d="M 0 230 Q 200 150 400 230 T 800 230 T 1000 230" fill="none" stroke="#1A8FBF" stroke-width="2"
+                  opacity=".5" />
+              </svg>
+              <div class="num">SEÇÃO 02</div>
+              <div class="ttl">O sinal ENSO e o risco no território.</div>
+              <div class="lede">Como o aquecimento do Pacífico equatorial se propaga em chuva, estiagem e perdas de
+                safra no Brasil.</div>
+            </div>
+          </div>
+          <p class="ppt-caption"><span class="ppt-cap-h">DIVISÓRIA DE SEÇÃO</span>Fundo oceano · onda decorativa ·
+            número e título</p>
+        </div>
+
+        <!-- CONTENT -->
+        <div>
+          <div class="ppt-frame">
+            <div class="ppt-content">
+              <div class="topbar">
+                <div class="wm">S<span class="dot">.</span>ENSO</div>
+                <div class="crumb">02 · O SINAL ENSO / 02.3 · IMPACTO</div>
+              </div>
+              <div class="sh">DIAGNÓSTICO</div>
+              <div class="h">Quatro regiões, quatro vulnerabilidades distintas.</div>
+              <div class="canvas">
+                <div class="box">
+                  <div class="bl">MATOPIBA</div>
+                  <div class="bv">Crítico</div>
+                  <div style="font-size:10px;color:var(--neutral-text)">Estiagem severa projetada · soja e milho</div>
+                </div>
+                <div class="box">
+                  <div class="bl">Sul</div>
+                  <div class="bv" style="color:#E65100">Alto</div>
+                  <div style="font-size:10px;color:var(--neutral-text)">Excesso de chuva · inundação</div>
+                </div>
+                <div class="box">
+                  <div class="bl">Centro-Oeste</div>
+                  <div class="bv" style="color:#F9A825">Moderado</div>
+                  <div style="font-size:10px;color:var(--neutral-text)">Anomalia térmica positiva</div>
+                </div>
+                <div class="box">
+                  <div class="bl">Norte</div>
+                  <div class="bv" style="color:#2E7D32">Baixo</div>
+                  <div style="font-size:10px;color:var(--neutral-text)">Dentro da climatologia</div>
+                </div>
+              </div>
+              <div class="ftbar">
+                <div>FONTE · NOAA · INPE · CPTEC</div>
+                <div>09 / 24</div>
+              </div>
+            </div>
+          </div>
+          <p class="ppt-caption"><span class="ppt-cap-h">CONTEÚDO</span>Fundo neutro claro · topbar com breadcrumb ·
+            grid 2×2</p>
+        </div>
+
+        <!-- DATA -->
+        <div>
+          <div class="ppt-frame">
+            <div class="ppt-data">
+              <div class="topbar">
+                <div class="wm">S<span class="dot">.</span>ENSO</div>
+                <div class="pg">14 / 24</div>
+              </div>
+              <div class="sh">EVIDÊNCIA QUANTITATIVA</div>
+              <div class="h">Anomalia SST · oscilação 2022–2026.</div>
+              <div class="chart">
+                <div class="chart-title">SST NIÑO 3.4 · °C · LINHA DE REFERÊNCIA ZERO</div>
+                <svg viewBox="0 0 800 240" preserveAspectRatio="none" style="width:100%;height:100%">
+                  <g stroke="#E8EEF4" stroke-width="1">
+                    <line x1="40" y1="40" x2="780" y2="40" />
+                    <line x1="40" y1="180" x2="780" y2="180" />
+                  </g>
+                  <line x1="40" y1="120" x2="780" y2="120" stroke="#B0B8C4" stroke-width="1.2" />
+                  <path d="M 40 120 L 40 134 Q 120 168 220 172 Q 300 174 380 120 L 380 120 Z"
+                    fill="rgba(26,143,191,.22)" />
+                  <path d="M 40 134 Q 120 168 220 172 Q 300 174 380 120" fill="none" stroke="#1A8FBF"
+                    stroke-width="2.4" />
+                  <path d="M 380 120 Q 470 100 560 70 Q 650 45 740 60 Q 770 65 780 75 L 780 120 Z"
+                    fill="rgba(230,81,0,.22)" />
+                  <path d="M 380 120 Q 470 100 560 70 Q 650 45 740 60 Q 770 65 780 75" fill="none" stroke="#E65100"
+                    stroke-width="2.4" />
+                  <circle cx="780" cy="75" r="5" fill="#B71C1C" />
+                  <g font-family="JetBrains Mono,monospace" font-size="10" fill="#5A6478">
+                    <text x="6" y="44">+2°</text>
+                    <text x="6" y="124"> 0</text>
+                    <text x="6" y="184">−2°</text>
+                    <text x="40" y="218">2022</text>
+                    <text x="220" y="218">2023</text>
+                    <text x="400" y="218">2024</text>
+                    <text x="580" y="218">2025</text>
+                    <text x="745" y="218">2026</text>
+                  </g>
+                </svg>
+              </div>
+              <div class="ftbar">
+                <div>FONTE · NOAA CLIMATE PREDICTION CENTER</div>
+                <div>S.ENSO · 2026.06</div>
+              </div>
+            </div>
+          </div>
+          <p class="ppt-caption"><span class="ppt-cap-h">DADOS</span>Fundo branco · borda inferior oceano · gráfico ENSO
+          </p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================== 07 PRINCIPLES ============================== -->
+  <section id="principles">
+    <div class="container">
+      <div class="sec-head">
+        <div>
+          <div class="sec-num">07 / PRINCÍPIOS</div>
+          <h2 class="sec-title">Comunicação visual</h2>
+        </div>
+        <p class="sec-lede">Quatro princípios que devem ser observados em toda peça do sistema, antes de escolhas
+          estéticas pontuais.</p>
+      </div>
+
+      <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:24px">
+        <div style="border-left:2px solid #1A8FBF;padding:8px 0 8px 24px">
+          <div style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.18em;color:#1A8FBF">P · 01
+          </div>
+          <h3 style="margin:6px 0 8px;font-size:20px;font-weight:600">Dado antes da estética</h3>
+          <p style="margin:0;color:var(--neutral-text);font-size:14px;line-height:1.6">Toda cor funcional (alertas,
+            escalas) carrega significado operacional. Não usar verde, amarelo, laranja ou vermelho de forma decorativa
+            em nenhum contexto.</p>
+        </div>
+        <div style="border-left:2px solid #1A8FBF;padding:8px 0 8px 24px">
+          <div style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.18em;color:#1A8FBF">P · 02
+          </div>
+          <h3 style="margin:6px 0 8px;font-size:20px;font-weight:600">Profundidade com simplicidade</h3>
+          <p style="margin:0;color:var(--neutral-text);font-size:14px;line-height:1.6">O efeito 3D da órbita é o único
+            elemento de ilusão espacial autorizado. Todos os demais elementos — ícones, gráficos, layouts — são planos e
+            diretos.</p>
+        </div>
+        <div style="border-left:2px solid #1A8FBF;padding:8px 0 8px 24px">
+          <div style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.18em;color:#1A8FBF">P · 03
+          </div>
+          <h3 style="margin:6px 0 8px;font-size:20px;font-weight:600">Escala de prioridade</h3>
+          <p style="margin:0;color:var(--neutral-text);font-size:14px;line-height:1.6">Vermelho e laranja devem sempre
+            atrair mais atenção visual que verde e azul em qualquer composição de dashboard ou slide.</p>
+        </div>
+        <div style="border-left:2px solid #1A8FBF;padding:8px 0 8px 24px">
+          <div style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.18em;color:#1A8FBF">P · 04
+          </div>
+          <h3 style="margin:6px 0 8px;font-size:20px;font-weight:600">Consistência territorial</h3>
+          <p style="margin:0;color:var(--neutral-text);font-size:14px;line-height:1.6">Mapas do Brasil devem sempre usar
+            a mesma escala de risco verde–vermelho, reforçando o vocabulário visual do sistema.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================== 08 MAPA DE RISCO · BRASIL ============================== -->
+  <section id="brasil">
+    <div class="container">
+      <div class="sec-head">
+        <div>
+          <div class="sec-num">08 / MAPA · v1.1</div>
+          <h2 class="sec-title">Mapa de risco agrícola · Brasil</h2>
+        </div>
+        <p class="sec-lede">Coroplete por grande região IBGE. Cores seguem estritamente a escala funcional de alertas —
+          jamais invertida ou usada de forma decorativa.</p>
+      </div>
+
+      <div style="display:grid;grid-template-columns:1.35fr .65fr;gap:32px;align-items:start">
+
+        <!-- MAP -->
+        <div style="border:1px solid var(--neutral-line);padding:32px;background:var(--neutral-light)">
+          <div
+            style="font-size:11px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--neutral-text);margin-bottom:20px">
+            COROPLETE · REGIÕES IBGE · RISCO ATUAL · S.ENSO 2026.06</div>
+          <svg viewBox="0 0 420 490" width="100%" role="img"
+            aria-label="Mapa de risco agrícola Brasil por grande região">
+            <g stroke="#fff" stroke-width="1.8" stroke-linejoin="round" paint-order="stroke">
+              <!-- Norte: BAIXO (verde) -->
+              <path d="M 2 55 L 295 50 L 268 148 L 204 160 L 132 162 L 70 158 L 2 132 Z" fill="#2E7D32" />
+              <!-- Nordeste: CRÍTICO (vermelho) -->
+              <path d="M 295 50 L 412 88 L 416 190 L 378 238 L 312 234 L 272 198 L 268 148 Z" fill="#B71C1C" />
+              <!-- Centro-Oeste: MODERADO (amarelo) -->
+              <path
+                d="M 2 132 L 70 158 L 132 162 L 204 160 L 268 148 L 272 198 L 304 218 L 296 302 L 252 325 L 172 330 L 86 295 L 24 250 L 2 196 Z"
+                fill="#F9A825" />
+              <!-- Sudeste: ALTO (laranja) -->
+              <path d="M 312 234 L 416 244 L 416 338 L 386 388 L 332 392 L 298 358 L 290 318 L 296 302 L 304 218 Z"
+                fill="#E65100" />
+              <!-- Sul: ALTO (laranja) -->
+              <path
+                d="M 252 325 L 296 302 L 290 318 L 298 358 L 296 418 L 268 458 L 222 468 L 164 438 L 152 390 L 168 352 Z"
+                fill="#E65100" />
+            </g>
+            <!-- Labels -->
+            <g font-family="Inter,system-ui,sans-serif">
+              <text x="130" y="96" font-size="13" font-weight="700" fill="#fff">Norte</text>
+              <text x="130" y="112" font-size="10" fill="rgba(255,255,255,.82)">Risco baixo</text>
+              <text x="308" y="148" font-size="12" font-weight="700" fill="#fff">Nordeste</text>
+              <text x="308" y="163" font-size="10" fill="rgba(255,255,255,.82)">CRÍTICO · seca</text>
+              <text x="118" y="230" font-size="12" font-weight="700" fill="#fff">Centro-Oeste</text>
+              <text x="118" y="246" font-size="10" fill="rgba(255,255,255,.82)">Moderado</text>
+              <text x="318" y="298" font-size="12" font-weight="700" fill="#fff">Sudeste</text>
+              <text x="318" y="314" font-size="10" fill="rgba(255,255,255,.82)">Alto risco</text>
+              <text x="195" y="394" font-size="12" font-weight="700" fill="#fff">Sul</text>
+              <text x="195" y="410" font-size="10" fill="rgba(255,255,255,.82)">Alto risco</text>
+            </g>
+            <!-- Scale bar -->
+            <g transform="translate(2,470)">
+              <rect x="0" y="0" width="36" height="8" fill="#2E7D32" />
+              <rect x="36" y="0" width="36" height="8" fill="#F9A825" />
+              <rect x="72" y="0" width="36" height="8" fill="#E65100" />
+              <rect x="108" y="0" width="36" height="8" fill="#B71C1C" />
+              <text x="0" y="20" font-family="JetBrains Mono,monospace" font-size="9"
+                style="fill:var(--neutral-text)">Baixo</text>
+              <text x="34" y="20" font-family="JetBrains Mono,monospace" font-size="9"
+                style="fill:var(--neutral-text)">Moder.</text>
+              <text x="70" y="20" font-family="JetBrains Mono,monospace" font-size="9"
+                style="fill:var(--neutral-text)">Alto</text>
+              <text x="106" y="20" font-family="JetBrains Mono,monospace" font-size="9"
+                style="fill:var(--neutral-text)">Crítico</text>
+            </g>
+          </svg>
+        </div>
+
+        <!-- DETAIL PANEL -->
+        <div style="display:flex;flex-direction:column;gap:12px">
+          <div
+            style="font-size:11px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--neutral-text);margin-bottom:4px">
+            DETALHE POR REGIÃO</div>
+
+          <div
+            style="border:1px solid var(--neutral-line);border-left:4px solid #B71C1C;padding:14px 16px;background:#fff">
+            <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:8px">
+              <div>
+                <div style="font-size:13px;font-weight:700">Nordeste</div>
+                <div style="font-size:11px;color:var(--neutral-text);margin-top:3px">MATOPIBA · soja, milho, algodão
+                </div>
+              </div>
+              <span class="badge badge-4"><span class="dot"></span>Crítico</span>
+            </div>
+            <div
+              style="font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--neutral-text);margin-top:10px">
+              SST +1.8 °C · P(risco) 94% · 15 d</div>
+          </div>
+
+          <div
+            style="border:1px solid var(--neutral-line);border-left:4px solid #E65100;padding:14px 16px;background:#fff">
+            <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:8px">
+              <div>
+                <div style="font-size:13px;font-weight:700">Sul</div>
+                <div style="font-size:11px;color:var(--neutral-text);margin-top:3px">RS, SC, PR · trigo, soja 2ª</div>
+              </div>
+              <span class="badge badge-3"><span class="dot"></span>Alto</span>
+            </div>
+            <div
+              style="font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--neutral-text);margin-top:10px">
+              SST +1.6 °C · P(risco) 78% · 7 d</div>
+          </div>
+
+          <div
+            style="border:1px solid var(--neutral-line);border-left:4px solid #E65100;padding:14px 16px;background:#fff">
+            <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:8px">
+              <div>
+                <div style="font-size:13px;font-weight:700">Sudeste</div>
+                <div style="font-size:11px;color:var(--neutral-text);margin-top:3px">MG, SP, ES, RJ · café, cana</div>
+              </div>
+              <span class="badge badge-3"><span class="dot"></span>Alto</span>
+            </div>
+            <div
+              style="font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--neutral-text);margin-top:10px">
+              SST +1.4 °C · P(risco) 72% · 15 d</div>
+          </div>
+
+          <div
+            style="border:1px solid var(--neutral-line);border-left:4px solid #F9A825;padding:14px 16px;background:#fff">
+            <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:8px">
+              <div>
+                <div style="font-size:13px;font-weight:700">Centro-Oeste</div>
+                <div style="font-size:11px;color:var(--neutral-text);margin-top:3px">MT, GO, MS, DF · soja, milho</div>
+              </div>
+              <span class="badge badge-2"><span class="dot"></span>Moderado</span>
+            </div>
+            <div
+              style="font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--neutral-text);margin-top:10px">
+              SST +1.1 °C · P(risco) 61% · 30 d</div>
+          </div>
+
+          <div
+            style="border:1px solid var(--neutral-line);border-left:4px solid #2E7D32;padding:14px 16px;background:#fff">
+            <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:8px">
+              <div>
+                <div style="font-size:13px;font-weight:700">Norte</div>
+                <div style="font-size:11px;color:var(--neutral-text);margin-top:3px">AM, PA, RO, AC... · pecuária, grãos
+                </div>
+              </div>
+              <span class="badge badge-1"><span class="dot"></span>Baixo</span>
+            </div>
+            <div
+              style="font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--neutral-text);margin-top:10px">
+              SST +0.2 °C · P(risco) 28% · 30 d</div>
+          </div>
+
+          <div
+            style="font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--neutral-text);letter-spacing:.12em;text-transform:uppercase;margin-top:6px">
+            FONTE · NOAA · INPE · CPTEC · 2026.06.06</div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================== FOOTER ============================== -->
+  <footer>
+    <div class="container">
+      <div class="wm">S<span class="dot">.</span>ENSO</div>
+      <div>Design System · v1.1 · 05.06.2026</div>
+    </div>
+  </footer>
+
+</body>
+
+</html>

@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+
+<html class="light" lang="pt-BR"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&amp;family=JetBrains+Mono:wght@400;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "primary-fixed": "#d3e4ff",
+                    "error-container": "#ffdad6",
+                    "on-background": "#191c1e",
+                    "on-primary-fixed-variant": "#1c4877",
+                    "tertiary-container": "#5f2f00",
+                    "primary-fixed-dim": "#a2c9ff",
+                    "tertiary-fixed": "#ffdcc4",
+                    "surface-tint": "#386090",
+                    "on-error-container": "#93000a",
+                    "on-primary-fixed": "#001c38",
+                    "surface": "#f7f9fc",
+                    "on-surface": "#191c1e",
+                    "neutral-dark": "#1C2333",
+                    "secondary-container": "#6bcbfe",
+                    "ocean-deep": "#0B172A",
+                    "surface-container-high": "#e6e8eb",
+                    "secondary-fixed-dim": "#7cd0ff",
+                    "neutral-line": "#E8EEF4",
+                    "tertiary-fixed-dim": "#ffb781",
+                    "primary-container": "#0b3d6b",
+                    "surface-container-lowest": "#ffffff",
+                    "on-tertiary-container": "#dd9660",
+                    "on-secondary-fixed": "#001e2c",
+                    "alert-warning": "#F9A825",
+                    "on-primary-container": "#82a9dd",
+                    "background": "#f7f9fc",
+                    "surface-container": "#eceef1",
+                    "inverse-primary": "#a2c9ff",
+                    "tertiary": "#3f1d00",
+                    "alert-success": "#2E7D32",
+                    "neutral-mid": "#B0B8C4",
+                    "inverse-on-surface": "#eff1f4",
+                    "secondary": "#00668a",
+                    "wave-blue": "#2078CB",
+                    "surface-dim": "#d8dadd",
+                    "on-secondary-fixed-variant": "#004c69",
+                    "wave-orange": "#DE6A34",
+                    "surface-container-highest": "#e0e3e6",
+                    "on-surface-variant": "#42474f",
+                    "on-tertiary-fixed": "#2f1400",
+                    "surface-bright": "#f7f9fc",
+                    "error": "#ba1a1a",
+                    "on-secondary": "#ffffff",
+                    "secondary-fixed": "#c4e7ff",
+                    "on-tertiary": "#ffffff",
+                    "on-primary": "#ffffff",
+                    "inverse-surface": "#2d3133",
+                    "primary": "#00274a",
+                    "on-tertiary-fixed-variant": "#6d3a09",
+                    "on-error": "#ffffff",
+                    "surface-variant": "#e0e3e6",
+                    "surface-container-low": "#f2f4f7",
+                    "outline": "#737780",
+                    "on-secondary-container": "#005574",
+                    "alert-danger": "#E65100",
+                    "outline-variant": "#c3c6d0",
+                    "alert-critical": "#B71C1C"
+            },
+            "borderRadius": {
+                    "DEFAULT": "2px",
+                    "lg": "2px",
+                    "xl": "2px",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "margin-mobile": "20px",
+                    "unit": "4px",
+                    "gutter": "16px",
+                    "max-width": "1280px",
+                    "margin-desktop": "40px"
+            },
+            "fontFamily": {
+                    "data-tabular": ["JetBrains Mono"],
+                    "subtitle-h2": ["Inter"],
+                    "display": ["Inter"],
+                    "label-caps": ["Inter"],
+                    "headline-h1-mobile": ["Inter"],
+                    "data-compact": ["JetBrains Mono"],
+                    "headline-h1": ["Inter"],
+                    "body-md": ["Inter"]
+            },
+            "fontSize": {
+                    "data-tabular": ["14px", {"lineHeight": "1.5", "fontWeight": "400"}],
+                    "subtitle-h2": ["24px", {"lineHeight": "1.4", "fontWeight": "600"}],
+                    "display": ["56px", {"lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "label-caps": ["11px", {"lineHeight": "1.0", "letterSpacing": "0.32em", "fontWeight": "400"}],
+                    "headline-h1-mobile": ["28px", {"lineHeight": "1.3", "fontWeight": "700"}],
+                    "data-compact": ["11px", {"lineHeight": "1.4", "fontWeight": "400"}],
+                    "headline-h1": ["36px", {"lineHeight": "1.3", "letterSpacing": "-0.015em", "fontWeight": "700"}],
+                    "body-md": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .glass-overlay {
+            background: rgba(255, 255, 255, 0.18);
+            backdrop-filter: blur(8px);
+        }
+        .rim-light {
+            box-shadow: inset 0 1px 0 0 rgba(255, 255, 255, 0.2);
+        }
+        .scroll-hide::-webkit-scrollbar {
+            display: none;
+        }
+        .scroll-hide {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body-md min-h-screen pb-24">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 bg-ocean-deep border-b border-surface-container-highest/20 shadow-md h-16 flex justify-between items-center px-margin-mobile">
+<div class="flex items-center gap-3">
+<div class="h-8 w-auto flex items-center">
+<div class="h-8 w-8 flex items-center justify-center">
+        {{DATA:DOCUMENT:DOCUMENT_8}}
+    </div>
+</div>
+<div class="flex flex-col">
+<span class="font-headline-h1 text-[20px] text-surface-bright tracking-tight leading-none">S.ENSO</span>
+<span class="font-label-caps text-[10px] text-secondary-fixed-dim">Quixadá · CE</span>
+</div>
+</div>
+<div class="flex items-center gap-2 px-3 py-1 bg-alert-danger/20 rounded-full border border-alert-danger/30">
+<span class="material-symbols-outlined text-alert-danger text-[18px]" style="font-variation-settings: 'FILL' 1;">error</span>
+<span class="font-label-caps text-alert-danger font-bold">El Niño Forte</span>
+</div>
+</header>
+<main class="mt-20 px-margin-mobile space-y-6">
+<!-- Welcome Header -->
+<section class="py-4">
+<h2 class="font-subtitle-h2 text-subtitle-h2 text-ocean-deep">Olá, Seu João</h2>
+<p class="text-on-surface-variant font-body-md">Resumo de risco para sua propriedade.</p>
+</section>
+<!-- Current Alert: High Risk -->
+<section class="bg-alert-danger rounded-lg p-6 text-white shadow-[0_6px_10px_rgba(11,23,42,0.15)] relative overflow-hidden">
+<div class="relative z-10">
+<div class="flex items-center gap-2 mb-2">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">warning</span>
+<span class="font-label-caps tracking-widest uppercase font-bold">Alerta Crítico</span>
+</div>
+<h3 class="font-headline-h1 text-headline-h1-mobile leading-tight mb-2">Alto risco de estiagem</h3>
+<div class="flex items-end gap-2">
+<span class="font-display text-[48px] leading-none">78</span>
+<span class="font-label-caps opacity-80 mb-2">/ 100 risco</span>
+</div>
+<p class="mt-4 font-body-md opacity-90 max-w-[80%]">Probabilidade de chuvas abaixo da média para os próximos 45 dias em Quixadá.</p>
+</div>
+<!-- Decorative orbital element -->
+<div class="absolute -right-10 -bottom-10 w-40 h-40 border-[1px] border-white/20 rounded-full"></div>
+<div class="absolute -right-4 -bottom-4 w-24 h-24 border-[1px] border-white/10 rounded-full"></div>
+</section>
+<!-- Recommendation Box -->
+<section class="bg-primary-container p-6 rounded-lg border border-primary-fixed/20 shadow-sm">
+<div class="flex items-center gap-3 mb-4">
+<div class="bg-secondary-container p-2 rounded">
+<span class="material-symbols-outlined text-on-secondary-container">lightbulb</span>
+</div>
+<h3 class="font-subtitle-h2 text-[20px] text-surface-bright">O que fazer agora</h3>
+</div>
+<div class="space-y-4">
+<div class="flex gap-3">
+<span class="material-symbols-outlined text-secondary-container">swap_horiz</span>
+<p class="text-on-primary-container text-body-md">Priorize o plantio de <strong>Sorgo</strong>. O Milho apresenta alta vulnerabilidade no estágio atual.</p>
+</div>
+<div class="flex gap-3">
+<span class="material-symbols-outlined text-secondary-container">verified_user</span>
+<p class="text-on-primary-container text-body-md">Acione preventivamente o <strong>Garantia-Safra</strong> via sindicato rural.</p>
+</div>
+</div>
+<button class="mt-6 w-full bg-secondary-container text-on-secondary-container py-3 font-bold uppercase tracking-wider text-label-caps rounded hover:brightness-110 transition-all">
+                Ver Detalhes do Plano
+            </button>
+</section>
+<!-- Crops Section -->
+<section>
+<div class="flex justify-between items-center mb-4">
+<h3 class="font-subtitle-h2 text-[18px] text-ocean-deep">Minhas Culturas</h3>
+<span class="text-wave-blue font-label-caps font-bold">VER TODAS</span>
+</div>
+<div class="flex gap-4 overflow-x-auto scroll-hide pb-2">
+<!-- Milho -->
+<div class="min-w-[160px] bg-white border border-neutral-line p-4 rounded-lg shadow-sm">
+<div class="flex justify-between items-start mb-3">
+<span class="material-symbols-outlined text-ocean-deep">borg</span>
+<div class="bg-alert-danger/10 px-2 py-0.5 rounded flex items-center gap-1">
+<div class="w-2 h-2 rounded-full bg-alert-danger"></div>
+<span class="text-[10px] font-bold text-neutral-dark">CRÍTICO</span>
+</div>
+</div>
+<p class="font-bold text-ocean-deep">Milho</p>
+<p class="font-data-compact text-on-surface-variant">Safra 2024.1</p>
+</div>
+<!-- Feijão -->
+<div class="min-w-[160px] bg-white border border-neutral-line p-4 rounded-lg shadow-sm">
+<div class="flex justify-between items-start mb-3">
+<span class="material-symbols-outlined text-ocean-deep">psychology_alt</span>
+<div class="bg-alert-warning/10 px-2 py-0.5 rounded flex items-center gap-1">
+<div class="w-2 h-2 rounded-full bg-alert-warning"></div>
+<span class="text-[10px] font-bold text-neutral-dark">ALTO</span>
+</div>
+</div>
+<p class="font-bold text-ocean-deep">Feijão</p>
+<p class="font-data-compact text-on-surface-variant">Safra 2024.1</p>
+</div>
+<!-- Sorgo -->
+<div class="min-w-[160px] bg-white border border-neutral-line p-4 rounded-lg shadow-sm">
+<div class="flex justify-between items-start mb-3">
+<span class="material-symbols-outlined text-ocean-deep">grass</span>
+<div class="bg-alert-success/10 px-2 py-0.5 rounded flex items-center gap-1">
+<div class="w-2 h-2 rounded-full bg-alert-success"></div>
+<span class="text-[10px] font-bold text-neutral-dark">BAIXO</span>
+</div>
+</div>
+<p class="font-bold text-ocean-deep">Sorgo</p>
+<p class="font-data-compact text-on-surface-variant">Safra 2024.1</p>
+</div>
+</div>
+</section>
+<!-- Agricultural Calendar -->
+<section class="bg-white border border-neutral-line p-5 rounded-lg">
+<h3 class="font-label-caps text-on-surface-variant mb-4">CALENDÁRIO AGRÍCOLA · JAN/JUL</h3>
+<div class="relative overflow-x-auto scroll-hide">
+<div class="min-w-[600px]">
+<!-- Months header -->
+<div class="flex border-b border-neutral-line pb-2 mb-2">
+<div class="flex-1 font-data-compact text-center">JAN</div>
+<div class="flex-1 font-data-compact text-center">FEV</div>
+<div class="flex-1 font-data-compact text-center">MAR</div>
+<div class="flex-1 font-data-compact text-center">ABR</div>
+<div class="flex-1 font-data-compact text-center">MAI</div>
+<div class="flex-1 font-data-compact text-center">JUN</div>
+<div class="flex-1 font-data-compact text-center">JUL</div>
+</div>
+<!-- Calendar Ribbons -->
+<div class="space-y-3">
+<div class="flex items-center gap-2">
+<span class="w-12 font-data-compact text-[10px]">MILHO</span>
+<div class="flex-1 h-4 flex gap-1">
+<div class="w-[15%] bg-alert-success rounded-sm" title="Plantio"></div>
+<div class="w-[50%] bg-alert-danger rounded-sm" title="Risco"></div>
+<div class="w-[20%] bg-secondary-container rounded-sm" title="Colheita"></div>
+</div>
+</div>
+<div class="flex items-center gap-2">
+<span class="w-12 font-data-compact text-[10px]">SORGO</span>
+<div class="flex-1 h-4 flex gap-1">
+<div class="w-[20%] bg-alert-success rounded-sm"></div>
+<div class="w-[30%] bg-alert-warning rounded-sm"></div>
+<div class="w-[35%] bg-secondary-container rounded-sm"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="mt-4 flex gap-4">
+<div class="flex items-center gap-1">
+<div class="w-2 h-2 bg-alert-success rounded-full"></div>
+<span class="text-[10px] font-label-caps">PLANTIO</span>
+</div>
+<div class="flex items-center gap-1">
+<div class="w-2 h-2 bg-alert-danger rounded-full"></div>
+<span class="text-[10px] font-label-caps">RISCO</span>
+</div>
+<div class="flex items-center gap-1">
+<div class="w-2 h-2 bg-secondary-container rounded-full"></div>
+<span class="text-[10px] font-label-caps">COLHEITA</span>
+</div>
+</div>
+</section>
+<!-- Historical Data Chart -->
+<section class="bg-surface-container-low p-5 rounded-lg border border-neutral-line">
+<div class="flex justify-between items-start mb-4">
+<div>
+<h3 class="font-subtitle-h2 text-[16px] text-ocean-deep">Histórico El Niño</h3>
+<p class="font-data-compact text-on-surface-variant">Dados comparativos de Quixadá</p>
+</div>
+<span class="material-symbols-outlined text-wave-blue">analytics</span>
+</div>
+<div class="flex items-center gap-6">
+<div class="flex-1">
+<div class="relative h-24 flex items-end gap-4">
+<div class="flex-1 bg-neutral-mid/30 h-full rounded-t-sm relative">
+<div class="absolute -top-5 left-0 right-0 text-center font-data-compact text-[10px]">Normal</div>
+</div>
+<div class="flex-1 bg-wave-orange h-[62%] rounded-t-sm relative">
+<div class="absolute -top-5 left-0 right-0 text-center font-data-compact text-[10px] text-wave-orange font-bold">-38%</div>
+</div>
+</div>
+<div class="flex gap-4 mt-2">
+<div class="flex-1 text-center font-data-compact text-[9px]">Média Hist.</div>
+<div class="flex-1 text-center font-data-compact text-[9px]">Anos El Niño</div>
+</div>
+</div>
+<div class="flex-1">
+<p class="font-body-md text-on-surface-variant text-[13px] leading-relaxed">
+                        Em anos de <span class="font-bold text-ocean-deep">El Niño Forte</span>, Quixadá registrou historicamente uma queda média de <span class="text-alert-danger font-bold">38%</span> no volume de chuvas esperado.
+                    </p>
+</div>
+</div>
+</section>
+<!-- Bottom Support Info -->
+<section class="pt-4 pb-8 flex flex-col items-center">
+<img alt="Foto de satélite da região semiárida do Ceará" class="w-full h-32 object-cover rounded-lg mb-4 grayscale hover:grayscale-0 transition-all duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBvhVWBfFbpammugjhhQMPvlaoGsgToKqW6NG95qvkQ-p2r8JNk4JGsJbx3S5GV_UrY5n9LEB1WemnTg1fbQTnSErd34xh9jL3H3v4mKIsTdZJ_OnlyUNxbm1G51auz9I2K38qYA38-Q2XwMwXkXvjTtNB3UJQD-3L72U-m4M76ROAJjM2LMhwL-C7K2L7AlExScgGjEEbL_M6BekuOBLASdhw6iIEfOB52Qi-t9GLyAAJW5HyAoJXj0CjQiIJBJ8CO8VmqigNxVw"/>
+<p class="font-label-caps text-neutral-mid text-center">DADOS ATUALIZADOS EM 22/05/2024 · 08:45</p>
+</section>
+</main>
+<!-- BottomNavBar -->
+<nav class="lg:hidden fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-4 pb-4 pt-2 bg-surface-container-lowest border-t border-neutral-line shadow-[0_-6px_10px_rgba(11,23,42,0.15)] rounded-t-xl">
+<button class="flex flex-col items-center justify-center bg-primary-container text-on-primary-container rounded-full px-4 py-1 transition-all active:scale-95">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">satellite_alt</span>
+<span class="font-label-caps text-[9px] mt-0.5">Signal</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant transition-all active:scale-95">
+<span class="material-symbols-outlined">agriculture</span>
+<span class="font-label-caps text-[9px] mt-0.5">Territory</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant transition-all active:scale-95">
+<span class="material-symbols-outlined">warning</span>
+<span class="font-label-caps text-[9px] mt-0.5">Alerts</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant transition-all active:scale-95">
+<span class="material-symbols-outlined">account_circle</span>
+<span class="font-label-caps text-[9px] mt-0.5">Profile</span>
+</button>
+</nav>
+<!-- Simple Interactions -->
+<script>
+        // Simple tap feedback for buttons
+        document.querySelectorAll('button').forEach(button => {
+            button.addEventListener('touchstart', () => {
+                button.classList.add('opacity-80');
+            });
+            button.addEventListener('touchend', () => {
+                button.classList.remove('opacity-80');
+            });
+        });
+        
+        // Ensure SVG in header scales properly
+        window.addEventListener('DOMContentLoaded', () => {
+            const headerLogo = document.querySelector('header svg');
+            if (headerLogo) {
+                headerLogo.setAttribute('width', '32');
+                headerLogo.setAttribute('height', '32');
+                headerLogo.style.width = '32px';
+                headerLogo.style.height = '32px';
+            }
+        });
+    </script>
+</body></html>

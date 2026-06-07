@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+
+<html class="light" lang="pt-BR"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "primary-fixed": "#d3e4ff",
+                      "error-container": "#ffdad6",
+                      "on-background": "#191c1e",
+                      "on-primary-fixed-variant": "#1c4877",
+                      "tertiary-container": "#5f2f00",
+                      "primary-fixed-dim": "#a2c9ff",
+                      "tertiary-fixed": "#ffdcc4",
+                      "surface-tint": "#386090",
+                      "on-error-container": "#93000a",
+                      "on-primary-fixed": "#001c38",
+                      "surface": "#f7f9fc",
+                      "on-surface": "#191c1e",
+                      "neutral-dark": "#1C2333",
+                      "secondary-container": "#6bcbfe",
+                      "ocean-deep": "#0B172A",
+                      "surface-container-high": "#e6e8eb",
+                      "secondary-fixed-dim": "#7cd0ff",
+                      "neutral-line": "#E8EEF4",
+                      "tertiary-fixed-dim": "#ffb781",
+                      "primary-container": "#0b3d6b",
+                      "surface-container-lowest": "#ffffff",
+                      "on-tertiary-container": "#dd9660",
+                      "on-secondary-fixed": "#001e2c",
+                      "alert-warning": "#F9A825",
+                      "on-primary-container": "#82a9dd",
+                      "background": "#f7f9fc",
+                      "surface-container": "#eceef1",
+                      "inverse-primary": "#a2c9ff",
+                      "tertiary": "#3f1d00",
+                      "alert-success": "#2E7D32",
+                      "neutral-mid": "#B0B8C4",
+                      "inverse-on-surface": "#eff1f4",
+                      "secondary": "#00668a",
+                      "wave-blue": "#2078CB",
+                      "surface-dim": "#d8dadd",
+                      "on-secondary-fixed-variant": "#004c69",
+                      "wave-orange": "#DE6A34",
+                      "surface-container-highest": "#e0e3e6",
+                      "on-surface-variant": "#42474f",
+                      "on-tertiary-fixed": "#2f1400",
+                      "surface-bright": "#f7f9fc",
+                      "error": "#ba1a1a",
+                      "on-secondary": "#ffffff",
+                      "secondary-fixed": "#c4e7ff",
+                      "on-tertiary": "#ffffff",
+                      "on-primary": "#ffffff",
+                      "inverse-surface": "#2d3133",
+                      "primary": "#00274a",
+                      "on-tertiary-fixed-variant": "#6d3a09",
+                      "on-error": "#ffffff",
+                      "surface-variant": "#e0e3e6",
+                      "surface-container-low": "#f2f4f7",
+                      "outline": "#737780",
+                      "on-secondary-container": "#005574",
+                      "alert-danger": "#E65100",
+                      "outline-variant": "#c3c6d0",
+                      "alert-critical": "#B71C1C"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.125rem",
+                      "lg": "0.25rem",
+                      "xl": "0.5rem",
+                      "full": "0.75rem"
+              },
+              "spacing": {
+                      "margin-mobile": "20px",
+                      "unit": "4px",
+                      "gutter": "16px",
+                      "max-width": "1280px",
+                      "margin-desktop": "40px"
+              },
+              "fontFamily": {
+                      "data-tabular": ["JetBrains Mono"],
+                      "subtitle-h2": ["Inter"],
+                      "display": ["Inter"],
+                      "label-caps": ["Inter"],
+                      "headline-h1-mobile": ["Inter"],
+                      "data-compact": ["JetBrains Mono"],
+                      "headline-h1": ["Inter"],
+                      "body-md": ["Inter"]
+              },
+              "fontSize": {
+                      "data-tabular": ["14px", {"lineHeight": "1.5", "fontWeight": "400"}],
+                      "subtitle-h2": ["24px", {"lineHeight": "1.4", "fontWeight": "600"}],
+                      "display": ["56px", {"lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                      "label-caps": ["11px", {"lineHeight": "1.0", "letterSpacing": "0.32em", "fontWeight": "400"}],
+                      "headline-h1-mobile": ["28px", {"lineHeight": "1.3", "fontWeight": "700"}],
+                      "data-compact": ["11px", {"lineHeight": "1.4", "fontWeight": "400"}],
+                      "headline-h1": ["36px", {"lineHeight": "1.3", "letterSpacing": "-0.015em", "fontWeight": "700"}],
+                      "body-md": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}]
+              }
+            },
+          },
+        }
+    </script>
+<style>
+        .orbital-glow {
+            background: radial-gradient(circle at center, rgba(32, 120, 203, 0.15) 0%, transparent 70%);
+        }
+        .rim-highlight {
+            box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.1);
+        }
+        .sinusoidal-pattern {
+            background-image: radial-gradient(#2078CB 0.5px, transparent 0.5px);
+            background-size: 12px 12px;
+            opacity: 0.1;
+        }
+        /* Logo sizing control */
+        .logo-container svg {
+            height: 48px;
+            width: auto;
+        }
+    </style>
+</head>
+<body class="bg-surface font-body-md text-on-surface overflow-x-hidden">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 bg-ocean-deep border-b border-surface-container-highest/20 shadow-md h-16 flex justify-between items-center px-margin-mobile md:px-margin-desktop">
+<div class="flex items-center gap-4">
+<div class="logo-container flex items-center">
+    {{DATA:DOCUMENT:DOCUMENT_7}}
+</div>
+<div class="hidden md:flex items-center gap-2 bg-surface/10 border border-surface-variant/20 rounded-full px-3 py-1">
+<span class="w-2 h-2 rounded-full bg-alert-warning animate-pulse"></span>
+<span class="font-data-compact text-data-compact text-secondary-fixed">El Niño Moderado · ONI +0.9°C</span>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-secondary-fixed cursor-pointer hover:opacity-80 transition-opacity">language</span>
+<span class="material-symbols-outlined text-secondary-fixed cursor-pointer hover:opacity-80 transition-opacity">error</span>
+</div>
+</header>
+<main class="pt-16">
+<!-- Hero Section -->
+<section class="relative min-h-[85vh] flex flex-col items-center justify-center text-center px-margin-mobile md:px-margin-desktop bg-ocean-deep overflow-hidden">
+<div class="absolute inset-0 orbital-glow pointer-events-none"></div>
+<div class="absolute inset-0 sinusoidal-pattern pointer-events-none"></div>
+<!-- Animated Orbital Element -->
+<div class="absolute -top-40 -right-40 w-96 h-96 border border-wave-blue/20 rounded-full animate-[spin_20s_linear_infinite]"></div>
+<div class="absolute -bottom-20 -left-20 w-64 h-64 border border-secondary-container/10 rounded-full animate-[spin_30s_linear_infinite_reverse]"></div>
+<div class="relative z-10 max-w-4xl mx-auto space-y-6">
+<h1 class="font-headline-h1-mobile md:font-headline-h1 md:text-headline-h1 text-surface-bright tracking-tight">
+                    O sinal do Pacífico, em <span class="text-secondary-container">linguagem de ação.</span>
+</h1>
+<p class="font-body-md text-on-primary-container max-w-2xl mx-auto">
+                    S.ENSO é uma infraestrutura de inteligência orbital que traduz anomalias térmicas oceânicas em alertas preditivos de risco territorial para agricultura e gestão pública.
+                </p>
+<div class="flex flex-wrap justify-center gap-4 pt-4">
+<button class="bg-wave-blue text-white font-semibold py-3 px-8 rounded-lg shadow-lg hover:bg-secondary transition-all active:scale-95">
+                        Ver Fluxo de Dados
+                    </button>
+<button class="bg-surface/5 text-surface-bright border border-surface-variant/30 font-semibold py-3 px-8 rounded-lg hover:bg-surface/10 transition-all backdrop-blur-sm">
+                        Conhecer Metodologia
+                    </button>
+</div>
+<!-- Video Placeholder -->
+<div class="mt-12 group relative max-w-3xl mx-auto rounded-xl overflow-hidden shadow-2xl border border-surface-container-highest/20 aspect-video bg-neutral-dark/50" style="transform: perspective(1000px) rotateX(0deg) rotateY(0deg);">
+<img class="w-full h-full object-cover opacity-60 group-hover:scale-105 transition-transform duration-700" data-alt="A cinematic, high-definition satellite view of Earth with glowing atmospheric data overlays representing temperature shifts in the Pacific Ocean. The visual style is scientific and professional, featuring cool blues and sharp cyan lines with a slight lens flare from the sun. The lighting is dramatic, capturing the curve of the planet against the deep black of space, evoking a sense of orbital precision and global scale." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAK4xZmrblUxmwO5qi5yDYcvA6LSKW0_MOhcNmB9VREZgmXg11Wvfm5HvponZHdnja8WkePCOJF3zkCt6mU8nUNysqelRz8O4DCvw6O1gpHC5pfOL2S5GTx9q0XW0-E3oUubxunJczDlBtREbdn1xXx7Pqpi4jGWJ1Tub1EXgvBAfeysYeCdirkqlCHCmpm8npoUHpm0B24DOyfWrUUZKGij826fKNFBbl3zv612TxDsbq4RF60adcdcwzRIFiO-AM6ts1QglvrlQ"/>
+<div class="absolute inset-0 flex items-center justify-center">
+<button class="w-20 h-20 bg-wave-blue/90 text-white rounded-full flex items-center justify-center hover:scale-110 transition-transform shadow-xl">
+<span class="material-symbols-outlined text-4xl" style="font-variation-settings: 'FILL' 1;">play_arrow</span>
+</button>
+</div>
+<div class="absolute bottom-4 left-4 flex gap-2">
+<span class="bg-ocean-deep/80 backdrop-blur px-3 py-1 rounded text-xs font-data-tabular text-secondary-fixed border border-white/10">S.ENSO Pitch Video 2024</span>
+</div>
+</div>
+</div>
+</section>
+<!-- CTA Selection Section -->
+<section class="py-24 px-margin-mobile md:px-margin-desktop max-w-max-width mx-auto">
+<div class="grid md:grid-cols-2 gap-8">
+<!-- Card 1: Agricultor -->
+<div class="group relative bg-white border border-neutral-line rounded-xl p-8 shadow-sm hover:shadow-xl hover:border-wave-blue transition-all overflow-hidden flex flex-col justify-between min-h-[400px]" style="transform: perspective(1000px) rotateX(0deg) rotateY(0deg);">
+<div class="absolute top-0 right-0 w-32 h-32 bg-alert-success/5 rounded-bl-full -mr-16 -mt-16 group-hover:scale-150 transition-transform"></div>
+<div class="relative z-10">
+<div class="flex items-center gap-3 mb-6">
+<div class="p-3 bg-alert-success/10 rounded-lg">
+<span class="material-symbols-outlined text-alert-success">agriculture</span>
+</div>
+<h3 class="font-subtitle-h2 text-subtitle-h2 text-ocean-deep">Sou Agricultor</h3>
+</div>
+<p class="text-on-surface-variant font-body-md mb-8">
+                            Acesse o painel tático para monitorar riscos climáticos na sua região e otimizar janelas de plantio baseadas em dados orbitais.
+                        </p>
+<div class="flex items-center gap-4 p-4 bg-surface rounded-lg border border-neutral-line">
+<div class="w-12 h-12 rounded-full overflow-hidden bg-neutral-mid shrink-0">
+<img class="w-full h-full object-cover" data-alt="Close-up portrait of a weathered Brazilian farmer, Seu João, with a kind expression and deep-set eyes, standing in a sun-drenched agricultural field in Ceará. The lighting is warm and natural, suggesting early morning golden hour. The style is clean and authentic, emphasizing human connection to the land while maintaining a modern, professional look." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDJR0mju3P1npOeWNI4-AhB1qf2ZTj9KZpLsGtTQzb-bwdZ-cGaJ_H1MGMRjQdpdMHwsOJXXFoTuL4qi4x2DRmiY7-fMr5A_JYXb2ILGYa0TNVVY8FFwlAmQOAPJkI6JZBysx9_mgYugYqBBBDVDoTBeDE-ojSBRhx_B0b1bCLfx_RsyZQb81HXswBFlWHO3lZk9D1N9ZnwOtRBkG-hkjjRaPXtbByUx_Qm5YCemvDrhqoituvx-MeXklTUfulhf7Bh4FNeG1-rRA"/>
+</div>
+<div>
+<p class="font-body-md font-bold text-ocean-deep">Seu João</p>
+<p class="text-xs text-on-surface-variant">Quixadá, CE · <span class="text-alert-success">Risco Baixo</span></p>
+</div>
+</div>
+</div>
+<button class="mt-8 w-full py-4 bg-ocean-deep text-white rounded-lg font-bold flex items-center justify-center gap-2 group-hover:bg-wave-blue transition-colors">
+                        Acessar Meu Painel
+                        <span class="material-symbols-outlined">arrow_forward</span>
+</button>
+</div>
+<!-- Card 2: Gestor -->
+<div class="group relative bg-ocean-deep border border-neutral-line rounded-xl p-8 shadow-sm hover:shadow-xl hover:border-secondary-container transition-all overflow-hidden flex flex-col justify-between min-h-[400px]" style="transform: perspective(1000px) rotateX(0deg) rotateY(0deg);">
+<div class="absolute top-0 right-0 w-32 h-32 bg-secondary-container/10 rounded-bl-full -mr-16 -mt-16 group-hover:scale-150 transition-transform"></div>
+<div class="relative z-10">
+<div class="flex items-center gap-3 mb-6">
+<div class="p-3 bg-secondary-container/10 rounded-lg">
+<span class="material-symbols-outlined text-secondary-container">dashboard</span>
+</div>
+<h3 class="font-subtitle-h2 text-subtitle-h2 text-surface-bright">Sou Gestor de Defesa Civil</h3>
+</div>
+<p class="text-on-primary-container font-body-md mb-8">
+                            Visualização analítica de territórios em escala municipal para planos de contingência e mitigação de desastres.
+                        </p>
+<div class="flex items-center gap-4 p-4 bg-white/5 rounded-lg border border-white/10 backdrop-blur">
+<div class="p-2 bg-secondary-container rounded shrink-0">
+<span class="material-symbols-outlined text-ocean-deep">location_city</span>
+</div>
+<div>
+<p class="font-body-md font-bold text-surface-bright">Prefeitura · Dashboard técnico</p>
+<p class="text-xs text-on-primary-container">Lajeado, RS · <span class="text-alert-warning">Monitoramento Ativo</span></p>
+</div>
+</div>
+</div>
+<button class="mt-8 w-full py-4 bg-secondary-container text-ocean-deep rounded-lg font-bold flex items-center justify-center gap-2 group-hover:bg-surface-bright transition-colors">
+                        Gerir Território
+                        <span class="material-symbols-outlined">analytics</span>
+</button>
+</div>
+</div>
+</section>
+<!-- Orbital Network Status Section (Technical Detail) -->
+<section class="bg-surface-container py-16 border-y border-neutral-line overflow-hidden">
+<div class="px-margin-mobile md:px-margin-desktop max-w-max-width mx-auto flex flex-col md:flex-row items-center gap-12">
+<div class="flex-1 space-y-4">
+<h2 class="font-label-caps text-label-caps text-wave-blue">Infraestrutura</h2>
+<h3 class="font-headline-h1-mobile text-ocean-deep">Monitoramento Multiespectral</h3>
+<p class="text-on-surface-variant max-w-md">Cruzamos dados de altimetria oceânica, anomalias de temperatura (SST) e correntes de jato para gerar modelos de probabilidade de 14 dias.</p>
+</div>
+<div class="flex-1 grid grid-cols-2 gap-4">
+<div class="bg-white p-6 rounded-lg border border-neutral-line shadow-sm">
+<span class="font-data-tabular text-2xl font-bold text-ocean-deep">99.8%</span>
+<p class="text-xs font-label-caps mt-2 text-on-surface-variant">Disponibilidade</p>
+</div>
+<div class="bg-white p-6 rounded-lg border border-neutral-line shadow-sm">
+<span class="font-data-tabular text-2xl font-bold text-wave-blue">0.5m</span>
+<p class="text-xs font-label-caps mt-2 text-on-surface-variant">Resolução Altimétrica</p>
+</div>
+<div class="bg-white p-6 rounded-lg border border-neutral-line shadow-sm">
+<span class="font-data-tabular text-2xl font-bold text-alert-warning">50+</span>
+<p class="text-xs font-label-caps mt-2 text-on-surface-variant">Satélites Ativos</p>
+</div>
+<div class="bg-white p-6 rounded-lg border border-neutral-line shadow-sm">
+<span class="font-data-tabular text-2xl font-bold text-alert-success">Real-Time</span>
+<p class="text-xs font-label-caps mt-2 text-on-surface-variant">Latência de Pipeline</p>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-ocean-deep border-t border-surface-container-highest/10 w-full py-12 px-margin-mobile md:px-margin-desktop">
+<div class="max-w-max-width mx-auto flex flex-col md:flex-row justify-between items-start md:items-center gap-10">
+<div class="space-y-4">
+<div class="logo-container h-12 flex items-center">
+    {{DATA:DOCUMENT:DOCUMENT_7}}
+</div>
+<p class="font-data-compact text-data-compact text-on-primary-fixed-variant max-w-xs">
+                    Sistemas Preditivos Orbitais de alta fidelidade para mitigação de riscos climáticos.
+                </p>
+</div>
+<div class="grid grid-cols-2 md:grid-cols-3 gap-10">
+<div>
+<h4 class="font-label-caps text-label-caps text-surface-bright mb-4">SISTEMA</h4>
+<ul class="space-y-2 font-data-compact text-data-compact text-on-primary-fixed-variant">
+<li class="hover:text-surface-bright cursor-pointer transition-colors">The Signal</li>
+<li class="hover:text-surface-bright cursor-pointer transition-colors">The Territory</li>
+<li class="hover:text-surface-bright cursor-pointer transition-colors">The Alert</li>
+</ul>
+</div>
+<div>
+<h4 class="font-label-caps text-label-caps text-surface-bright mb-4">SUPORTE</h4>
+<ul class="space-y-2 font-data-compact text-data-compact text-on-primary-fixed-variant">
+<li class="hover:text-surface-bright cursor-pointer transition-colors">Metodologia</li>
+<li class="hover:text-surface-bright cursor-pointer transition-colors">Privacidade</li>
+<li class="hover:text-surface-bright cursor-pointer transition-colors">API</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="max-w-max-width mx-auto mt-12 pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-4">
+<p class="font-data-compact text-data-compact text-on-primary-fixed-variant">
+                © 2024 S.ENSO Orbital Predictive Systems. All rights reserved.
+            </p>
+<div class="flex items-center gap-2">
+<span class="font-label-caps text-label-caps text-secondary-container">FIAP Global Solution 2026</span>
+<span class="w-1.5 h-1.5 rounded-full bg-wave-blue"></span>
+</div>
+</div>
+</footer>
+<script>
+        // Micro-interactions for scrolling
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            if (window.scrollY > 20) {
+                header.classList.add('bg-opacity-95', 'backdrop-blur-md');
+            } else {
+                header.classList.remove('bg-opacity-95', 'backdrop-blur-md');
+            }
+        });
+
+        // Hover tilt effect for cards
+        const cards = document.querySelectorAll('.group');
+        cards.forEach(card => {
+            card.addEventListener('mousemove', (e) => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                
+                const xPercent = (x / rect.width - 0.5) * 4;
+                const yPercent = (y / rect.height - 0.5) * -4;
+                
+                card.style.transform = `perspective(1000px) rotateX(${yPercent}deg) rotateY(${xPercent}deg)`;
+            });
+            
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg)';
+            });
+        });
+    </script>
+</body></html>
