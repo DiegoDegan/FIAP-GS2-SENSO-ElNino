@@ -354,46 +354,13 @@
 
           <!-- Visual column -->
           <div data-stage-visuals class="relative aspect-square max-w-[420px] mx-auto w-full md:order-2">
-            <!-- Stage 0: globo + blob SST -->
-            <div data-stage-visual="0" class="absolute inset-0">
-              <svg viewBox="0 0 400 400" class="w-full h-full" aria-hidden="true">
-                <defs>
-                  <radialGradient id="globeGloss" cx="35%" cy="35%" r="70%">
-                    <stop offset="0%" stop-color="#fff" stop-opacity="0.3" />
-                    <stop offset="100%" stop-color="#fff" stop-opacity="0" />
-                  </radialGradient>
-                </defs>
-                <!-- Orbital ring -->
-                <ellipse cx="200" cy="200" rx="180" ry="60" fill="none" stroke="rgba(32,120,203,0.3)" stroke-width="1.5"
-                  stroke-dasharray="4 4" transform="rotate(-15 200 200)" />
-                <!-- Globe -->
-                <circle cx="200" cy="200" r="140" fill="#0b3d6b" />
-                <!-- Latitude lines -->
-                <ellipse cx="200" cy="200" rx="140" ry="40" fill="none" stroke="rgba(255,255,255,0.08)"
-                  stroke-width="1" />
-                <ellipse cx="200" cy="200" rx="140" ry="80" fill="none" stroke="rgba(255,255,255,0.08)"
-                  stroke-width="1" />
-                <ellipse cx="200" cy="200" rx="140" ry="120" fill="none" stroke="rgba(255,255,255,0.08)"
-                  stroke-width="1" />
-                <!-- Equator -->
-                <line x1="60" y1="200" x2="340" y2="200" stroke="rgba(255,255,255,0.18)" stroke-width="1"
-                  stroke-dasharray="2 3" />
-                <!-- SST anomaly blob (pulsa) -->
-                <g class="stage-blob-pulse">
-                  <ellipse cx="195" cy="200" rx="100" ry="22" fill="#E65100" opacity="0.45" />
-                  <ellipse cx="195" cy="200" rx="70" ry="14" fill="#B71C1C" opacity="0.7" />
-                  <ellipse cx="195" cy="200" rx="40" ry="8" fill="#fff" opacity="0.4" />
-                </g>
-                <!-- Gloss overlay -->
-                <circle cx="200" cy="200" r="140" fill="url(#globeGloss)" />
-                <!-- Labels -->
-                <text x="44" y="58" font-family="JetBrains Mono" font-size="11" fill="#82a9dd" letter-spacing="2">
-                  NIÑO 3.4
-                </text>
-                <text x="44" y="74" font-family="JetBrains Mono" font-size="11" fill="#E65100" font-weight="700">
-                  +1.8 °C
-                </text>
-              </svg>
+            <!-- Stage 0: zona El Niño SST -->
+            <div data-stage-visual="0" class="absolute inset-0 flex items-center justify-center">
+              <img
+                src="/zona.png"
+                alt="Zona de aquecimento do Pacífico equatorial — El Niño"
+                class="w-full h-full object-contain"
+              />
             </div>
 
             <!-- Stage 1: ZCIT deslocada -->
