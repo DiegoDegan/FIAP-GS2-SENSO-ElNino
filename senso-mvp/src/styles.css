@@ -1,0 +1,326 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Curvas custom — espelha tailwind.config.js para uso em inline styles, JS e CSS keyframes */
+:root {
+  --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+  --ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
+  --ease-drawer: cubic-bezier(0.32, 0.72, 0, 1);
+}
+
+/* prefers-reduced-motion — preserva transições cognitivas (cor/opacidade) e
+   corta o que é movimento (transform, filter, clip-path, stroke-dashoffset).
+   Emil: "reduced motion ≠ zero motion — manter o que aida a compreensão". */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 1ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 100ms !important;
+    transition-property: opacity, color, background-color, border-color, fill,
+      stroke !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+@layer components {
+  .orbital-glow {
+    background: radial-gradient(circle at center, rgba(32, 120, 203, 0.15) 0%, transparent 70%);
+  }
+  .rim-highlight {
+    box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.1);
+  }
+  .sinusoidal-pattern {
+    background-image: radial-gradient(#2078cb 0.5px, transparent 0.5px);
+    background-size: 12px 12px;
+    opacity: 0.1;
+  }
+  /* Textura sutil sobre fundo claro — direção visual quase imperceptível,
+     não decoração. Ondas sinusoidais em wave-blue, ~3% de opacidade total. */
+  .wave-texture-bg {
+    background-image: url("data:image/svg+xml,%3Csvg width='800' height='200' viewBox='0 0 800 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 100 C200 60 400 140 600 100 S800 60 1000 100' stroke='%232078CB' stroke-width='1.5' fill='none' opacity='0.05'/%3E%3Cpath d='M0 120 C200 80 400 160 600 120 S800 80 1000 120' stroke='%232078CB' stroke-width='1' fill='none' opacity='0.03'/%3E%3C/svg%3E");
+    background-size: 800px 200px;
+    background-repeat: repeat-x;
+  }
+  .logo-container svg {
+    height: 48px;
+    width: auto;
+  }
+
+  /* Brand mark "S.ENSO" — tightening + cyan dot satelital.
+     Mantém font-weight herdado (não fica bold em body, fica bold em h1).
+     Marcação esperada: <span class="brand-senso">S<span class="brand-dot">.</span>ENSO</span> */
+  .brand-senso {
+    letter-spacing: -0.005em;
+  }
+  .brand-dot {
+    display: inline-block;
+    color: #2078cb; /* wave-blue · azul-ciano satelital */
+    margin-left: -0.08em;
+    margin-right: -0.06em;
+    position: relative;
+    top: -0.04em;
+  }
+  .scroll-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .scroll-hide::-webkit-scrollbar {
+    display: none;
+  }
+  /* Nav lateral (gestor) — ícone preenchido no item ativo, espelha o
+     padrão Material de outlined → filled para indicar seleção. */
+  .tab-link[aria-selected='true'] .material-symbols-outlined {
+    font-variation-settings: 'FILL' 1;
+  }
+  /* animate-pulse usado em sinais de atenção (não dados em tempo real):
+     limitar iterações pra não distrair a leitura, conforme DESIGN.md. */
+  .pulse-3 {
+    animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1);
+    animation-iteration-count: 3;
+  }
+
+  /* Hold-to-confirm: ações destrutivas (ACIONAR SIRENES) exigem fricção
+     deliberada. Press: 2s linear. Release: 200ms ease-out (curva custom).
+     Padrão "asymmetric timing" (lento na decisão, rápido na resposta). */
+  .hold-confirm {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+  }
+  .hold-confirm__fill {
+    position: absolute;
+    inset: 0;
+    background-color: var(--hold-confirm-color, #b71c1c);
+    clip-path: inset(0 100% 0 0);
+    transition: clip-path 200ms var(--ease-out);
+    pointer-events: none;
+  }
+  .hold-confirm[data-holding='true'] .hold-confirm__fill {
+    clip-path: inset(0 0 0 0);
+    transition: clip-path 2000ms linear;
+  }
+  .hold-confirm[data-confirmed='true'] {
+    background-color: var(--hold-confirm-color, #b71c1c) !important;
+  }
+  .hold-confirm[data-confirmed='true'] .hold-confirm__fill {
+    clip-path: inset(0 0 0 0);
+    transition: none;
+  }
+  .hold-confirm__label {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: opacity 150ms var(--ease-out);
+  }
+
+  /* Filter de culturas (agricultor) — stagger + blur crossfade.
+     Entrada: opacity+blur+translateY, 200ms var(--ease-out), stagger 60ms
+     via --stagger-i (card 1 → 0ms, card 2 → 60ms...). Saída: opacity+blur+
+     scale, 150ms ease-in (exceção — corte rápido, sem suspense), sem stagger.
+     display:none só via JS após a transição de saída — imediato cancelaria
+     a animação. */
+  .crop-card,
+  .crop-ribbon {
+    opacity: 1;
+    filter: blur(0);
+    transform: translateY(0);
+    transition: opacity 200ms var(--ease-out), filter 200ms var(--ease-out),
+      transform 200ms var(--ease-out);
+  }
+  .crop-card:not([data-state]),
+  .crop-ribbon:not([data-state]) {
+    transition-delay: calc(var(--stagger-i, 0) * 60ms);
+  }
+  .crop-card[data-state='hidden'],
+  .crop-ribbon[data-state='hidden'] {
+    opacity: 0;
+    filter: blur(4px);
+    transform: translateY(6px);
+    pointer-events: none;
+  }
+  .crop-card[data-state='exiting'],
+  .crop-ribbon[data-state='exiting'] {
+    opacity: 0;
+    filter: blur(2px);
+    transform: scale(0.97);
+    transition: opacity 150ms ease-in, filter 150ms ease-in, transform 150ms ease-in;
+    transition-delay: 0ms;
+    pointer-events: none;
+  }
+
+  /* ───── Cinematic surface — landing/hero ───── */
+
+  /* Estados iniciais antes da timeline GSAP rodar.
+     Evita FOUC: se JS demora, conteúdo fica oculto em vez de piscar.
+     prefers-reduced-motion: skip — mostra tudo visível direto. */
+  [data-hero-preline],
+  [data-hero-subtitle],
+  [data-hero-ctas],
+  [data-scroll-indicator] {
+    opacity: 0;
+    transform: translateY(24px);
+    will-change: transform, opacity;
+  }
+  [data-hero-word] {
+    display: inline-block;
+    opacity: 0;
+    transform: translateY(0.5em);
+    filter: blur(8px);
+    will-change: transform, opacity, filter;
+  }
+  /* Earth video: revela só após canplay (JS) */
+  [data-earth-bg] {
+    filter: brightness(0.4) saturate(1.2);
+    will-change: opacity;
+  }
+  /* Fallback: vídeo da Terra falhou. Intensifica o glow para compensar. */
+  [data-cinematic='hero'].hero-video-failed .orbital-glow {
+    background: radial-gradient(
+      circle at center,
+      rgba(32, 120, 203, 0.28) 0%,
+      rgba(32, 120, 203, 0.08) 35%,
+      transparent 70%
+    );
+  }
+
+  /* Pitch section + sections de conteúdo (now, explain, cost) —
+     reveal-on-scroll via IntersectionObserver + GSAP */
+  [data-pitch-label],
+  [data-pitch-title],
+  [data-pitch-subtitle],
+  [data-now-label],
+  [data-now-title],
+  [data-now-subtitle],
+  [data-now-stat],
+  [data-explain-label],
+  [data-explain-title],
+  [data-explain-body],
+  [data-cost-label],
+  [data-cost-title],
+  [data-cost-stat],
+  [data-cost-quote] {
+    opacity: 0;
+    transform: translateY(24px);
+    will-change: transform, opacity;
+  }
+  [data-pitch-frame] {
+    clip-path: inset(0 100% 0 0);
+    will-change: clip-path;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    [data-pitch-label],
+    [data-pitch-title],
+    [data-pitch-subtitle] {
+      opacity: 1;
+      transform: none;
+    }
+    [data-pitch-frame] {
+      clip-path: none;
+    }
+    [data-now-label],
+    [data-now-title],
+    [data-now-subtitle],
+    [data-now-stat],
+    [data-explain-label],
+    [data-explain-title],
+    [data-explain-body],
+    [data-cost-label],
+    [data-cost-title],
+    [data-cost-stat],
+    [data-cost-quote] {
+      opacity: 1;
+      transform: none;
+    }
+  }
+
+  /* Pin scroll section — stages stack absolutos. Stage 0 visível por padrão;
+     1 e 2 escondidos pelo JS via gsap.set. Em reduced-motion, todos viram
+     fluxo normal vertical (sem pin, sem absolute). */
+  [data-stage-visual],
+  [data-stage-label] {
+    will-change: transform, opacity;
+  }
+  [data-stage-visual='1'],
+  [data-stage-visual='2'],
+  [data-stage-label='1'],
+  [data-stage-label='2'] {
+    opacity: 0;
+  }
+  /* Pulse contínuo no blob SST (cinematic — pode ser infinito) */
+  @keyframes stage-blob-pulse {
+    0%,
+    100% {
+      transform: scale(1);
+      opacity: 1;
+    }
+    50% {
+      transform: scale(1.06);
+      opacity: 0.85;
+    }
+  }
+  .stage-blob-pulse {
+    transform-origin: 195px 200px;
+    animation: stage-blob-pulse 2.8s var(--ease-in-out) infinite;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    /* Quebra o pin layout: stages viram blocos empilhados verticalmente */
+    [data-pin-trigger] {
+      height: auto !important;
+      min-height: auto !important;
+      padding-top: 4rem;
+      padding-bottom: 4rem;
+    }
+    [data-stage-visuals],
+    [data-stage-labels] {
+      position: static !important;
+      min-height: 0 !important;
+    }
+    [data-stage-visual],
+    [data-stage-label] {
+      position: static !important;
+      opacity: 1 !important;
+      margin-bottom: 3rem;
+    }
+    [data-stage-dots] {
+      display: none !important;
+    }
+    .stage-blob-pulse {
+      animation: none;
+    }
+  }
+  /* Chevron do scroll indicator com loop suave (sem prefers-reduced-motion) */
+  @keyframes scroll-chevron-pulse {
+    0%,
+    100% {
+      transform: translateY(0);
+      opacity: 0.6;
+    }
+    50% {
+      transform: translateY(6px);
+      opacity: 1;
+    }
+  }
+  .scroll-chevron {
+    animation: scroll-chevron-pulse 2s var(--ease-in-out) infinite;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    [data-hero-preline],
+    [data-hero-subtitle],
+    [data-hero-ctas],
+    [data-scroll-indicator],
+    [data-hero-word] {
+      opacity: 1;
+      transform: none;
+      filter: none;
+    }
+    [data-earth-bg] {
+      display: none;
+    }
+  }
+}

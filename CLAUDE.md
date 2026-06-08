@@ -22,7 +22,7 @@ Python 3.13 in `.venv/`. Activate and use the project interpreter:
 .venv\Scripts\jupyter lab             # open the notebook
 ```
 
-Core stack (already installed in `.venv`): `pandas`, `numpy`, `scipy`, `scikit-learn`, `statsmodels`, `matplotlib`, `seaborn`, `earthaccess`, `netCDF4`, `xarray`-family (`h5netcdf`, `cftime`). There is **no `requirements.txt` and no `pyproject.toml`** — if a dependency is missing, `pip install` it into `.venv` and (optionally) freeze.
+Core stack: `pandas`, `numpy`, `scipy`, `scikit-learn`, `statsmodels`, `matplotlib`, `seaborn`, `xgboost`, `requests`, `earthaccess`, `netCDF4`, `xarray`-family (`h5netcdf`, `cftime`), pinned in `requirements.txt` (`pip install -r requirements.txt`). There is **no `pyproject.toml`** — if a dependency is missing, `pip install` it into `.venv` and add it to `requirements.txt`.
 
 ## Main artifact
 

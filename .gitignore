@@ -59,3 +59,11 @@ scratch/
 tmp/
 temp/
 *.log
+
+# Arquivos de Avaliação e Insights (Locais)
+AVALIACAO_GS.md
+avaliacao_GS_2026-06-06.md
+avaliacao_notebook_rascunho.md
+skills-lock.json
+S_ENSO_insights.md
+

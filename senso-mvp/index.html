@@ -1,0 +1,923 @@
+<!doctype html>
+<html class="light" lang="pt-BR">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>S.ENSO — O sinal do Pacífico, em linguagem de ação</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap"
+    rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+    rel="stylesheet" />
+</head>
+
+<body class="bg-ocean-deep font-body-md text-on-surface overflow-x-hidden">
+  <!-- Earth video — fundo fixo da página. Visível através das sections com
+       bg-ocean-deep/40 (hero, pitch, pin). Coberto pelas sections sólidas
+       (CTA cards, network status, footer). Fica em z-0; conteúdo em z-10. -->
+  <div data-earth-bg-wrapper class="fixed inset-0 pointer-events-none z-0 overflow-hidden" aria-hidden="true">
+    <video data-earth-bg autoplay muted loop playsinline preload="auto"
+      class="absolute inset-0 w-full h-full object-cover opacity-0" aria-hidden="true">
+      <source src="/planeta.mp4" type="video/mp4" />
+    </video>
+  </div>
+
+  <!-- TopAppBar -->
+  <header data-header
+    class="fixed top-0 w-full z-50 bg-ocean-deep border-b border-surface-container-highest/20 shadow-md h-[74px] flex justify-between items-center px-margin-mobile md:px-margin-desktop transition-[background-color] duration-150 ease-out">
+    <!-- LEFT: logo + nome expandido -->
+    <div class="flex items-center gap-4">
+      <div class="logo-container flex items-center">
+        <img src="/assets/logo-animated-dark.svg" alt="S.ENSO" class="h-[58px] w-auto" />
+      </div>
+      <div class="hidden md:flex items-center">
+        <span class="font-data-compact text-data-compact text-secondary-fixed brand-senso">
+          S<span class="brand-dot">.</span>ENSO — Sistema El Niño com Sinais Orbitais
+        </span>
+      </div>
+    </div>
+    <!-- RIGHT: status chip + ações -->
+    <div class="flex items-center gap-4">
+      <div
+        class="hidden md:flex items-center gap-2 bg-surface/10 border border-surface-variant/20 rounded-full px-3 py-1">
+        <span class="w-2 h-2 rounded-full bg-alert-warning pulse-3" aria-hidden="true"></span>
+        <span class="font-data-compact text-data-compact text-secondary-fixed">Super El Niño · 65% de chance até
+          outubro/2026</span>
+      </div>
+      <button type="button"
+        class="text-[14px] text-surface-bright/80 font-medium px-4 py-2 rounded-md
+               transition-[background-color,color,transform] duration-150 ease-out
+               hover:bg-surface/10 hover:text-surface-bright active:scale-[0.97]
+               focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-surface-bright">
+        Login
+      </button>
+      <button type="button"
+        class="text-[14px] font-semibold text-white bg-wave-blue px-4 py-2 rounded-md
+               transition-[background-color,transform] duration-150 ease-out
+               hover:bg-secondary active:scale-[0.97]
+               focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-wave-blue">
+        Cadastre-se
+      </button>
+    </div>
+  </header>
+
+  <main class="pt-[74px] relative z-10">
+    <!-- Hero (cinematic) -->
+    <section data-cinematic="hero"
+      class="relative min-h-screen flex flex-col items-center justify-center text-center px-margin-mobile md:px-margin-desktop bg-ocean-deep/40 overflow-hidden">
+      <!-- L0: Earth video bg vive body-level (ver wrapper logo após <body>).
+             Aparece através de bg-ocean-deep/40 desta section. -->
+
+      <!-- L1: Overlays decorativos. Sempre visíveis — funcionam como
+             fallback se o vídeo falhar; em cima do vídeo dão profundidade. -->
+      <div class="absolute inset-0 orbital-glow pointer-events-none" aria-hidden="true"></div>
+      <div class="absolute inset-0 sinusoidal-pattern pointer-events-none" aria-hidden="true"></div>
+      <div
+        class="absolute inset-0 bg-gradient-to-b from-ocean-deep/40 via-transparent to-ocean-deep pointer-events-none"
+        aria-hidden="true"></div>
+
+      <!-- L2: Anéis orbitais (controlados por GSAP em landing.js) -->
+      <div data-orbital-ring class="absolute -top-40 -right-40 w-96 h-96 border border-wave-blue/20 rounded-full"
+        aria-hidden="true"></div>
+      <div data-orbital-ring
+        class="absolute -bottom-20 -left-20 w-64 h-64 border border-secondary-container/10 rounded-full"
+        aria-hidden="true"></div>
+
+      <!-- L3: Conteúdo -->
+      <div class="relative z-10 max-w-4xl mx-auto space-y-6">
+        <p data-hero-preline class="font-label-caps text-label-caps text-secondary-fixed-dim">
+          PILOTO · <span class="brand-senso">S<span class="brand-dot">.</span>ENSO</span> · GLOBAL SOLUTION FIAP 2026
+        </p>
+        <h1 data-hero-h1
+          class="font-headline-h1-mobile md:font-headline-h1 text-headline-h1-mobile md:text-headline-h1 text-surface-bright tracking-tight">
+          <span data-hero-word>O</span> <span data-hero-word>próximo</span> <span data-hero-word>desastre</span> <span
+            data-hero-word>climático</span> <span data-hero-word>tem</span> <span data-hero-word
+            class="text-secondary-container">96%</span> <span data-hero-word class="text-secondary-container">de</span>
+          <span data-hero-word class="text-secondary-container">chance</span> <span data-hero-word>de</span> <span
+            data-hero-word>durar</span> <span data-hero-word>até</span> <span data-hero-word>fevereiro</span> <span
+            data-hero-word>de</span> <span data-hero-word>2027.</span>
+        </h1>
+        <p data-hero-subtitle class="font-body-md text-on-primary-container max-w-2xl mx-auto">
+          <span class="brand-senso">S<span class="brand-dot">.</span>ENSO</span> traduz o sinal do El Niño —
+          <em class="text-secondary-fixed-dim not-italic">ENSO, El Niño-Southern Oscillation</em> —
+          em alertas técnicos para a Defesa Civil e para o agricultor.
+          Piloto ativo em <strong class="text-surface-bright">Quixadá-CE</strong> (risco de seca) e
+          <strong class="text-surface-bright">Lajeado-RS</strong> (risco de enchente).
+        </p>
+        <div data-hero-ctas class="flex flex-wrap justify-center gap-4 pt-4">
+          <button type="button" data-scroll-to='[data-cinematic="explain"]'
+            class="bg-wave-blue text-white font-semibold py-3 px-8 rounded-lg shadow-lg
+                     transition-[background-color,transform] duration-200 ease-out
+                     hover:bg-secondary active:scale-[0.97]
+                     focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-wave-blue">
+            Entender o sinal
+          </button>
+          <button type="button" data-scroll-to='[data-cinematic="pin"]'
+            class="bg-surface/5 text-surface-bright border border-surface-variant/30 font-semibold py-3 px-8 rounded-lg backdrop-blur-sm
+                     transition-[background-color,transform] duration-200 ease-out
+                     hover:bg-surface/10 active:scale-[0.97]
+                     focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-surface-bright">
+            Ver projeção out/2026
+          </button>
+        </div>
+      </div>
+
+      <!-- Scroll indicator -->
+      <div data-scroll-indicator
+        class="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1 z-10 pointer-events-none"
+        aria-hidden="true">
+        <span class="font-label-caps text-label-caps text-secondary-fixed-dim">ROLE</span>
+        <span
+          class="material-symbols-outlined text-secondary-fixed-dim text-[20px] scroll-chevron">keyboard_arrow_down</span>
+      </div>
+    </section>
+
+    <!-- O que está acontecendo agora (cinematic) -->
+    <section data-cinematic="now"
+      class="relative bg-ocean-deep/40 py-24 px-margin-mobile md:px-margin-desktop overflow-hidden">
+      <div class="absolute inset-0 sinusoidal-pattern opacity-20 pointer-events-none" aria-hidden="true"></div>
+      <div class="relative z-10 max-w-max-width mx-auto">
+        <div class="mb-12 max-w-2xl">
+          <p data-now-label class="font-label-caps text-label-caps text-wave-blue mb-3">
+            MAIO DE 2026
+          </p>
+          <h2 data-now-title class="font-headline-h1-mobile md:text-headline-h1 text-surface-bright tracking-tight">
+            O Pacífico está esquentando.
+          </h2>
+          <p data-now-subtitle class="font-body-md text-on-primary-container mt-4">
+            O Climate Prediction Center emitiu <em>El Niño Watch</em> em maio. As projeções consolidadas
+            do IRI e da NOAA convergem em quatro números:
+          </p>
+        </div>
+
+        <div data-now-grid class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+          <div data-now-stat
+            class="bg-surface-container-lowest/5 border border-surface-variant/20 rounded-lg p-6 backdrop-blur-sm">
+            <p class="font-data-tabular text-[44px] leading-none text-secondary-container font-bold">82–98%</p>
+            <p class="font-body-md text-on-primary-container mt-3 text-[14px]">
+              Chance de El Niño se estabelecer entre maio e julho/2026
+            </p>
+          </div>
+          <div data-now-stat
+            class="bg-surface-container-lowest/5 border border-surface-variant/20 rounded-lg p-6 backdrop-blur-sm">
+            <p class="font-data-tabular text-[44px] leading-none text-secondary-container font-bold">96%</p>
+            <p class="font-body-md text-on-primary-container mt-3 text-[14px]">
+              Chance de persistir até fevereiro de 2027
+            </p>
+          </div>
+          <div data-now-stat
+            class="bg-surface-container-lowest/5 border border-surface-variant/20 rounded-lg p-6 backdrop-blur-sm">
+            <p class="font-data-tabular text-[44px] leading-none text-alert-warning font-bold">65%</p>
+            <p class="font-body-md text-on-primary-container mt-3 text-[14px]">
+              Chance de virar <strong class="text-surface-bright">Super El Niño</strong> até outubro
+            </p>
+          </div>
+          <div data-now-stat
+            class="bg-surface-container-lowest/5 border border-surface-variant/20 rounded-lg p-6 backdrop-blur-sm">
+            <p class="font-data-tabular text-[44px] leading-none text-alert-danger font-bold">+0,9 °C</p>
+            <p class="font-body-md text-on-primary-container mt-3 text-[14px]">
+              Anomalia atual do Pacífico — acelerando a <span class="font-data-tabular">+0,35 °C/mês</span>
+            </p>
+          </div>
+        </div>
+        <p class="font-data-compact text-data-compact text-on-primary-fixed-variant mt-6">
+          FONTE · CLIMATE PREDICTION CENTER · NOAA · IRI · MAIO/2026
+        </p>
+      </div>
+    </section>
+
+    <!-- O que é El Niño em 30 segundos (cinematic) -->
+    <section data-cinematic="explain"
+      class="relative bg-ocean-deep/40 py-24 px-margin-mobile md:px-margin-desktop overflow-hidden">
+      <div class="relative z-10 max-w-4xl mx-auto">
+        <p data-explain-label class="font-label-caps text-label-caps text-wave-blue mb-3">
+          O FENÔMENO, SEM JARGÃO
+        </p>
+        <h2 data-explain-title class="font-headline-h1-mobile md:text-headline-h1 text-surface-bright tracking-tight">
+          El Niño, em uma frase.
+        </h2>
+        <div data-explain-body class="mt-6 space-y-5 font-body-md text-on-primary-container">
+          <p>
+            El Niño é o <strong class="text-surface-bright">aquecimento anormal do oceano Pacífico equatorial</strong>.
+            Quando ele acontece, o vapor d'água sobe em lugar errado e a faixa de chuvas tropicais sai do lugar.
+          </p>
+          <p>Para o Brasil, isso significa duas coisas opostas ao mesmo tempo:</p>
+          <ul class="space-y-3 pl-4">
+            <li class="flex gap-3">
+              <span class="w-1.5 h-1.5 rounded-full bg-wave-blue mt-[10px] shrink-0" aria-hidden="true"></span>
+              <span><strong class="text-surface-bright">No Sul</strong>, as chuvas aumentam. Solos saturam. Rios
+                extravasam.</span>
+            </li>
+            <li class="flex gap-3">
+              <span class="w-1.5 h-1.5 rounded-full bg-wave-orange mt-[10px] shrink-0" aria-hidden="true"></span>
+              <span><strong class="text-surface-bright">No Nordeste</strong>, as chuvas diminuem. Açudes secam. A roça
+                morre.</span>
+            </li>
+          </ul>
+          <p>
+            O ciclo dura <span class="font-data-tabular text-surface-bright">6 a 18 meses</span> e acontece a cada
+            <span class="font-data-tabular text-surface-bright">2 a 7 anos</span>. O próximo está em formação agora.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Pitch video (cinematic) -->
+    <section data-cinematic="pitch"
+      class="relative bg-ocean-deep/40 py-24 px-margin-mobile md:px-margin-desktop overflow-hidden">
+      <div class="absolute inset-0 sinusoidal-pattern opacity-40 pointer-events-none" aria-hidden="true"></div>
+
+      <div class="relative z-10 max-w-5xl mx-auto">
+        <div class="mb-12 text-center space-y-3">
+          <p data-pitch-subtitle class="font-body-md text-on-primary-container max-w-2xl mx-auto">
+            Quatro minutos sobre como o <span class="brand-senso">S<span class="brand-dot">.</span>ENSO</span> traduz
+            anomalias térmicas do Pacífico em ações
+            concretas no território brasileiro.
+          </p>
+        </div>
+
+        <!-- Frame 16:9. Para publicar:
+               troque YOUR_VIDEO_ID_HERE no data-youtube-id pelo ID real do vídeo do YouTube.
+               JS detecta o sentinel e mantém o placeholder enquanto não há vídeo. -->
+        <div data-pitch-frame
+          class="relative aspect-video rounded-xl overflow-hidden border border-surface-container-highest/20 shadow-2xl rim-highlight bg-ocean-deep">
+          <iframe data-youtube-iframe data-youtube-id="YOUR_VIDEO_ID_HERE" src="about:blank"
+            title="Pitch S.ENSO — Global Solution 2026" class="absolute inset-0 w-full h-full" loading="lazy"
+            referrerpolicy="strict-origin-when-cross-origin"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowfullscreen></iframe>
+
+          <div data-pitch-placeholder
+            class="absolute inset-0 flex flex-col items-center justify-center gap-4 bg-ocean-deep/95 text-center px-margin-mobile pointer-events-none">
+            <div class="absolute inset-0 orbital-glow" aria-hidden="true"></div>
+            <span class="material-symbols-outlined text-secondary-fixed-dim relative z-10" style="font-size: 64px;"
+              aria-hidden="true">play_circle</span>
+            <p class="font-label-caps text-label-caps text-secondary-fixed-dim relative z-10">
+              VÍDEO DO PITCH
+            </p>
+            <p class="font-data-compact text-data-compact text-on-primary-container max-w-md relative z-10">
+              Em produção. Quando estiver no YouTube, substitua
+              <code class="text-secondary-fixed-dim">data-youtube-id</code> em
+              <code class="text-secondary-fixed-dim">index.html</code>.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Pin scroll: Do Pacífico ao Território -->
+    <section data-cinematic="pin" class="relative bg-ocean-deep/40">
+      <div data-pin-trigger
+        class="h-screen flex flex-col justify-center px-margin-mobile md:px-margin-desktop overflow-hidden relative">
+        <div class="absolute inset-0 sinusoidal-pattern opacity-30 pointer-events-none" aria-hidden="true"></div>
+        <div class="absolute inset-0 orbital-glow pointer-events-none" aria-hidden="true"></div>
+
+        <!-- Section header -->
+        <div class="relative z-10 max-w-max-width mx-auto w-full mb-8 md:mb-12 text-center">
+          <p class="font-label-caps text-label-caps text-wave-blue">
+            DO PACÍFICO AO BRASIL
+          </p>
+          <h2 class="font-headline-h1-mobile md:text-headline-h1 text-surface-bright tracking-tight mt-2">
+            Três etapas, um sinal
+          </h2>
+        </div>
+
+        <!-- Stages -->
+        <div
+          class="relative z-10 max-w-max-width mx-auto w-full grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-center">
+          <!-- Label column -->
+          <div data-stage-labels class="relative min-h-[280px] md:order-1">
+            <!-- Stage 0: Pacífico esquentando -->
+            <div data-stage-label="0" class="absolute inset-0 space-y-4">
+              <p class="font-label-caps text-label-caps text-wave-blue">
+                ETAPA 01 / 03
+              </p>
+              <h3 class="font-subtitle-h2 text-subtitle-h2 md:text-headline-h1-mobile text-surface-bright">
+                O Pacífico está esquentando
+              </h3>
+              <p class="font-body-md text-on-primary-container max-w-md">
+                Satélites da NOAA medem a temperatura da superfície do oceano todo dia. Em maio de
+                2026, o Pacífico equatorial está <span class="font-data-tabular text-alert-warning">+0,9
+                  °C</span> acima da média histórica — e acelerando a
+                <span class="font-data-tabular text-alert-warning">+0,35 °C/mês</span>. A projeção é
+                virar Super El Niño até outubro.
+              </p>
+              <p class="font-data-compact text-data-compact text-secondary-fixed-dim">
+                +0,9 °C HOJE · +0,35 °C/MÊS · 65% DE CHANCE DE SUPER EL NIÑO
+              </p>
+            </div>
+
+            <!-- Stage 1: Linha das chuvas se desloca -->
+            <div data-stage-label="1" class="absolute inset-0 space-y-4">
+              <p class="font-label-caps text-label-caps text-wave-blue">
+                ETAPA 02 / 03
+              </p>
+              <h3 class="font-subtitle-h2 text-subtitle-h2 md:text-headline-h1-mobile text-surface-bright">
+                A linha das chuvas se desloca
+              </h3>
+              <p class="font-body-md text-on-primary-container max-w-md">
+                A faixa de chuvas tropicais normalmente segue o equador. Com o Pacífico anormalmente
+                quente, ela sobe para o norte. Resultado direto:
+                <strong class="text-surface-bright">Nordeste perde chuva, Sul recebe demais</strong>.
+                O efeito é amplificado quando o Atlântico Tropical também está desbalanceado.
+              </p>
+              <p class="font-data-compact text-data-compact text-secondary-fixed-dim">
+                NORDESTE → ESTIAGEM · SUL → EXCESSO HÍDRICO · 5 MESES DE DEFASAGEM
+              </p>
+            </div>
+
+            <!-- Stage 2: Quixadá seca, Lajeado alaga -->
+            <div data-stage-label="2" class="absolute inset-0 space-y-4">
+              <p class="font-label-caps text-label-caps text-wave-blue">
+                ETAPA 03 / 03
+              </p>
+              <h3 class="font-subtitle-h2 text-subtitle-h2 md:text-headline-h1-mobile text-surface-bright">
+                Quixadá seca. Lajeado alaga.
+              </h3>
+              <p class="font-body-md text-on-primary-container max-w-md">
+                Em outubro de 2026, Quixadá entra em <strong class="text-alert-warning">risco
+                  moderado</strong> (score 32) e Lajeado em <strong class="text-alert-danger">risco
+                  alto</strong> (score 62). A Defesa Civil de Lajeado tem
+                <span class="font-data-tabular text-surface-bright">3 meses</span> para preparar
+                rotas de fuga e abrigos. Sr. João tem
+                <span class="font-data-tabular text-surface-bright">3 meses</span> para trocar milho
+                por sorgo e acionar o Garantia-Safra.
+              </p>
+              <p class="font-data-compact text-data-compact text-alert-critical">
+                QUIXADÁ-CE 32 AMARELO · LAJEADO-RS 62 LARANJA · PROJEÇÃO OUT/2026
+              </p>
+            </div>
+          </div>
+
+          <!-- Visual column -->
+          <div data-stage-visuals class="relative aspect-square max-w-[420px] mx-auto w-full md:order-2">
+            <!-- Stage 0: globo + blob SST -->
+            <div data-stage-visual="0" class="absolute inset-0">
+              <svg viewBox="0 0 400 400" class="w-full h-full" aria-hidden="true">
+                <defs>
+                  <radialGradient id="globeGloss" cx="35%" cy="35%" r="70%">
+                    <stop offset="0%" stop-color="#fff" stop-opacity="0.3" />
+                    <stop offset="100%" stop-color="#fff" stop-opacity="0" />
+                  </radialGradient>
+                </defs>
+                <!-- Orbital ring -->
+                <ellipse cx="200" cy="200" rx="180" ry="60" fill="none" stroke="rgba(32,120,203,0.3)" stroke-width="1.5"
+                  stroke-dasharray="4 4" transform="rotate(-15 200 200)" />
+                <!-- Globe -->
+                <circle cx="200" cy="200" r="140" fill="#0b3d6b" />
+                <!-- Latitude lines -->
+                <ellipse cx="200" cy="200" rx="140" ry="40" fill="none" stroke="rgba(255,255,255,0.08)"
+                  stroke-width="1" />
+                <ellipse cx="200" cy="200" rx="140" ry="80" fill="none" stroke="rgba(255,255,255,0.08)"
+                  stroke-width="1" />
+                <ellipse cx="200" cy="200" rx="140" ry="120" fill="none" stroke="rgba(255,255,255,0.08)"
+                  stroke-width="1" />
+                <!-- Equator -->
+                <line x1="60" y1="200" x2="340" y2="200" stroke="rgba(255,255,255,0.18)" stroke-width="1"
+                  stroke-dasharray="2 3" />
+                <!-- SST anomaly blob (pulsa) -->
+                <g class="stage-blob-pulse">
+                  <ellipse cx="195" cy="200" rx="100" ry="22" fill="#E65100" opacity="0.45" />
+                  <ellipse cx="195" cy="200" rx="70" ry="14" fill="#B71C1C" opacity="0.7" />
+                  <ellipse cx="195" cy="200" rx="40" ry="8" fill="#fff" opacity="0.4" />
+                </g>
+                <!-- Gloss overlay -->
+                <circle cx="200" cy="200" r="140" fill="url(#globeGloss)" />
+                <!-- Labels -->
+                <text x="44" y="58" font-family="JetBrains Mono" font-size="11" fill="#82a9dd" letter-spacing="2">
+                  NIÑO 3.4
+                </text>
+                <text x="44" y="74" font-family="JetBrains Mono" font-size="11" fill="#E65100" font-weight="700">
+                  +1.8 °C
+                </text>
+              </svg>
+            </div>
+
+            <!-- Stage 1: ZCIT deslocada -->
+            <div data-stage-visual="1" class="absolute inset-0">
+              <svg viewBox="0 0 400 400" class="w-full h-full" aria-hidden="true">
+                <defs>
+                  <marker id="zcit-arrow" markerWidth="10" markerHeight="10" refX="5" refY="5" orient="auto">
+                    <polygon points="0 0, 10 5, 0 10" fill="#DE6A34" />
+                  </marker>
+                </defs>
+                <!-- BG: Atlântico framing -->
+                <rect x="20" y="20" width="360" height="360" fill="none" stroke="rgba(255,255,255,0.08)"
+                  stroke-width="1" />
+                <!-- N/S compass -->
+                <text x="195" y="40" font-family="JetBrains Mono" font-size="11" fill="#82a9dd">N</text>
+                <text x="195" y="372" font-family="JetBrains Mono" font-size="11" fill="#82a9dd">S</text>
+                <line x1="200" y1="44" x2="200" y2="360" stroke="rgba(255,255,255,0.1)" stroke-dasharray="2 4" />
+                <!-- ZCIT normal (faded, equator) -->
+                <path d="M 50 230 Q 100 215 150 230 Q 200 245 250 230 Q 300 215 350 230" stroke="rgba(255,255,255,0.25)"
+                  stroke-width="2" stroke-dasharray="4 4" fill="none" />
+                <text x="55" y="252" font-family="JetBrains Mono" font-size="9" fill="rgba(255,255,255,0.35)"
+                  letter-spacing="1">
+                  ZCIT NORMAL
+                </text>
+                <!-- ZCIT deslocada (norte) — desenhada por GSAP no scrub final -->
+                <path class="stage-zcit-line" d="M 50 160 Q 100 145 150 160 Q 200 175 250 160 Q 300 145 350 160"
+                  stroke="#DE6A34" stroke-width="3" fill="none" />
+                <text x="55" y="142" font-family="JetBrains Mono" font-size="11" fill="#DE6A34" font-weight="700"
+                  letter-spacing="1">
+                  ZCIT DESLOCADA · N+8°
+                </text>
+                <!-- Arrow showing displacement -->
+                <line x1="200" y1="220" x2="200" y2="175" stroke="#DE6A34" stroke-width="2.5"
+                  marker-end="url(#zcit-arrow)" />
+                <!-- GPAT label -->
+                <text x="55" y="345" font-family="JetBrains Mono" font-size="11" fill="#a2c9ff" letter-spacing="1">
+                  GPAT = TNA − TSA
+                </text>
+                <text x="55" y="368" font-family="JetBrains Mono" font-size="22" fill="#DE6A34" font-weight="700">
+                  +0.6 °C
+                </text>
+              </svg>
+            </div>
+
+            <!-- Stage 2: Mapa Brasil + pins -->
+            <div data-stage-visual="2" class="absolute inset-0">
+              <svg viewBox="0 0 400 400" class="w-full h-full" aria-hidden="true">
+                <defs>
+                  <!-- Gradiente sutil pra dar profundidade ao silhueta -->
+                  <radialGradient id="brazilDepth" cx="38%" cy="28%" r="85%">
+                    <stop offset="0%" stop-color="rgba(255,255,255,0.08)" />
+                    <stop offset="65%" stop-color="rgba(255,255,255,0)" />
+                    <stop offset="100%" stop-color="rgba(0,0,0,0.2)" />
+                  </radialGradient>
+                </defs>
+
+                <!-- Linhas geográficas de referência -->
+                <line x1="22" y1="98" x2="378" y2="98" stroke="rgba(130,169,221,0.18)" stroke-width="0.5"
+                  stroke-dasharray="3 4" />
+                <text x="22" y="93" font-family="JetBrains Mono" font-size="8" fill="rgba(130,169,221,0.5)"
+                  letter-spacing="1">
+                  0° EQUADOR
+                </text>
+                <line x1="22" y1="280" x2="378" y2="280" stroke="rgba(130,169,221,0.18)" stroke-width="0.5"
+                  stroke-dasharray="3 4" />
+                <text x="22" y="275" font-family="JetBrains Mono" font-size="8" fill="rgba(130,169,221,0.5)"
+                  letter-spacing="1">
+                  23.5°S TRÓPICO CAPRICÓRNIO
+                </text>
+
+                <!-- Brasil real (path do Frontend/asset/brasil.svg, viewBox -690 -658 1415 1415).
+                       SVG aninhado preserva a projeção original sem precisar recalcular coords.
+                       preserveAspectRatio mantém proporção; pins/textos continuam em coords 400x400. -->
+                <svg x="20" y="20" width="360" height="360" viewBox="-690 -658 1415 1415"
+                  preserveAspectRatio="xMidYMid meet">
+                  <path
+                    d="M-672,-138c2,4,6,6,9,9,2,3,4,7,6,11s6,7,6,11c0,3-5,5-6,8,0,2,0,4,1,7l3,3c4,0,5-4,8-6h5c2,1,2,5,4,5,1,1,3-3,5-2,2,0,4,1,5,3,3,4,2,9,5,13,2,3,6,4,10,5,3,0,7-1,9-3,3-3,3-7,5-9s5-1,7-2,4-3,7-4c1-1,4-4,5-3,3,4,2,9,2,13,1,12-3,25,1,36,1,4,7,3,11,2s7-5,11-5c5-1,10,0,14,0,6,1,13,1,19,1,7,1,14,2,21,0,3,0,6-4,7-7,2-2,0-6,2-8,1-1,5-1,7-1s3,3,4,2c4-1,7-4,9-6,3-3,4-8,7-10,2-1,4,3,5,2,3-2,4-6,6-9,3-3,7-6,10-7,5-2,11-3,16-4,3,0,5-1,8-1s6,1,9,1c2,0,4-2,6-2,1-1,3-3,4-1,3,3,4,9,4,13s-4,6-4,9c-1,4,0,8,1,11s4,4,5,7,1,6,0,9c-1,2-5,1-5,3,0,4,2,7,3,10,2,4,2,8,5,12,3,5,7,10,12,13,4,3,9,3,13,5,2,2,1,7,4,9s7,2,10,1c4,0,7-1,10-2,1,0,2-2,4-2,4,1,9,4,13,6,3,2,4,6,7,8,3,1,6-1,8,1,4,1,6,6,10,7,3,2,7,3,10,3,2,1,5-1,7,1,4,3,6,9,11,12,3,2,8,3,13,2,2-1,2-6,5-6,4-1,7,2,11,3,3,2,6,4,9,6,4,2,10,3,12,7,2,3-2,8-1,12,1,5,5,9,7,14,1,3,0,8,0,12,0,1,1,2,0,3-3,1-6-1-8,0-1,1,0,4,1,5,1,2,4,3,5,6,2,4,3,9,3,14,1,4,0,8,1,11,1,4,4,8,7,9,8,2,17,0,26,0,8,1,16,1,24,1,2,1,7-2,7,1,1,3-5,5-6,9,0,3,3,5,4,7,2,4,2,9,4,12s5,4,8,6c3,3,5,6,8,9s6,7,8,11,2,8,2,13c0,4-1,8-3,12-1,5-4,10-6,15-1,6-3,11-5,16-1,3-4,7-3,10s5,3,7,4c1,2,2,4,1,5-1,2-4,0-6,2s-3,6-2,9c0,4,3,7,4,11,1,2,2,4,3,7,1,2,3,4,3,7,1,4,1,8,0,13,0,2-1,4-2,7,0,2,1,5,1,7,0,3-2,6-2,9s0,7,3,9c3,1,6-3,9-3s7,1,11,1c3,1,7,0,10,1,3,0,5,2,7,2,2,1,5,2,7,2,2-1,2-7,5-6,3,0,3,5,6,7,4,2,10,0,14,2,3,3,5,9,6,13,3,8,3,15,5,23,1,4,1,10,5,13,2,2,7,2,11,3,5,0,10-2,14-1s10,3,11,7c2,5-4,10-4,15,0,4,3,7,2,11,0,3-3,6-3,10-1,2,3,3,2,5s-4,1-5,3-1,5,0,8c0,3,0,6,3,7,4,1,10-4,14-2,5,3,7,10,9,15,2,3,3,7,3,10-1,2-4,3-4,5-1,3,1,6,1,10,0,3-1,6-2,9-2,4-3,7-6,10-2,2-4,3-7,4s-7,0-11,1c-4,2-7,6-10,8s-5,5-8,7c-4,3-9,5-14,8-2,2-3,5-6,8-2,3-5,6-7,9-2,2-3,4-5,6-3,3-6,4-9,6-2,3-3,7-5,9-2,3-5,4-7,7s-2,8-5,11-8,2-10,5c-3,2-3,6-4,9-1,2-3,5-1,6,2,2,5-2,7-1,2,0,3,3,4,3,2,0,3-2,4-3s1-3,2-4c2-1,5-2,7-2s2,3,4,4c1,1,3,1,4,2,2,2,1,5,3,7s6,2,7,3c2,2,2,5,3,7,1,3,2,6,3,7s3,1,5,0c1,0,3-1,5-2,1-1,2-1,2-2,1-1,0-3,0-4,1-1,2-1,3-1,2,0,6,0,6,2,1,2-3,4-4,6,0,2,1,4,2,5,3,4,7,8,12,10,3,2,8,2,11,4s6,5,8,7c2,3,3,6,6,8,3,3,8,3,11,7,4,3,4,9,7,13,8,11,19,5,11,18,0,1-2,2-3,3-2,1-3,1-4,2-1,2-2,3-2,5s-1,5,0,8c0,2,2,4,3,5,2,1,3,1,5,0,1,0,2-2,3-3,3-1,6-2,8-3,3-2,7-4,9-7,2-2,2-5,2-8,1-2,1-4,1-6,1-2,2-4,2-6,2-4,5-8,5-12,1-2-2-4-2-7,0-2,2-3,2-4,1-3,1-6,3-9,2-4,6-9,9-13,2-2,5-2,6-3,2-1,3-2,4-4s0-5,1-8,4-5,5-8c1-2,3-3,3-6,0-1-2-2-2-3-2-2-3-4-4-7,0-1-1-2,0-3,3,0,6,0,8,2,3,3,2,7,4,10,2,2,4,3,5,3,2,0,1-2,1-3,1-1,0-4,1-3,2,0,2,3,4,4,1,0,2-3,3-2s1,3,0,5c-1,1-5,0-6,2-1,1,1,4,0,6s-3,3-5,6c-1,1,0,3-2,4-3,2-8,0-10,3s2,8,1,11c-1,2-5,1-7,2s-3,3-4,4c-3,3-8,5-11,8-1,2-1,5,0,7,2,2,6,3,8,1,2,0,2-4,4-6s5-4,7-6c4-2,7-4,10-7,3-2,4-5,6-7,3-3,6-3,8-5,3-4,5-8,7-13,2-2,4-5,4-8,2-4,2-8,3-12,0-1-1-3,0-4,1-2,4-2,5-4,1-1,1-3,2-4,2-3,5-3,6-6,1-2-2-5-2-7,0-1,0-3,1-3,2,0,4,2,7,2,2-1,3-4,4-5,2-3,4-5,6-7,4-2,8-2,12-4,2-2,4-5,6-8,1-2,3-4,4-6,1-4,0-8,1-11,1-5,4-9,4-14,1-3-2-4-2-7,1-3,5-6,5-10,0-2-3-4-3-6-1-4-1-8-1-12s0-7,1-11c0-5,1-9,3-14,1-3,6-4,6-8,0-2-4-3-6-5v-3c1-1,2-2,3-3,4,0,8,7,12,6,6-1,5-10,8-14,4-4,8-6,13-9,5-4,11-7,17-11,3-2,6-5,9-7,2-2,4-4,7-5,3-2,7-3,11-5,3-2,6-6,10-6,4-1,9,2,13,2s9,0,12-2c4-2,5-7,8-9,3-3,8-3,11-6,2-2,1-5,3-8,1-2,2-4,4-5,3,0,6,2,9,3,2,0,5,2,8,2,2,0,4-4,7-5,2,0,5,0,7,1s2,4,4,6c1,1,3,2,5,2,5-1,11-1,15-4,2-1,1-5,3-6,2,0,3,4,5,5,3,1,8,1,11,2s4,5,6,4c5-1,10-4,13-8,2-3,0-8,2-10,2-3,6-3,8-5,7-3,14-5,19-10,2-1,1-4,1-6s-3-2-3-3c0-2,2-5,4-5s4,5,5,3c2-2-1-6,0-10,0-1,1-3,2-5,3-4,6-8,10-12,3-4,8-8,11-12,1-2,1-5,3-7,4-5,9-11,13-16,5-5,10-9,13-14s3-11,4-17c1-4,0-9,1-14s2-10,5-14c2-6,6-11,9-16,3-3,7-6,8-10,2-4,0-9,1-13,1-9,4-17,7-24,2-7,6-13,8-19,1-2,3-4,3-6,0-4-2-7-2-11,0-3,3-6,3-9-1-5-5-9-5-14,0-4,2-9,4-13,1-7,5-13,5-19s-6-10-6-16c0-5,4-10,6-15,1-3,1-6,2-8,2-2,6-3,6-5,0-3-4-5-4-8,0-2,3-5,5-4,4,2,2,9,6,11,3,2,8-1,11-3s5-6,8-8c5-5,11-7,15-12,4-4,6-10,9-15v-1c0-3,1-7,2-10s4-6,5-10c1-2-1-4,0-5,2-1,4,3,5,2,3-2,3-7,5-10,3-3,7-6,11-9,6-6,12-12,19-17,3-2,6-4,9-7,2-2,1-6,3-8,2-1,5,0,7-1,2-2,4-4,5-7,1-1-1-4,0-6,4-5,10-8,14-13,4-4,8-9,10-14,4-6,5-12,8-19s7-14,9-22c1-8,1-16,0-23,0-10,0-19-1-29-1-5-2-11-3-17-1-4-1-8-2-13-3-8-6-16-10-23-2-3-5-5-8-6-8-3-16-4-24-5-6-1-12,2-18,1-7-2-13-7-19-10-7-5-12-10-18-14-7-5-13-10-19-16-6-5-11-11-17-17-5-4-10-9-16-12-6-4-14-4-21-7-4-3-8-7-13-9-6-2-12-2-18-3-6,0-13,1-19,2-4,1-8,5-13,5-5-1-9-6-14-8-3-1-7-3-11-3-4-1-9,2-13,1-2-1-3-5-5-5-4-2-9,0-13-1-2-1-2-5-4-6-5-2-11-2-16-4-1,0-2-3-4-3-2,1-1,6-3,7-3,1-6-1-8-3-2-1-1-6-3-5-3,2-2,7-4,10-2,1-4,1-6,0-2,0-4-2-5-3-2-1-4-2-6-1-2,3-2,8-3,12-2,3-3,6-6,9-2,2-6,3-8,6-2,4-1,17-3,13-2-5,0-11,2-16,0-2,2-5,3-8,1-2,0-4,1-6,1-3,3-6,5-9,1-2,3-4,5-6,1-1,4-2,4-3-1-2-3-4-5-4-2,1-4,6-6,4-2-1,1-4,2-6s4-3,4-5c0-3-2-5-4-7-1-1-4,0-5-1-2-3-3-7-5-9-1-1-3,0-4-1-2,0-3-3-5-2-3,0-5,2-6,5s4,8,1,9c-4,1-6-5-7-8s4-5,4-8c-1-2-3-3-6-3-1-1-1,2-2,2-2-1,0-5-2-5-3-1-6,2-9,2s-6-4-9-4c-1,0-2,4-3,3-2-2,0-7-2-8-3-1-6,5-9,4s-3-8-7-10c-5-3-10-3-16-4-5-2-10-5-15-6-2,0,3,5,1,4-4,0-8-5-12-6-3,0-4,4-5,4-3,2-6,1-8,3-3,1-4,4-6,6-3,3-6,6-9,9-2,2-6,4-6,6,0,5,9,8,6,11-2,3-7-4-10-4-4,1-6,6-9,8-2,1-3,0-4,0-4,0-8-1-12,1-4,1-7,6-11,8-3,1-6,0-9,0-4,0-8-3-12-2-3,2-2,10-6,9-6,0-7-10-12-11-3-1-3,7-6,8s-5-3-5-6c1-3,7-3,9-7,1-3,1-8,0-11s-2-7-5-7c-8,0-15,5-23,8-7,2-15,6-22,7-5,1-10,3-14,0-2-1,3-5,5-6,5-2,12,1,17-2,4-4,4-10,6-16,0-1,0-3,1-4,4-7,8-15,13-21,6-8,12-14,19-21,3-3,8-5,11-9,6-5,10-11,14-17,4-5,9-11,10-18,0-4-3-8-6-10-6-3-13,1-18-2-4-2-5-7-6-11-1-2,1-4,1-7-1-4-3-8-5-12-3-6-6-11-8-18-1-6-1-12-2-18-1-4,0-9-2-13-3-6-7-15-14-16-4,0,5,10,3,14-2,3-5-7-8-6-7,5-11,14-16,21-5,9-10,18-15,27-2,5-4,9-6,13s-2,9-5,11c-4,3-10,5-15,4s-6-7-10-8c-2-1-4,3-6,3s-4-4-6-4c-6,1-9,8-14,8-5,1-8-4-13-6-1,0-3,3-4,2-5-3-8-12-14-12-8-1-16,8-24,9-4,0-7-7-10-6-5,1-9,5-10,10,0,5,7,9,7,14,0,2-4,4-6,3-5-2-8-9-13-10-2-1,2,5,0,7s-7,4-11,4c-3,0-6-4-10-4-5-1-12-2-17,1-2,1,3,6,0,7-5,3-13,0-19,2-2,0,2,4,0,5-3,1-6-3-8-2-6,3-7,11-13,13-4,2-10-1-14-3-6-3-12-7-16-12-3-3-4-7-5-11,0-4,4-8,3-12-1-3-7-4-8-7-2-5-3-12-3-17,1-3,5-4,6-6,2-3-1-6,1-9,3-4,10-4,11-8,2-6-2-11-3-17-1-4-3-8-4-11-2-2-3-5-5-6s-6,1-8-1c-4-4-6-9-6-14-1-4,4-7,3-11-1-2-5-4-8-4-3,1-4,5-7,7-2,1-4,1-6,0-3-1-5-7-6-5-2,3,3,6,3,9,1,3,1,6-1,8-3,4-7,7-12,9-5,3-12,3-17,6-3,2-3,7-6,9-4,2-10,2-14,3-6,1-11-2-16,0s-9,5-12,9c-1,3,2,6,1,9-1,2-4,1-5,0-3-2-4-7-7-8-3-2-7,0-10-1-6-1-12-3-17-6-4-2-5-10-10-10s-10,6-13,11c-2,3-1,9,2,11,4,3,11-2,15,2,3,2,2,7,1,11-1,3-3,5-5,8-1,3-3,6-3,10,0,5,1,9,2,14,1,3,2,5,4,7,1,2,4,2,6,2,2,1,5,4,8,3,2,0,4-4,6-4,4,1,9,6,6,8-5,5-14,0-19,5-7,5-5,18-12,23-3,3-3-8-7-8s-5,7-8,10c-7,6-14,10-20,15-3,3-4,11-8,10-5,0-2-9-6-12-3-2-7-3-10,0s0,13-5,13c-7,1-11-7-17-11-5-3-11-5-14-10-2-2,1-6,0-9-4-8-7-19-15-22-6-2-7,12-13,13-4,1-5-7-9-9-3-1-7-1-8,2s7,9,3,10c-13,5-27,2-41,2-5,0-13-4-15,1-3,8-1,18,3,27,1,3,7,0,10,0,3-1,6-3,8-1,3,2,2,7,2,10-1,3-3,7-6,7s-5-7-9-7c-5,1-12,4-14,9-3,8-1,17,0,25,1,3,3,5,6,8,2,1,6,1,7,4,3,3,2,7,4,11,1,3,4,5,4,8,0,5-3,9-3,14,0,4,2,9,1,13-3,22-7,45-12,67-2,9-2,20-8,26-3,3-8-8-12-7-6,1-8,9-14,10-3,1-6-5-9-4-3,0-4,4-7,5-3,2-7-1-10,0-6,3-10,8-15,12s-11,6-15,11c-5,5-8,12-10,18-2,5-3,10-4,15,0,4,1,8,0,12-1,5-1,11-5,15-2,4-9,2-11,6-3,5-2,11-2,16,0,3,2,7,0,9-2,3-7,1-8,4-1,2,1,5,2,7,2,2,5,2,7,4s1,6,2,8c1,3,2,6,4,8z"
+                    fill="rgba(11,61,107,0.55)" stroke="rgba(255,255,255,0.32)" stroke-width="1.5"
+                    stroke-linejoin="round" vector-effect="non-scaling-stroke" />
+                  <!-- Overlay de profundidade na mesma silhueta -->
+                  <path
+                    d="M-672,-138c2,4,6,6,9,9,2,3,4,7,6,11s6,7,6,11c0,3-5,5-6,8,0,2,0,4,1,7l3,3c4,0,5-4,8-6h5c2,1,2,5,4,5,1,1,3-3,5-2,2,0,4,1,5,3,3,4,2,9,5,13,2,3,6,4,10,5,3,0,7-1,9-3,3-3,3-7,5-9s5-1,7-2,4-3,7-4c1-1,4-4,5-3,3,4,2,9,2,13,1,12-3,25,1,36,1,4,7,3,11,2s7-5,11-5c5-1,10,0,14,0,6,1,13,1,19,1,7,1,14,2,21,0,3,0,6-4,7-7,2-2,0-6,2-8,1-1,5-1,7-1s3,3,4,2c4-1,7-4,9-6,3-3,4-8,7-10,2-1,4,3,5,2,3-2,4-6,6-9,3-3,7-6,10-7,5-2,11-3,16-4,3,0,5-1,8-1s6,1,9,1c2,0,4-2,6-2,1-1,3-3,4-1,3,3,4,9,4,13s-4,6-4,9c-1,4,0,8,1,11s4,4,5,7,1,6,0,9c-1,2-5,1-5,3,0,4,2,7,3,10,2,4,2,8,5,12,3,5,7,10,12,13,4,3,9,3,13,5,2,2,1,7,4,9s7,2,10,1c4,0,7-1,10-2,1,0,2-2,4-2,4,1,9,4,13,6,3,2,4,6,7,8,3,1,6-1,8,1,4,1,6,6,10,7,3,2,7,3,10,3,2,1,5-1,7,1,4,3,6,9,11,12,3,2,8,3,13,2,2-1,2-6,5-6,4-1,7,2,11,3,3,2,6,4,9,6,4,2,10,3,12,7,2,3-2,8-1,12,1,5,5,9,7,14,1,3,0,8,0,12,0,1,1,2,0,3-3,1-6-1-8,0-1,1,0,4,1,5,1,2,4,3,5,6,2,4,3,9,3,14,1,4,0,8,1,11,1,4,4,8,7,9,8,2,17,0,26,0,8,1,16,1,24,1,2,1,7-2,7,1,1,3-5,5-6,9,0,3,3,5,4,7,2,4,2,9,4,12s5,4,8,6c3,3,5,6,8,9s6,7,8,11,2,8,2,13c0,4-1,8-3,12-1,5-4,10-6,15-1,6-3,11-5,16-1,3-4,7-3,10s5,3,7,4c1,2,2,4,1,5-1,2-4,0-6,2s-3,6-2,9c0,4,3,7,4,11,1,2,2,4,3,7,1,2,3,4,3,7,1,4,1,8,0,13,0,2-1,4-2,7,0,2,1,5,1,7,0,3-2,6-2,9s0,7,3,9c3,1,6-3,9-3s7,1,11,1c3,1,7,0,10,1,3,0,5,2,7,2,2,1,5,2,7,2,2-1,2-7,5-6,3,0,3,5,6,7,4,2,10,0,14,2,3,3,5,9,6,13,3,8,3,15,5,23,1,4,1,10,5,13,2,2,7,2,11,3,5,0,10-2,14-1s10,3,11,7c2,5-4,10-4,15,0,4,3,7,2,11,0,3-3,6-3,10-1,2,3,3,2,5s-4,1-5,3-1,5,0,8c0,3,0,6,3,7,4,1,10-4,14-2,5,3,7,10,9,15,2,3,3,7,3,10-1,2-4,3-4,5-1,3,1,6,1,10,0,3-1,6-2,9-2,4-3,7-6,10-2,2-4,3-7,4s-7,0-11,1c-4,2-7,6-10,8s-5,5-8,7c-4,3-9,5-14,8-2,2-3,5-6,8-2,3-5,6-7,9-2,2-3,4-5,6-3,3-6,4-9,6-2,3-3,7-5,9-2,3-5,4-7,7s-2,8-5,11-8,2-10,5c-3,2-3,6-4,9-1,2-3,5-1,6,2,2,5-2,7-1,2,0,3,3,4,3,2,0,3-2,4-3s1-3,2-4c2-1,5-2,7-2s2,3,4,4c1,1,3,1,4,2,2,2,1,5,3,7s6,2,7,3c2,2,2,5,3,7,1,3,2,6,3,7s3,1,5,0c1,0,3-1,5-2,1-1,2-1,2-2,1-1,0-3,0-4,1-1,2-1,3-1,2,0,6,0,6,2,1,2-3,4-4,6,0,2,1,4,2,5,3,4,7,8,12,10,3,2,8,2,11,4s6,5,8,7c2,3,3,6,6,8,3,3,8,3,11,7,4,3,4,9,7,13,8,11,19,5,11,18,0,1-2,2-3,3-2,1-3,1-4,2-1,2-2,3-2,5s-1,5,0,8c0,2,2,4,3,5,2,1,3,1,5,0,1,0,2-2,3-3,3-1,6-2,8-3,3-2,7-4,9-7,2-2,2-5,2-8,1-2,1-4,1-6,1-2,2-4,2-6,2-4,5-8,5-12,1-2-2-4-2-7,0-2,2-3,2-4,1-3,1-6,3-9,2-4,6-9,9-13,2-2,5-2,6-3,2-1,3-2,4-4s0-5,1-8,4-5,5-8c1-2,3-3,3-6,0-1-2-2-2-3-2-2-3-4-4-7,0-1-1-2,0-3,3,0,6,0,8,2,3,3,2,7,4,10,2,2,4,3,5,3,2,0,1-2,1-3,1-1,0-4,1-3,2,0,2,3,4,4,1,0,2-3,3-2s1,3,0,5c-1,1-5,0-6,2-1,1,1,4,0,6s-3,3-5,6c-1,1,0,3-2,4-3,2-8,0-10,3s2,8,1,11c-1,2-5,1-7,2s-3,3-4,4c-3,3-8,5-11,8-1,2-1,5,0,7,2,2,6,3,8,1,2,0,2-4,4-6s5-4,7-6c4-2,7-4,10-7,3-2,4-5,6-7,3-3,6-3,8-5,3-4,5-8,7-13,2-2,4-5,4-8,2-4,2-8,3-12,0-1-1-3,0-4,1-2,4-2,5-4,1-1,1-3,2-4,2-3,5-3,6-6,1-2-2-5-2-7,0-1,0-3,1-3,2,0,4,2,7,2,2-1,3-4,4-5,2-3,4-5,6-7,4-2,8-2,12-4,2-2,4-5,6-8,1-2,3-4,4-6,1-4,0-8,1-11,1-5,4-9,4-14,1-3-2-4-2-7,1-3,5-6,5-10,0-2-3-4-3-6-1-4-1-8-1-12s0-7,1-11c0-5,1-9,3-14,1-3,6-4,6-8,0-2-4-3-6-5v-3c1-1,2-2,3-3,4,0,8,7,12,6,6-1,5-10,8-14,4-4,8-6,13-9,5-4,11-7,17-11,3-2,6-5,9-7,2-2,4-4,7-5,3-2,7-3,11-5,3-2,6-6,10-6,4-1,9,2,13,2s9,0,12-2c4-2,5-7,8-9,3-3,8-3,11-6,2-2,1-5,3-8,1-2,2-4,4-5,3,0,6,2,9,3,2,0,5,2,8,2,2,0,4-4,7-5,2,0,5,0,7,1s2,4,4,6c1,1,3,2,5,2,5-1,11-1,15-4,2-1,1-5,3-6,2,0,3,4,5,5,3,1,8,1,11,2s4,5,6,4c5-1,10-4,13-8,2-3,0-8,2-10,2-3,6-3,8-5,7-3,14-5,19-10,2-1,1-4,1-6s-3-2-3-3c0-2,2-5,4-5s4,5,5,3c2-2-1-6,0-10,0-1,1-3,2-5,3-4,6-8,10-12,3-4,8-8,11-12,1-2,1-5,3-7,4-5,9-11,13-16,5-5,10-9,13-14s3-11,4-17c1-4,0-9,1-14s2-10,5-14c2-6,6-11,9-16,3-3,7-6,8-10,2-4,0-9,1-13,1-9,4-17,7-24,2-7,6-13,8-19,1-2,3-4,3-6,0-4-2-7-2-11,0-3,3-6,3-9-1-5-5-9-5-14,0-4,2-9,4-13,1-7,5-13,5-19s-6-10-6-16c0-5,4-10,6-15,1-3,1-6,2-8,2-2,6-3,6-5,0-3-4-5-4-8,0-2,3-5,5-4,4,2,2,9,6,11,3,2,8-1,11-3s5-6,8-8c5-5,11-7,15-12,4-4,6-10,9-15v-1c0-3,1-7,2-10s4-6,5-10c1-2-1-4,0-5,2-1,4,3,5,2,3-2,3-7,5-10,3-3,7-6,11-9,6-6,12-12,19-17,3-2,6-4,9-7,2-2,1-6,3-8,2-1,5,0,7-1,2-2,4-4,5-7,1-1-1-4,0-6,4-5,10-8,14-13,4-4,8-9,10-14,4-6,5-12,8-19s7-14,9-22c1-8,1-16,0-23,0-10,0-19-1-29-1-5-2-11-3-17-1-4-1-8-2-13-3-8-6-16-10-23-2-3-5-5-8-6-8-3-16-4-24-5-6-1-12,2-18,1-7-2-13-7-19-10-7-5-12-10-18-14-7-5-13-10-19-16-6-5-11-11-17-17-5-4-10-9-16-12-6-4-14-4-21-7-4-3-8-7-13-9-6-2-12-2-18-3-6,0-13,1-19,2-4,1-8,5-13,5-5-1-9-6-14-8-3-1-7-3-11-3-4-1-9,2-13,1-2-1-3-5-5-5-4-2-9,0-13-1-2-1-2-5-4-6-5-2-11-2-16-4-1,0-2-3-4-3-2,1-1,6-3,7-3,1-6-1-8-3-2-1-1-6-3-5-3,2-2,7-4,10-2,1-4,1-6,0-2,0-4-2-5-3-2-1-4-2-6-1-2,3-2,8-3,12-2,3-3,6-6,9-2,2-6,3-8,6-2,4-1,17-3,13-2-5,0-11,2-16,0-2,2-5,3-8,1-2,0-4,1-6,1-3,3-6,5-9,1-2,3-4,5-6,1-1,4-2,4-3-1-2-3-4-5-4-2,1-4,6-6,4-2-1,1-4,2-6s4-3,4-5c0-3-2-5-4-7-1-1-4,0-5-1-2-3-3-7-5-9-1-1-3,0-4-1-2,0-3-3-5-2-3,0-5,2-6,5s4,8,1,9c-4,1-6-5-7-8s4-5,4-8c-1-2-3-3-6-3-1-1-1,2-2,2-2-1,0-5-2-5-3-1-6,2-9,2s-6-4-9-4c-1,0-2,4-3,3-2-2,0-7-2-8-3-1-6,5-9,4s-3-8-7-10c-5-3-10-3-16-4-5-2-10-5-15-6-2,0,3,5,1,4-4,0-8-5-12-6-3,0-4,4-5,4-3,2-6,1-8,3-3,1-4,4-6,6-3,3-6,6-9,9-2,2-6,4-6,6,0,5,9,8,6,11-2,3-7-4-10-4-4,1-6,6-9,8-2,1-3,0-4,0-4,0-8-1-12,1-4,1-7,6-11,8-3,1-6,0-9,0-4,0-8-3-12-2-3,2-2,10-6,9-6,0-7-10-12-11-3-1-3,7-6,8s-5-3-5-6c1-3,7-3,9-7,1-3,1-8,0-11s-2-7-5-7c-8,0-15,5-23,8-7,2-15,6-22,7-5,1-10,3-14,0-2-1,3-5,5-6,5-2,12,1,17-2,4-4,4-10,6-16,0-1,0-3,1-4,4-7,8-15,13-21,6-8,12-14,19-21,3-3,8-5,11-9,6-5,10-11,14-17,4-5,9-11,10-18,0-4-3-8-6-10-6-3-13,1-18-2-4-2-5-7-6-11-1-2,1-4,1-7-1-4-3-8-5-12-3-6-6-11-8-18-1-6-1-12-2-18-1-4,0-9-2-13-3-6-7-15-14-16-4,0,5,10,3,14-2,3-5-7-8-6-7,5-11,14-16,21-5,9-10,18-15,27-2,5-4,9-6,13s-2,9-5,11c-4,3-10,5-15,4s-6-7-10-8c-2-1-4,3-6,3s-4-4-6-4c-6,1-9,8-14,8-5,1-8-4-13-6-1,0-3,3-4,2-5-3-8-12-14-12-8-1-16,8-24,9-4,0-7-7-10-6-5,1-9,5-10,10,0,5,7,9,7,14,0,2-4,4-6,3-5-2-8-9-13-10-2-1,2,5,0,7s-7,4-11,4c-3,0-6-4-10-4-5-1-12-2-17,1-2,1,3,6,0,7-5,3-13,0-19,2-2,0,2,4,0,5-3,1-6-3-8-2-6,3-7,11-13,13-4,2-10-1-14-3-6-3-12-7-16-12-3-3-4-7-5-11,0-4,4-8,3-12-1-3-7-4-8-7-2-5-3-12-3-17,1-3,5-4,6-6,2-3-1-6,1-9,3-4,10-4,11-8,2-6-2-11-3-17-1-4-3-8-4-11-2-2-3-5-5-6s-6,1-8-1c-4-4-6-9-6-14-1-4,4-7,3-11-1-2-5-4-8-4-3,1-4,5-7,7-2,1-4,1-6,0-3-1-5-7-6-5-2,3,3,6,3,9,1,3,1,6-1,8-3,4-7,7-12,9-5,3-12,3-17,6-3,2-3,7-6,9-4,2-10,2-14,3-6,1-11-2-16,0s-9,5-12,9c-1,3,2,6,1,9-1,2-4,1-5,0-3-2-4-7-7-8-3-2-7,0-10-1-6-1-12-3-17-6-4-2-5-10-10-10s-10,6-13,11c-2,3-1,9,2,11,4,3,11-2,15,2,3,2,2,7,1,11-1,3-3,5-5,8-1,3-3,6-3,10,0,5,1,9,2,14,1,3,2,5,4,7,1,2,4,2,6,2,2,1,5,4,8,3,2,0,4-4,6-4,4,1,9,6,6,8-5,5-14,0-19,5-7,5-5,18-12,23-3,3-3-8-7-8s-5,7-8,10c-7,6-14,10-20,15-3,3-4,11-8,10-5,0-2-9-6-12-3-2-7-3-10,0s0,13-5,13c-7,1-11-7-17-11-5-3-11-5-14-10-2-2,1-6,0-9-4-8-7-19-15-22-6-2-7,12-13,13-4,1-5-7-9-9-3-1-7-1-8,2s7,9,3,10c-13,5-27,2-41,2-5,0-13-4-15,1-3,8-1,18,3,27,1,3,7,0,10,0,3-1,6-3,8-1,3,2,2,7,2,10-1,3-3,7-6,7s-5-7-9-7c-5,1-12,4-14,9-3,8-1,17,0,25,1,3,3,5,6,8,2,1,6,1,7,4,3,3,2,7,4,11,1,3,4,5,4,8,0,5-3,9-3,14,0,4,2,9,1,13-3,22-7,45-12,67-2,9-2,20-8,26-3,3-8-8-12-7-6,1-8,9-14,10-3,1-6-5-9-4-3,0-4,4-7,5-3,2-7-1-10,0-6,3-10,8-15,12s-11,6-15,11c-5,5-8,12-10,18-2,5-3,10-4,15,0,4,1,8,0,12-1,5-1,11-5,15-2,4-9,2-11,6-3,5-2,11-2,16,0,3,2,7,0,9-2,3-7,1-8,4-1,2,1,5,2,7,2,2,5,2,7,4s1,6,2,8c1,3,2,6,4,8z"
+                    fill="url(#brazilDepth)" pointer-events="none" />
+                </svg>
+
+                <!-- Pin Quixadá-CE — nordeste, ~5°S 39°W (labels à esquerda, longe da borda) -->
+                <g transform="translate(340, 120)" class="stage-pin-quixada">
+                  <circle r="18" fill="#E65100" opacity="0.18" />
+                  <circle r="11" fill="#E65100" opacity="0.4" />
+                  <circle r="6" fill="#E65100" />
+                  <text x="-14" y="-6" font-family="Inter" font-size="11" font-weight="700" fill="#fff"
+                    text-anchor="end">
+                    QUIXADÁ-CE
+                  </text>
+                  <text x="-14" y="9" font-family="JetBrains Mono" font-size="10" fill="#E65100" text-anchor="end">
+                    78 · ESTIAGEM
+                  </text>
+                </g>
+
+                <!-- Pin Lajeado-RS — sul, ~29.5°S 52°W -->
+                <g transform="translate(212, 340)" class="stage-pin-lajeado">
+                  <circle r="20" fill="#B71C1C" opacity="0.2" />
+                  <circle r="12" fill="#B71C1C" opacity="0.45" />
+                  <circle r="6" fill="#B71C1C" />
+                  <text x="14" y="-6" font-family="Inter" font-size="11" font-weight="700" fill="#fff">
+                    LAJEADO-RS
+                  </text>
+                  <text x="14" y="9" font-family="JetBrains Mono" font-size="10" fill="#B71C1C">
+                    82 · ENCHENTE
+                  </text>
+                </g>
+              </svg>
+            </div>
+          </div>
+        </div>
+
+        <!-- Progress dots -->
+        <div data-stage-dots class="absolute bottom-8 left-1/2 -translate-x-1/2 flex gap-3 z-10" aria-hidden="true">
+          <span data-stage-dot="0" class="block w-12 h-1 rounded-full bg-white/15 overflow-hidden">
+            <span class="block h-full bg-wave-blue origin-left" style="transform: scaleX(0);"></span>
+          </span>
+          <span data-stage-dot="1" class="block w-12 h-1 rounded-full bg-white/15 overflow-hidden">
+            <span class="block h-full bg-wave-blue origin-left" style="transform: scaleX(0);"></span>
+          </span>
+          <span data-stage-dot="2" class="block w-12 h-1 rounded-full bg-white/15 overflow-hidden">
+            <span class="block h-full bg-wave-blue origin-left" style="transform: scaleX(0);"></span>
+          </span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Quanto custa não estar preparado (cinematic) -->
+    <section data-cinematic="cost"
+      class="relative bg-ocean-deep/40 py-24 px-margin-mobile md:px-margin-desktop overflow-hidden">
+      <div class="absolute inset-0 sinusoidal-pattern opacity-20 pointer-events-none" aria-hidden="true"></div>
+      <div class="relative z-10 max-w-max-width mx-auto">
+        <div class="mb-12 max-w-2xl">
+          <p data-cost-label class="font-label-caps text-label-caps text-wave-blue mb-3">
+            HISTÓRICO · MUNICÍPIOS-PILOTO
+          </p>
+          <h2 data-cost-title class="font-headline-h1-mobile md:text-headline-h1 text-surface-bright tracking-tight">
+            O custo da não-antecipação
+          </h2>
+        </div>
+
+        <div data-cost-grid class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
+          <div data-cost-stat
+            class="bg-surface-container-lowest/5 border border-surface-variant/20 rounded-lg p-8 backdrop-blur-sm">
+            <p class="font-data-tabular text-[56px] leading-none text-alert-critical font-bold">+80,9%</p>
+            <p class="font-body-md text-surface-bright mt-4 font-bold">
+              Mais chuva em Lajeado-RS na janela crítica do trigo
+            </p>
+            <p class="font-body-md text-on-primary-container mt-2 text-[14px]">
+              <span class="font-data-tabular text-surface-bright">923 mm</span> versus
+              <span class="font-data-tabular">510 mm</span> em anos neutros (set–nov). Saturação
+              severa do solo e cheias do Taquari.
+            </p>
+          </div>
+          <div data-cost-stat
+            class="bg-surface-container-lowest/5 border border-surface-variant/20 rounded-lg p-8 backdrop-blur-sm">
+            <p class="font-data-tabular text-[56px] leading-none text-alert-danger font-bold">−30%</p>
+            <p class="font-body-md text-surface-bright mt-4 font-bold">
+              Menos chuva mediana em Quixadá-CE durante El Niño
+            </p>
+            <p class="font-body-md text-on-primary-container mt-2 text-[14px]">
+              <span class="font-data-tabular text-surface-bright">16,4 mm/mês</span> versus
+              <span class="font-data-tabular">23,6 mm/mês</span> em anos neutros. Em janelas críticas
+              de plantio, a perda do milho de sequeiro chega à totalidade.
+            </p>
+          </div>
+        </div>
+
+        <!-- Quote Sr. João -->
+        <figure data-cost-stat data-cost-quote class="relative border-l-2 border-wave-blue/60 pl-6 md:pl-8 max-w-3xl">
+          <blockquote class="font-body-md text-[18px] md:text-[20px] leading-relaxed text-surface-bright italic">
+            "Plantei o milho em fevereiro de 2016 como todo ano. Esperei março, esperei abril, a
+            chuva não veio direito. Em julho a roça era pó. Perdi os dois hectares. Se eu tivesse a
+            certeza da seca que ia chegar tão forte, tinha trocado pra sorgo a tempo. Hoje tem
+            ferramenta pra isso."
+          </blockquote>
+          <figcaption class="mt-5 flex items-center gap-3">
+            <div
+              class="w-10 h-10 rounded-full bg-gradient-to-br from-alert-success/30 to-wave-blue/30 flex items-center justify-center shrink-0 font-data-tabular font-bold text-surface-bright"
+              aria-hidden="true">SJ</div>
+            <div>
+              <p class="font-body-md font-bold text-surface-bright">Sr. João</p>
+              <p class="font-data-compact text-data-compact text-on-primary-container">
+                Agricultor familiar · Quixadá-CE
+              </p>
+            </div>
+          </figcaption>
+          <p class="font-data-compact text-data-compact text-on-primary-fixed-variant mt-4 max-w-xl">
+            Persona representativa baseada nos eventos El Niño Forte de 1997-98 e 2015-16,
+            documentados pela Defesa Civil S2iD como períodos de calamidade decretada no município.
+          </p>
+        </figure>
+      </div>
+    </section>
+
+    <!-- CTA Selection — bg-surface cobre o vídeo edge-to-edge -->
+    <section class="bg-surface py-24 px-margin-mobile md:px-margin-desktop">
+      <div class="max-w-max-width mx-auto">
+        <div class="mb-12 text-center">
+          <h2 class="font-headline-h1-mobile md:text-headline-h1 text-ocean-deep tracking-tight">
+            Conheça as duas faces do projeto piloto
+          </h2>
+        </div>
+        <div class="grid md:grid-cols-2 gap-8">
+          <!-- Card: Agricultor -->
+          <a href="/agricultor.html" data-tilt class="group relative bg-white border border-neutral-line rounded-xl p-8 shadow-sm
+                   transition-[box-shadow,border-color,transform] duration-200 ease-out
+                   hover:shadow-xl hover:border-wave-blue
+                   focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-wave-blue
+                   overflow-hidden flex flex-col justify-between min-h-[400px]">
+            <div class="absolute top-0 right-0 w-32 h-32 bg-alert-success/5 rounded-bl-full -mr-16 -mt-16
+                     transition-[transform] duration-300 ease-out group-hover:scale-150" aria-hidden="true"></div>
+            <div class="relative z-10">
+              <div class="flex items-center gap-3 mb-6">
+                <div class="p-3 bg-alert-success/10 rounded-lg">
+                  <span class="material-symbols-outlined text-alert-success">agriculture</span>
+                </div>
+                <h3 class="font-subtitle-h2 text-subtitle-h2 text-ocean-deep">Sou agricultor</h3>
+              </div>
+              <p class="text-on-surface-variant font-body-md mb-8">
+                Veja o risco da sua próxima safra com 3 a 6 meses de antecedência. Receba sugestão
+                de cultivar e alerta das janelas críticas de plantio e colheita.
+              </p>
+              <div class="flex items-center gap-4 p-4 bg-surface rounded-lg border border-neutral-line">
+                <div
+                  class="w-12 h-12 rounded-full bg-gradient-to-br from-alert-success/30 to-wave-blue/30 flex items-center justify-center shrink-0 font-data-tabular font-bold text-ocean-deep"
+                  aria-hidden="true">
+                  SJ
+                </div>
+                <div>
+                  <p class="font-body-md font-bold text-ocean-deep">Seu João</p>
+                  <p class="text-xs text-on-surface-variant">
+                    Quixadá, CE · <span class="text-alert-success">Risco Baixo</span>
+                  </p>
+                </div>
+              </div>
+            </div>
+            <span class="mt-8 w-full py-4 bg-ocean-deep text-white rounded-lg font-bold flex items-center justify-center gap-2
+                     transition-[background-color] duration-200 ease-out group-hover:bg-wave-blue">
+              Saber se devo plantar
+              <span class="material-symbols-outlined">arrow_forward</span>
+            </span>
+          </a>
+
+          <!-- Card: Gestor -->
+          <a href="/gestor.html" data-tilt class="group relative bg-ocean-deep border border-neutral-line rounded-xl p-8 shadow-sm
+                   transition-[box-shadow,border-color,transform] duration-200 ease-out
+                   hover:shadow-xl hover:border-secondary-container
+                   focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-secondary-container
+                   overflow-hidden flex flex-col justify-between min-h-[400px]">
+            <div class="absolute top-0 right-0 w-32 h-32 bg-secondary-container/10 rounded-bl-full -mr-16 -mt-16
+                     transition-[transform] duration-300 ease-out group-hover:scale-150" aria-hidden="true"></div>
+            <div class="relative z-10">
+              <div class="flex items-center gap-3 mb-6">
+                <div class="p-3 bg-secondary-container/10 rounded-lg">
+                  <span class="material-symbols-outlined text-secondary-container">dashboard</span>
+                </div>
+                <h3 class="font-subtitle-h2 text-subtitle-h2 text-surface-bright">
+                  Sou Defesa Civil
+                </h3>
+              </div>
+              <p class="text-on-primary-container font-body-md mb-8">
+                Veja o score de risco do município, projeção mensal e recomendações operacionais
+                alinhadas ao S2iD. Tempo de resposta preventiva de 3 meses para ativar contingência.
+              </p>
+              <div class="flex items-center gap-4 p-4 bg-white/5 rounded-lg border border-white/10 backdrop-blur">
+                <div class="p-2 bg-secondary-container rounded shrink-0">
+                  <span class="material-symbols-outlined text-ocean-deep">location_city</span>
+                </div>
+                <div>
+                  <p class="font-body-md font-bold text-surface-bright">
+                    Prefeitura · Dashboard técnico
+                  </p>
+                  <p class="text-xs text-on-primary-container">
+                    Lajeado, RS ·
+                    <span class="text-alert-warning">Monitoramento Ativo</span>
+                  </p>
+                </div>
+              </div>
+            </div>
+            <span class="mt-8 w-full py-4 bg-secondary-container text-ocean-deep rounded-lg font-bold flex items-center justify-center gap-2
+                     transition-[background-color] duration-200 ease-out group-hover:bg-surface-bright">
+              Saber se devo ativar contingência
+              <span class="material-symbols-outlined">analytics</span>
+            </span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Como funciona o S.ENSO -->
+    <section class="bg-surface-container py-20 border-y border-neutral-line overflow-hidden">
+      <div class="px-margin-mobile md:px-margin-desktop max-w-max-width mx-auto">
+        <div class="mb-10 max-w-2xl">
+          <p class="font-label-caps text-label-caps text-wave-blue mb-3">
+            METODOLOGIA
+          </p>
+          <h2 class="font-headline-h1-mobile md:text-headline-h1 text-ocean-deep tracking-tight">
+            Como funciona o <span class="brand-senso">S<span class="brand-dot">.</span>ENSO</span>
+          </h2>
+          <p class="font-body-md text-on-surface-variant mt-4">
+            Cruzamos <strong class="text-ocean-deep">cinco fontes públicas</strong> — duas do espaço
+            e três do chão — em um único score de risco municipal validado contra o histórico
+            real de decretos de emergência.
+          </p>
+        </div>
+
+        <!-- Split orbital × terrestre -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-10">
+          <!-- Orbital -->
+          <div class="bg-white p-7 rounded-lg border border-neutral-line shadow-sm">
+            <div class="flex items-center gap-3 mb-5">
+              <div class="p-2.5 bg-wave-blue/10 rounded-lg">
+                <span class="material-symbols-outlined text-wave-blue">satellite_alt</span>
+              </div>
+              <h3 class="font-subtitle-h2 text-[20px] text-ocean-deep">Dados orbitais</h3>
+            </div>
+            <p class="font-data-compact text-data-compact text-on-surface-variant mb-4 uppercase tracking-wider">
+              Satélites e bóias oceanográficas
+            </p>
+            <ul class="space-y-3 font-body-md text-[14px] text-on-surface-variant">
+              <li class="flex gap-3">
+                <span class="font-data-tabular text-wave-blue shrink-0">01</span>
+                <span><strong class="text-ocean-deep">NOAA / CPC</strong> — Anomalia de temperatura do
+                  Pacífico (índice ONI, região Niño 3.4)</span>
+              </li>
+              <li class="flex gap-3">
+                <span class="font-data-tabular text-wave-blue shrink-0">02</span>
+                <span><strong class="text-ocean-deep">NOAA / PSL</strong> — Anomalia de temperatura do
+                  Atlântico Tropical (índices AMM, TNA, TSA)</span>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Terrestre -->
+          <div class="bg-white p-7 rounded-lg border border-neutral-line shadow-sm">
+            <div class="flex items-center gap-3 mb-5">
+              <div class="p-2.5 bg-alert-success/10 rounded-lg">
+                <span class="material-symbols-outlined text-alert-success">landscape</span>
+              </div>
+              <h3 class="font-subtitle-h2 text-[20px] text-ocean-deep">Dados terrestres</h3>
+            </div>
+            <p class="font-data-compact text-data-compact text-on-surface-variant mb-4 uppercase tracking-wider">
+              Estações, censos e decretos oficiais
+            </p>
+            <ul class="space-y-3 font-body-md text-[14px] text-on-surface-variant">
+              <li class="flex gap-3">
+                <span class="font-data-tabular text-alert-success shrink-0">03</span>
+                <span><strong class="text-ocean-deep">INMET</strong> — Precipitação medida em estações
+                  automáticas (A325, A369, A840, A882)</span>
+              </li>
+              <li class="flex gap-3">
+                <span class="font-data-tabular text-alert-success shrink-0">04</span>
+                <span><strong class="text-ocean-deep">IBGE / PAM</strong> — Rendimento médio de grãos
+                  (milho-CE e trigo-RS, série 1974–2024)</span>
+              </li>
+              <li class="flex gap-3">
+                <span class="font-data-tabular text-alert-success shrink-0">05</span>
+                <span><strong class="text-ocean-deep">Defesa Civil / S2iD</strong> — Decretos federais
+                  de emergência e calamidade (validação histórica)</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Métricas de validação -->
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+          <div class="bg-white p-5 rounded-lg border border-neutral-line shadow-sm">
+            <span class="font-data-tabular text-2xl font-bold text-ocean-deep">3–6 meses</span>
+            <p class="text-xs font-label-caps mt-2 text-on-surface-variant">Antecedência operacional</p>
+          </div>
+          <div class="bg-white p-5 rounded-lg border border-neutral-line shadow-sm">
+            <span class="font-data-tabular text-2xl font-bold text-alert-success">85%</span>
+            <p class="text-xs font-label-caps mt-2 text-on-surface-variant">Acurácia Quixadá-CE
+              (F1 = 0,92)</p>
+          </div>
+          <div class="bg-white p-5 rounded-lg border border-neutral-line shadow-sm">
+            <span class="font-data-tabular text-2xl font-bold text-alert-warning">69%</span>
+            <p class="text-xs font-label-caps mt-2 text-on-surface-variant">Acurácia Lajeado-RS
+              (F1 = 0,82)</p>
+          </div>
+          <div class="bg-white p-5 rounded-lg border border-neutral-line shadow-sm">
+            <span class="font-data-tabular text-2xl font-bold text-wave-blue">0–100</span>
+            <p class="text-xs font-label-caps mt-2 text-on-surface-variant">
+              Score · Verde/Amarelo/Laranja/Vermelho
+            </p>
+          </div>
+        </div>
+
+        <p class="font-data-compact text-data-compact text-on-surface-variant mt-6 max-w-3xl">
+          Validação por <strong class="text-ocean-deep">TimeSeriesSplit</strong> (cross-validation
+          temporal) sobre 2013–2025, comparando o score <span class="brand-senso">S<span
+              class="brand-dot">.</span>ENSO</span> com decretos reais da S2iD. O modelo
+          linear (R² = 0,54 em Quixadá, 0,28 em Lajeado) supera Random Forest e XGBoost — sinal de
+          que a relação clima-precipitação é predominantemente linear no horizonte analisado.
+        </p>
+      </div>
+    </section>
+
+    <!-- Por que estes dois municípios? -->
+    <section class="bg-surface py-20 px-margin-mobile md:px-margin-desktop">
+      <div class="max-w-max-width mx-auto">
+        <div class="mb-10 max-w-2xl">
+          <p class="font-label-caps text-label-caps text-wave-blue mb-3">
+            ESCOPO DO PILOTO
+          </p>
+          <h2 class="font-headline-h1-mobile md:text-headline-h1 text-ocean-deep tracking-tight">
+            Dois extremos do mesmo sinal
+          </h2>
+          <p class="font-body-md text-on-surface-variant mt-4">
+            <span class="brand-senso">S<span class="brand-dot">.</span>ENSO</span> está em fase de validação
+            metodológica em
+            <strong class="text-ocean-deep">dois municípios opostos</strong>, escolhidos por
+            representarem teleconexões espelhadas do mesmo fenômeno:
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+          <div class="bg-white border border-neutral-line rounded-lg p-7 shadow-sm">
+            <div class="flex items-center gap-3 mb-4">
+              <div class="w-3 h-3 rounded-full bg-alert-danger"></div>
+              <p class="font-label-caps text-label-caps text-on-surface-variant">QUIXADÁ-CE</p>
+            </div>
+            <h3 class="font-subtitle-h2 text-[20px] text-ocean-deep mb-3">Risco de estiagem severa</h3>
+            <p class="font-body-md text-[14px] text-on-surface-variant">
+              Semi-árido nordestino. Agricultura familiar de sequeiro com cultura predominante de
+              <strong class="text-ocean-deep">milho</strong>. Vulnerável ao acoplamento Pacífico-Atlântico.
+            </p>
+          </div>
+          <div class="bg-white border border-neutral-line rounded-lg p-7 shadow-sm">
+            <div class="flex items-center gap-3 mb-4">
+              <div class="w-3 h-3 rounded-full bg-alert-critical"></div>
+              <p class="font-label-caps text-label-caps text-on-surface-variant">LAJEADO-RS</p>
+            </div>
+            <h3 class="font-subtitle-h2 text-[20px] text-ocean-deep mb-3">Risco de enchente do Taquari</h3>
+            <p class="font-body-md text-[14px] text-on-surface-variant">
+              Vale do Taquari. Safra comercial de
+              <strong class="text-ocean-deep">trigo</strong> sensível à saturação do solo no
+              espigamento. Vulnerável ao excesso hídrico induzido por El Niño.
+            </p>
+          </div>
+        </div>
+
+        <p class="font-body-md text-on-surface-variant max-w-3xl">
+          Validar a metodologia nesses dois polos comprova que o sistema captura tanto
+          <strong class="text-ocean-deep">El Niño que seca</strong> quanto
+          <strong class="text-ocean-deep">El Niño que alaga</strong>. Próxima etapa: escala para os
+          <span class="font-data-tabular text-ocean-deep font-bold">312 municípios em alerta</span>
+          do monitoramento nacional.
+        </p>
+      </div>
+    </section>
+
+    <!-- (placeholder removido) -->
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer
+    class="relative z-10 bg-ocean-deep border-t border-surface-container-highest/10 w-full py-12 px-margin-mobile md:px-margin-desktop">
+    <div class="max-w-max-width mx-auto flex flex-col md:flex-row justify-between items-start md:items-center gap-10">
+      <div class="space-y-4">
+        <div class="logo-container h-12 flex items-center">
+          <img src="/assets/logo-animated-dark.svg" alt="S.ENSO" class="h-12 w-auto" />
+        </div>
+        <p class="font-data-compact text-data-compact text-on-primary-fixed-variant max-w-xs">
+          Sistemas Preditivos Orbitais de alta fidelidade para mitigação de riscos climáticos.
+        </p>
+      </div>
+      <div class="grid grid-cols-2 md:grid-cols-3 gap-10">
+        <div>
+          <h4 class="font-label-caps text-label-caps text-surface-bright mb-4">SISTEMA</h4>
+          <ul class="space-y-2 font-data-compact text-data-compact text-on-primary-fixed-variant">
+            <li class="hover:text-surface-bright cursor-pointer transition-colors duration-150">
+              The Signal
+            </li>
+            <li class="hover:text-surface-bright cursor-pointer transition-colors duration-150">
+              The Territory
+            </li>
+            <li class="hover:text-surface-bright cursor-pointer transition-colors duration-150">
+              The Alert
+            </li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="font-label-caps text-label-caps text-surface-bright mb-4">SUPORTE</h4>
+          <ul class="space-y-2 font-data-compact text-data-compact text-on-primary-fixed-variant">
+            <li class="hover:text-surface-bright cursor-pointer transition-colors duration-150">
+              Metodologia
+            </li>
+            <li class="hover:text-surface-bright cursor-pointer transition-colors duration-150">
+              Privacidade
+            </li>
+            <li class="hover:text-surface-bright cursor-pointer transition-colors duration-150">
+              API
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div
+      class="max-w-max-width mx-auto mt-12 pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+      <div class="space-y-2 max-w-2xl">
+        <p class="font-data-compact text-data-compact text-on-primary-fixed-variant">
+          © 2026 <span class="brand-senso">S<span class="brand-dot">.</span>ENSO</span> Orbital Predictive Systems ·
+          FIAP Global Solution 2026.1 · Turma 1TSCOR
+        </p>
+        <p class="font-data-compact text-data-compact text-on-primary-fixed-variant/70">
+          Piloto acadêmico. Dados públicos de NOAA, INMET, IBGE e Defesa Civil S2iD.
+          <strong class="text-secondary-fixed-dim">Não substitui boletins oficiais.</strong>
+        </p>
+      </div>
+      <div class="flex items-center gap-2 shrink-0">
+        <span class="font-label-caps text-label-caps text-secondary-container">FIAP GLOBAL SOLUTION 2026</span>
+        <span class="w-1.5 h-1.5 rounded-full bg-wave-blue"></span>
+      </div>
+    </div>
+  </footer>
+
+  <script type="module" src="/src/landing.js"></script>
+</body>
+
+</html>
