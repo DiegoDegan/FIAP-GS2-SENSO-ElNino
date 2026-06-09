@@ -239,31 +239,14 @@
           </p>
         </div>
 
-        <!-- Frame 16:9. Para publicar:
-               troque YOUR_VIDEO_ID_HERE no data-youtube-id pelo ID real do vídeo do YouTube.
-               JS detecta o sentinel e mantém o placeholder enquanto não há vídeo. -->
+        <!-- Frame 16:9. Para trocar o vídeo: altere data-youtube-id abaixo. -->
         <div data-pitch-frame
           class="relative aspect-video rounded-xl overflow-hidden border border-surface-container-highest/20 shadow-2xl rim-highlight bg-ocean-deep">
-          <iframe data-youtube-iframe data-youtube-id="YOUR_VIDEO_ID_HERE" src="about:blank"
+          <iframe data-youtube-iframe data-youtube-id="e_fN2mBd4WA" src="about:blank"
             title="Pitch S.ENSO — Global Solution 2026" class="absolute inset-0 w-full h-full" loading="lazy"
             referrerpolicy="strict-origin-when-cross-origin"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
             allowfullscreen></iframe>
-
-          <div data-pitch-placeholder
-            class="absolute inset-0 flex flex-col items-center justify-center gap-4 bg-ocean-deep/95 text-center px-margin-mobile pointer-events-none">
-            <div class="absolute inset-0 orbital-glow" aria-hidden="true"></div>
-            <span class="material-symbols-outlined text-secondary-fixed-dim relative z-10" style="font-size: 64px;"
-              aria-hidden="true">play_circle</span>
-            <p class="font-label-caps text-label-caps text-secondary-fixed-dim relative z-10">
-              VÍDEO DO PITCH
-            </p>
-            <p class="font-data-compact text-data-compact text-on-primary-container max-w-md relative z-10">
-              Em produção. Quando estiver no YouTube, substitua
-              <code class="text-secondary-fixed-dim">data-youtube-id</code> em
-              <code class="text-secondary-fixed-dim">index.html</code>.
-            </p>
-          </div>
         </div>
       </div>
     </section>
@@ -359,7 +342,7 @@
               <img
                 src="/zona.png"
                 alt="Zona de aquecimento do Pacífico equatorial — El Niño"
-                class="w-full h-full object-contain"
+                class="w-full h-full object-contain [mask-image:radial-gradient(circle,black_72%,transparent_100%)]"
               />
             </div>
 

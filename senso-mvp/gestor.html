@@ -43,7 +43,7 @@
         <button
           type="button"
           data-tab-target="01"
-          aria-selected="false"
+          aria-selected="true"
           class="tab-link w-[calc(100%-2rem)] text-on-surface-variant rounded-lg px-4 py-3 mx-4 flex items-center gap-3
                  transition-[background-color,color] duration-150 ease-out
                  hover:bg-surface-container-high active:scale-[0.97]
@@ -56,7 +56,7 @@
         <button
           type="button"
           data-tab-target="02"
-          aria-selected="true"
+          aria-selected="false"
           class="tab-link w-[calc(100%-2rem)] text-on-surface-variant rounded-lg px-4 py-3 mx-4 flex items-center gap-3
                  transition-[background-color,color] duration-150 ease-out
                  hover:bg-surface-container-high active:scale-[0.97]
@@ -165,7 +165,7 @@
       <!-- Tab panels -->
       <div class="pt-24 px-margin-desktop pb-12 max-w-max-width mx-auto">
         <!-- Panel 01: Painel Nacional -->
-        <section data-tab-panel="01" hidden class="space-y-gutter">
+        <section data-tab-panel="01" class="space-y-gutter">
           <div class="bg-ocean-deep rounded-lg p-8 relative overflow-hidden rim-highlight">
             <div class="absolute inset-0 orbital-glow" aria-hidden="true"></div>
             <div class="absolute inset-0 sinusoidal-pattern" aria-hidden="true"></div>
@@ -216,7 +216,7 @@
         </section>
 
         <!-- Panel 02: Painel Municipal -->
-        <section data-tab-panel="02">
+        <section data-tab-panel="02" hidden>
           <!-- Municipality selector -->
           <div class="flex items-center justify-between mb-6 flex-wrap gap-4">
             <div>

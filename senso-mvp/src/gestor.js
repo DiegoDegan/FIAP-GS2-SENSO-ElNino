@@ -381,6 +381,6 @@ document.addEventListener('DOMContentLoaded', () => {
   initTabs();
   initMuniSelector();
   initHoldConfirm();
-  // Estado inicial: Lajeado (combina com aria-selected="true" no HTML)
+  // Estado inicial: Painel Nacional (combina com aria-selected="true" no HTML)
   renderMunicipio('lajeado');
 });
